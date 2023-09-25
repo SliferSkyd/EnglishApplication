@@ -31,10 +31,36 @@ public class DictionaryCommandLine {
             Scanner scanner = new Scanner(System.in);
             int choice = scanner.nextInt();
             switch (choice) {
-                case 0:
+                case 0: {
+                    System.exit(0);
+                }
+                case 1: {
+                    System.out.println("Type your word and meaning in two separated lines:");
+                    Scanner lineScanner = new Scanner(System.in);
+                    String target = lineScanner.nextLine();
+                    String explain = lineScanner.nextLine();
+                    DictionaryManagement.add(target, explain);
                     break;
-                case 1:
-
+                }
+                case 2: {
+                    System.out.print("Type your word: ");
+                    Scanner lineScanner = new Scanner(System.in);
+                    String target = lineScanner.nextLine();
+                    DictionaryManagement.delete(target);
+                    break;
+                }
+                case 3: {
+                    System.out.println("Type your word and meaning in two separated lines:");
+                    Scanner lineScanner = new Scanner(System.in);
+                    String target = lineScanner.nextLine();
+                    String explain = lineScanner.nextLine();
+                    DictionaryManagement.update(target, explain);
+                    break;
+                }
+                case 4: {
+                    showAllWords();
+                    break;
+                }
             }
         }
     }
