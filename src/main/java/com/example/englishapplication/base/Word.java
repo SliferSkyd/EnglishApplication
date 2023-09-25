@@ -14,4 +14,12 @@ public class Word {
     public String getWordTarget() {
         return wordTarget;
     }
+
+    public void setWordTarget(String wordTarget) {
+        this.wordTarget = wordTarget;
+    }
+
+    public void setWordExplain(String wordExplain) {
+        this.wordExplain = wordExplain;
+    }
 }
