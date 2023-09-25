@@ -61,6 +61,13 @@ public class DictionaryCommandLine {
                     showAllWords();
                     break;
                 }
+                case 5: {
+                    System.out.print("Type your word: ");
+                    Scanner lineScanner = new Scanner(System.in);
+                    String target = lineScanner.nextLine();
+                    System.out.println(DictionaryManagement.lookUp(target));
+                    break;
+                }
             }
         }
     }
