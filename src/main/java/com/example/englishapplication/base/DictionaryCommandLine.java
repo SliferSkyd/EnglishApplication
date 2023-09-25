@@ -1,5 +1,7 @@
 package com.example.englishapplication.base;
 
+import java.io.IOException;
+
 public class DictionaryCommandLine {
     public static void showAllWords() {
         System.out.printf("%-6s%c %-15s%c %-20s%n","No", '|' ,"English", '|', "Vietnamese");
@@ -8,7 +10,12 @@ public class DictionaryCommandLine {
         }
     }
     public static void dictionaryBasic() {
-        DictionaryManagement.insertFromCommandline();
+        try {
+            DictionaryManagement.insertFromFile();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         showAllWords();
     }
     public static void main(String[] args) {
