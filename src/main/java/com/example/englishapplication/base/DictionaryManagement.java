@@ -16,7 +16,8 @@ public class DictionaryManagement {
             Dictionary.wordList.add(new Word(target, meaning));
         }
     }
-    static final String IN_PATH = "";
+
+    static final String IN_PATH = "src/main/resources/WordDictionary/dictionaries.txt";
     public static void insertFromFile() throws IOException {
         FileInputStream fileInputStream = new FileInputStream(IN_PATH);
         Scanner scanner = new Scanner(fileInputStream);

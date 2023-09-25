@@ -1,0 +1,10 @@
+House	Ngôi nhà
+Love	Yêu thương
+School	Trường học
+University	Trường đại học
+Object	Đối tượng
+Graph	Đồ thị
+Tree	Cây
+Search	Tìm kiếm
+Binary	Nhị phân
+Index	Chỉ số
