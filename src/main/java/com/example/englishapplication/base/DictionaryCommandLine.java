@@ -1,19 +1,14 @@
 package com.example.englishapplication.base;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class DictionaryCommandLine {
-    public static void showAllWords() {
-        System.out.printf("%-6s%c %-15s%c %-20s%n","No", '|' ,"English", '|', "Vietnamese");
-        for (int i = 0; i < Dictionary.wordList.size(); i++) {
-            System.out.printf("%-6d%c %-15s%c %-15s%n", i + 1,'|', Dictionary.wordList.get(i).getWordTarget(), '|',Dictionary.wordList.get(i).getWordExplain());
-        }
-    }
     public static void dictionaryBasic() {
         DictionaryManagement.insertFromCommandLine();
-        showAllWords();
+        DictionaryManagement.showAllWords();
     }
-    public static void dictionaryAdvanced() {
+    public static void dictionaryAdvanced() throws IOException {
         while (true) {
             String menu = "Welcome to My Application\n" +
                     "[0] Exit\n" +
@@ -58,7 +53,7 @@ public class DictionaryCommandLine {
                     break;
                 }
                 case 4: {
-                    showAllWords();
+                    DictionaryManagement.showAllWords();
                     break;
                 }
                 case 5: {
@@ -68,10 +63,18 @@ public class DictionaryCommandLine {
                     System.out.println(DictionaryManagement.lookUp(target));
                     break;
                 }
+                case 8: {
+                    DictionaryManagement.insertFromFile();
+                    break;
+                }
+                case 9: {
+                    DictionaryManagement.exportToFile();
+                    break;
+                }
             }
         }
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         dictionaryAdvanced();
     }
 }

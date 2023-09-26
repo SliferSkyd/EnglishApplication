@@ -1,0 +1,11 @@
+No    | English        | Vietnamese          
+1     | House          | Ngôi nhà       
+2     | Love           | Yêu thương     
+3     | School         | Trường học     
+4     | University     | Trường đại học 
+5     | Object         | Đối tượng      
+6     | Graph          | Đồ thị         
+7     | Tree           | Cây            
+8     | Search         | Tìm kiếm       
+9     | Binary         | Nhị phân       
+10    | Index          | Chỉ số         

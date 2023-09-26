@@ -1,8 +1,6 @@
 package com.example.englishapplication.base;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 public class DictionaryManagement {
@@ -16,6 +14,7 @@ public class DictionaryManagement {
             Dictionary.wordList.add(new Word(target, meaning));
         }
     }
+
     public static void insertFromFile() throws IOException {
         FileInputStream fileInputStream = new FileInputStream(IN_PATH);
         Scanner scanner = new Scanner(fileInputStream);
@@ -25,12 +24,34 @@ public class DictionaryManagement {
                 String[] wordInLine = line.split("\t");
                 Dictionary.wordList.add(new Word(wordInLine[0], wordInLine[1]));
             }
+        } catch (Exception e) {
+            throw new IOException();
         } finally {
             scanner.close();
             fileInputStream.close();
         }
     }
+
+    public static void showAllWords() {
+        System.out.printf("%-6s%c %-15s%c %-20s%n","No", '|' ,"English", '|', "Vietnamese");
+        for (int i = 0; i < Dictionary.wordList.size(); i++) {
+            System.out.printf("%-6d%c %-15s%c %-15s%n", i + 1,'|', Dictionary.wordList.get(i).getWordTarget(), '|',Dictionary.wordList.get(i).getWordExplain());
+        }
+    }
+
+    public static void exportToFile() throws IOException {
+        File output = new File(OUT_PATH);
+        PrintStream stream = new PrintStream(output);
+        System.setOut(stream);
+
+        showAllWords();
+
+        System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
+        stream.close();
+    }
+
     static final String IN_PATH = "src/main/resources/WordDictionary/dictionaries.txt";
+    static final String OUT_PATH = "src/main/resources/WordDictionary/data.txt";
     public static void add(String target, String explain) {
         Dictionary.wordList.add(new Word(target, explain));
     }
