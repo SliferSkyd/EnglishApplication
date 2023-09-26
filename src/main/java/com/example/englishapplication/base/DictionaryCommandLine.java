@@ -60,8 +60,18 @@ public class DictionaryCommandLine {
                     System.out.print("Type your word: ");
                     Scanner lineScanner = new Scanner(System.in);
                     String target = lineScanner.nextLine();
-                    System.out.println(DictionaryManagement.lookUp(target));
+                    DictionaryManagement.LookUp(target);
                     break;
+                }
+                case 6: {
+                    System.out.print("Type your word: ");
+                    Scanner lineScanner = new Scanner(System.in);
+                    String target = lineScanner.nextLine();
+                    System.out.println(DictionaryManagement.Search(target));
+                    break;
+                }
+                case 7: {
+
                 }
                 case 8: {
                     DictionaryManagement.insertFromFile();

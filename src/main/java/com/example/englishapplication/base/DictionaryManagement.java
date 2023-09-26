@@ -1,6 +1,8 @@
 package com.example.englishapplication.base;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class DictionaryManagement {
@@ -70,12 +72,25 @@ public class DictionaryManagement {
         add(target, explain);
     }
 
-    public static String lookUp(String target) {
+    public static String Search(String target) {
         for (int i = 0; i < Dictionary.wordList.size(); ++i) {
             if (target.equals(Dictionary.wordList.get(i).getWordTarget())) {
                 return Dictionary.wordList.get(i).getWordExplain();
             }
         }
         return "Error: Word Not Found!";
+    }
+
+    public static void LookUp(String target) {
+        List<Word> wordList = new ArrayList<>();
+        for (int i = 0; i < Dictionary.wordList.size(); ++i) {
+            if (Dictionary.wordList.get(i).getWordTarget().length() >= target.length() && target.equals(Dictionary.wordList.get(i).getWordTarget().substring(0, target.length()))) {
+                wordList.add(Dictionary.wordList.get(i));
+            }
+        }
+        System.out.printf("%-6s%c %-15s%c %-20s%n", "No", '|' ,"English", '|', "Vietnamese");
+        for (int i = 0; i < wordList.size(); i++) {
+            System.out.printf("%-6d%c %-15s%c %-15s%n", i + 1,'|', wordList.get(i).getWordTarget(), '|', wordList.get(i).getWordExplain());
+        }
     }
 }
