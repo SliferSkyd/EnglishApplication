@@ -1,0 +1,27 @@
+.button {
+    -fx-background-color: transparent;
+}
+
+#SearchButton {
+    -fx-graphic: url("../image/search.png");
+}
+
+#EditButton {
+    -fx-graphic: url("../image/edit.png");
+}
+
+#TranslateButton {
+    -fx-graphic: url("../image/translate.png");
+}
+
+#FavoriteButton {
+    -fx-graphic: url("../image/favorite.png");
+}
+
+#GameButton {
+    -fx-graphic: url("../image/game.png");
+}
+
+#SettingsButton {
+    -fx-graphic: url("../image/settings.png");
+}
