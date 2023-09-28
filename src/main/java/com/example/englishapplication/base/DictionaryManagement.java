@@ -24,7 +24,8 @@ public class DictionaryManagement {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] wordInLine = line.split("\t");
-                Dictionary.wordList.add(new Word(wordInLine[0], wordInLine[1]));
+                //Dictionary.wordList.add(new Word(wordInLine[0], wordInLine[1]));
+                add(wordInLine[0], wordInLine[1]);
             }
         } catch (Exception e) {
             throw new IOException();
@@ -36,9 +37,10 @@ public class DictionaryManagement {
 
     public static void showAllWords() {
         System.out.printf("%-6s%c %-15s%c %-20s%n","No", '|' ,"English", '|', "Vietnamese");
-        for (int i = 0; i < Dictionary.wordList.size(); i++) {
+        Dictionary.trie.lookupWord("");
+        /*for (int i = 0; i < Dictionary.wordList.size(); i++) {
             System.out.printf("%-6d%c %-15s%c %-15s%n", i + 1,'|', Dictionary.wordList.get(i).getWordTarget(), '|',Dictionary.wordList.get(i).getWordExplain());
-        }
+        }*/
     }
 
     public static void exportToFile() throws IOException {
@@ -54,43 +56,51 @@ public class DictionaryManagement {
 
     static final String IN_PATH = "src/main/resources/WordDictionary/dictionaries.txt";
     static final String OUT_PATH = "src/main/resources/WordDictionary/data.txt";
-    public static void add(String target, String explain) {
-        Dictionary.wordList.add(new Word(target, explain));
+    public static String add(String target, String explain) {
+        //Dictionary.wordList.add(new Word(target, explain));
+        return Dictionary.trie.addWord(target, explain);
+        //return "Successfully add word: " + target + " with meaning: " + explain;
     }
-    public static void delete(String target) {
-        for (int i = 0; i < Dictionary.wordList.size(); ++i) {
+    public static String delete(String target) {
+        /*for (int i = 0; i < Dictionary.wordList.size(); ++i) {
             if (target.equals(Dictionary.wordList.get(i).getWordTarget())) {
                 Dictionary.wordList.remove(i);
-                return;
+                return "Successfully delete word: " + target;
             }
         }
+
+        return "Error: Word is not exist";*/
+        return Dictionary.trie.deleteWord(target);
     }
 
+    public static String update(String target, String explain) {
+        String temp = delete(target);
+        if (temp == "Error: Word is not exist") return temp;
 
-    public static void update(String target, String explain) {
-        delete(target);
-        add(target, explain);
+        return add(target, explain);
     }
 
     public static String Search(String target) {
-        for (int i = 0; i < Dictionary.wordList.size(); ++i) {
+        /*for (int i = 0; i < Dictionary.wordList.size(); ++i) {
             if (target.equals(Dictionary.wordList.get(i).getWordTarget())) {
                 return Dictionary.wordList.get(i).getWordExplain();
             }
-        }
-        return "Error: Word Not Found!";
+        }*/
+
+        return Dictionary.trie.searchWord(target);
     }
 
-    public static void LookUp(String target) {
-        List<Word> wordList = new ArrayList<>();
+    public static void LookUp(String prefix) {
+        /*List<Word> wordList = new ArrayList<>();
         for (int i = 0; i < Dictionary.wordList.size(); ++i) {
             if (Dictionary.wordList.get(i).getWordTarget().length() >= target.length() && target.equals(Dictionary.wordList.get(i).getWordTarget().substring(0, target.length()))) {
                 wordList.add(Dictionary.wordList.get(i));
             }
-        }
+        }*/
         System.out.printf("%-6s%c %-15s%c %-20s%n", "No", '|' ,"English", '|', "Vietnamese");
-        for (int i = 0; i < wordList.size(); i++) {
+        Dictionary.trie.lookupWord(prefix);
+        /*for (int i = 0; i < wordList.size(); i++) {
             System.out.printf("%-6d%c %-15s%c %-15s%n", i + 1,'|', wordList.get(i).getWordTarget(), '|', wordList.get(i).getWordExplain());
-        }
+        }*/
     }
 }

@@ -5,4 +5,6 @@ import java.util.List;
 
 public class Dictionary {
     public static List<Word> wordList = new ArrayList<>();
+
+     public static Trie trie = new Trie();
 }

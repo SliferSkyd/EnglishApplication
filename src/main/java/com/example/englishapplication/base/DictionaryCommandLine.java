@@ -34,14 +34,14 @@ public class DictionaryCommandLine {
                     Scanner lineScanner = new Scanner(System.in);
                     String target = lineScanner.nextLine();
                     String explain = lineScanner.nextLine();
-                    DictionaryManagement.add(target, explain);
+                    System.out.println(DictionaryManagement.add(target, explain));
                     break;
                 }
                 case 2: {
                     System.out.print("Type your word: ");
                     Scanner lineScanner = new Scanner(System.in);
                     String target = lineScanner.nextLine();
-                    DictionaryManagement.delete(target);
+                    System.out.println(DictionaryManagement.delete(target));
                     break;
                 }
                 case 3: {
@@ -49,7 +49,7 @@ public class DictionaryCommandLine {
                     Scanner lineScanner = new Scanner(System.in);
                     String target = lineScanner.nextLine();
                     String explain = lineScanner.nextLine();
-                    DictionaryManagement.update(target, explain);
+                    System.out.println(DictionaryManagement.update(target, explain));
                     break;
                 }
                 case 4: {
