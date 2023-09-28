@@ -15,27 +15,27 @@
          <children>
             <VBox layoutY="45.0" prefHeight="377.0" prefWidth="75.0">
                <children>
-                  <Button id="SearchButton" fx:id="SearchButton" contentDisplay="TOP" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" stylesheets="@style/container.css" text="Search" textAlignment="CENTER">
+                  <Button id="SearchButton" fx:id="SearchButton" contentDisplay="TOP" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" styleClass="button-navigator" stylesheets="@style/container.css" text="Search" textAlignment="CENTER">
                      <font>
                         <Font size="12.0" />
                      </font>
                   </Button>
-                  <Button id="EditButton" fx:id="SearchButton1" contentDisplay="TOP" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" stylesheets="@style/container.css" text="Edit" textAlignment="CENTER">
+                  <Button id="EditButton" fx:id="SearchButton1" contentDisplay="TOP" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" styleClass="button-navigator" stylesheets="@style/container.css" text="Edit" textAlignment="CENTER">
                      <font>
                         <Font size="12.0" />
                      </font>
                   </Button>
-                  <Button id="TranslateButton" fx:id="SearchButton12" contentDisplay="TOP" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" stylesheets="@style/container.css" text="Translate" textAlignment="CENTER">
+                  <Button id="TranslateButton" fx:id="SearchButton12" contentDisplay="TOP" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" styleClass="button-navigator" stylesheets="@style/container.css" text="Translate" textAlignment="CENTER">
                      <font>
                         <Font size="12.0" />
                      </font>
                   </Button>
-                  <Button id="FavoriteButton" fx:id="SearchButton11" contentDisplay="TOP" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" stylesheets="@style/container.css" text="Favorite" textAlignment="CENTER">
+                  <Button id="FavoriteButton" fx:id="SearchButton11" contentDisplay="TOP" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" styleClass="button-navigator" stylesheets="@style/container.css" text="Favorite" textAlignment="CENTER">
                      <font>
                         <Font size="12.0" />
                      </font>
                   </Button>
-                  <Button id="GameButton" fx:id="SearchButton112" contentDisplay="TOP" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" stylesheets="@style/container.css" text="Game" textAlignment="CENTER">
+                  <Button id="GameButton" fx:id="SearchButton112" contentDisplay="TOP" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" styleClass="button-navigator" stylesheets="@style/container.css" text="Game" textAlignment="CENTER">
                      <font>
                         <Font size="12.0" />
                      </font>
@@ -56,7 +56,7 @@
       </HBox>
       <Button layoutX="749.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="103.0" text="Button" />
       <AnchorPane layoutX="83.0" layoutY="97.0" prefHeight="528.0" prefWidth="769.0" />
-      <Button id="SettingsButton" fx:id="SearchButton111" contentDisplay="TOP" layoutX="-1.0" layoutY="550.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" stylesheets="@style/container.css" text="Settings" textAlignment="CENTER">
+      <Button id="SettingsButton" fx:id="SearchButton111" contentDisplay="TOP" layoutX="-1.0" layoutY="550.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" styleClass="button-navigator" stylesheets="@style/container.css" text="Settings" textAlignment="CENTER">
          <font>
             <Font size="12.0" />
          </font>
