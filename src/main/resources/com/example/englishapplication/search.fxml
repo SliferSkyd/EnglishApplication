@@ -2,7 +2,9 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="528.0" prefWidth="726.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.englishapplication.Search">
+
+<?import javafx.scene.web.WebView?>
+<AnchorPane prefHeight="528.0" prefWidth="726.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.englishapplication.SearchController">
    <children>
       <AnchorPane layoutX="301.0" layoutY="15.0" prefHeight="498.0" prefWidth="417.0" styleClass="search-box" stylesheets="@style/container.css">
          <children>
