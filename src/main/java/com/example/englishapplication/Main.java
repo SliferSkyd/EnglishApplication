@@ -17,7 +17,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("search.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("container.fxml")));
         primaryStage.setTitle("Dictionary");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

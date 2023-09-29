@@ -22,7 +22,15 @@ public class ContainerController implements Initializable {
     private Button searchButton;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("search.fxml"));
+            searchPane = loader.load();
+            searchController = loader.getController();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        searchButton.getStyleClass().add("active");
+        mainContent.getChildren().setAll(searchPane);
     }
 
 }
