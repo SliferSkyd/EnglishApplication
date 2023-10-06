@@ -1,5 +1,8 @@
 package com.example.englishapplication.base;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Trie {
     protected class Node {
         private String explain;
@@ -80,25 +83,27 @@ public class Trie {
         return p.getExplain();
     }
 
-    private void dfs(Node u, String prefix) {
+    private void dfs(Node u, String prefix, List<String> list) {
         if (!u.getExplain().isEmpty()) {
             ++index;
             System.out.printf("%-6d%c %-15s%c %-15s%n", index, '|', prefix, '|', u.getExplain());
+            list.add(prefix);
         }
 
         for (int i = 0; i < 256; ++i)
-            if (u.next[i] != null) dfs(u.next[i], prefix + (char)i);
+            if (u.next[i] != null) dfs(u.next[i], prefix + (char)i, list);
     }
 
-    protected void lookupWord(String prefix) {
+    protected List<String> lookupWord(String prefix) {
         Node p = root;
         for (int i = 0; i < prefix.length(); ++i) {
             int ch = prefix.charAt(i);
-            if (p.next[ch] == null) return;
+            if (p.next[ch] == null) return new ArrayList<>();
             p = p.next[ch];
         }
-
+        List<String> list = new ArrayList<>();
         index = 0;
-        dfs(p, prefix);
+        dfs(p, prefix, list);
+        return list;
     }
 }
