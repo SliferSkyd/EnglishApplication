@@ -2,6 +2,8 @@ package com.example.englishapplication;
 
 import com.example.englishapplication.base.DictionaryManagement;
 import com.example.englishapplication.base.Word;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
@@ -21,26 +23,27 @@ public class SearchController implements Initializable {
     public TextField searchField;
     public WebView definitionView;
     List<String> currentSearchWord = new ArrayList<>();
+
+    ObservableList<String> listWords;
     public void searchFieldAction() {
-        String word = searchField.getText();
+        String prefix = searchField.getText();
         currentSearchWord.clear();
+        currentSearchWord = DictionaryManagement.LookUp(prefix);
+        listWords = FXCollections.observableArrayList(currentSearchWord);
+        listView.setItems(listWords);
+        String meaning = DictionaryManagement.Search(prefix);
+        definitionView.getEngine().loadContent(meaning);
     }
 
-    public void showDefinition() {
-        String word = searchField.getText();
-        System.out.println(word);
-        if (word == null) return;
-        String meaning = DictionaryManagement.Search(word);
-        definitionView.getEngine().loadContent(meaning);
+    public void listViewAction() {
+        searchField.setText(listView.getSelectionModel().getSelectedItem());
+        searchFieldAction();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        currentSearchWord = DictionaryManagement.LookUp("");
-        for (String word: currentSearchWord) {
-            listView.getItems().add(word);
-            System.out.println(word);
-        }
+        listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        searchFieldAction();
     }
 
 }

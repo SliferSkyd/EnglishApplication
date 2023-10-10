@@ -15,8 +15,8 @@
          </children></AnchorPane>
       <AnchorPane layoutX="10.0" layoutY="16.0" prefHeight="498.0" prefWidth="280.0" styleClass="card" stylesheets="@style/container.css">
          <children>
-            <TextField fx:id="searchField" layoutX="6.0" layoutY="8.0" onKeyTyped="#showDefinition" prefHeight="46.0" prefWidth="267.0" promptText="Type your word..." styleClass="search-field" stylesheets="@style/container.css" />
-            <ListView fx:id="listView" layoutX="6.0" layoutY="66.0" prefHeight="348.0" prefWidth="267.0" stylesheets="@style/container.css" />
+            <TextField fx:id="searchField" layoutX="6.0" layoutY="8.0" onKeyTyped="#searchFieldAction" prefHeight="46.0" prefWidth="267.0" promptText="Type your word..." styleClass="search-field" stylesheets="@style/container.css" />
+            <ListView fx:id="listView" layoutX="6.0" layoutY="66.0" onMouseClicked="#listViewAction" prefHeight="348.0" prefWidth="267.0" stylesheets="@style/container.css" />
             <Button layoutX="6.0" layoutY="433.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="78.0" styleClass="btn-success" stylesheets="@style/container.css" text="Add" />
             <Button layoutX="101.0" layoutY="433.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="78.0" styleClass="btn-warning" stylesheets="@style/container.css" text="Edit" />
             <Button layoutX="195.0" layoutY="433.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="78.0" styleClass="btn-danger" stylesheets="@style/container.css" text="Delete" />
