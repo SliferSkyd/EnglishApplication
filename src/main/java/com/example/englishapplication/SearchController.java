@@ -45,5 +45,4 @@ public class SearchController implements Initializable {
         listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         searchFieldAction();
     }
-
 }
