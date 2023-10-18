@@ -34,6 +34,15 @@
     -fx-graphic: url("../image/settings.png");
 }
 
+#SoundButton {
+    -fx-border-color: green;
+}
+
+#ClipboardButton {
+    -fx-border-color: green;
+    -fx-background-color: #E5CCFF;
+}
+
 .card {
     -fx-background-color: white;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 15, 0, 0, 0);
