@@ -24,6 +24,7 @@ public class TranslateAPI {
      * Sends out a WhatsApp message via WhatsMate WA Gateway.
      */
     public static String translate(String text, String fromLang, String toLang) throws Exception {
+        if (fromLang == toLang) return text;
         // TODO: Should have used a 3rd party library to make a JSON string from an object
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();

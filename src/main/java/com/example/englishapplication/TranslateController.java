@@ -22,7 +22,9 @@ public class TranslateController implements Initializable {
         Thread thread = new Thread(() -> {
             String result = "";
             try {
-                result = TranslateAPI.translate(content, "en", "vi");
+                String from = fromLang.getSelectionModel().getSelectedItem();
+                String to = toLang.getSelectionModel().getSelectedItem();
+                result = TranslateAPI.translate(content, from == "Vietnamese" ? "vi" : "en", to == "Vietnamese" ? "vi" : "en");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -34,13 +36,20 @@ public class TranslateController implements Initializable {
 
         output.getEngine().loadContent("Translating...");
     }
-    public void inputAction() throws Exception {
 
+    public void copyAction() {
+        input.setText(output.getEngine().getDocument().getDocumentElement().getTextContent());
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fromLang.setItems(FXCollections.observableArrayList(
                 "English", "Vietnamese")
         );
+        fromLang.getSelectionModel().selectFirst();
+        toLang.setItems(FXCollections.observableArrayList(
+                "English", "Vietnamese")
+        );
+        toLang.getSelectionModel().selectLast();
     }
 }
