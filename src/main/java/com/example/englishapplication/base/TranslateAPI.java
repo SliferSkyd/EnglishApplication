@@ -1,5 +1,6 @@
 package com.example.englishapplication.base;
 
+import okhttp3.*;
 import java.io.BufferedReader;
 import java.io.OutputStream;
 import java.io.InputStreamReader;
@@ -7,11 +8,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class TranslateAPI {
-    // TODO: If you have your own Premium account credentials, put them down here:
-    private static final String CLIENT_ID = "FREE_TRIAL_ACCOUNT";
-    private static final String CLIENT_SECRET = "PUBLIC_SECRET";
-    private static final String ENDPOINT = "http://api.whatsmate.net/v1/translation/translate";
-
     /**
      * Entry Point
      */
@@ -21,7 +17,7 @@ public class TranslateAPI {
         String toLang = "vi";
         String text = "Parallel";
 
-        TranslateAPI.translate(fromLang, toLang, text);
+        System.out.println(TranslateAPI.translate(text, fromLang, toLang));
     }
 
     /**
@@ -29,44 +25,40 @@ public class TranslateAPI {
      */
     public static String translate(String text, String fromLang, String toLang) throws Exception {
         // TODO: Should have used a 3rd party library to make a JSON string from an object
-        String jsonPayload = new StringBuilder()
-                .append("{")
-                .append("\"fromLang\":\"")
-                .append(fromLang)
-                .append("\",")
-                .append("\"toLang\":\"")
-                .append(toLang)
-                .append("\",")
-                .append("\"text\":\"")
-                .append(text)
-                .append("\"")
-                .append("}")
-                .toString();
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        MediaType mediaType = MediaType.parse("application/json");
+        //RequestBody body = RequestBody.create(mediaType, "{\n    \"Text\": \"hello world\"\n}");
+        System.out.println(text);
+        RequestBody body = RequestBody.create(mediaType, "{\n    \"Text\": \" + " + text + "\"\n}");
+        Request request = new Request.Builder()
+                .url("https://hoctap.coccoc.com/composer/proxyapi/translate?from=auto&to=vi")
+                .method("POST", body)
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Cookie", "coccoc_office=1")
+                .build();
+        Response response = client.newCall(request).execute();
+        String word = "";
 
-        URL url = new URL(ENDPOINT);
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setDoOutput(true);
-        conn.setRequestMethod("POST");
-        conn.setRequestProperty("X-WM-CLIENT-ID", CLIENT_ID);
-        conn.setRequestProperty("X-WM-CLIENT-SECRET", CLIENT_SECRET);
-        conn.setRequestProperty("Content-Type", "application/json");
+        if (response.isSuccessful()) {
+            String responseBody = response.body().string();
+            System.out.println("Response Body:");
+            System.out.println(responseBody);
 
-        OutputStream os = conn.getOutputStream();
-        os.write(jsonPayload.getBytes());
-        os.flush();
-        os.close();
+            for (int i = 0; i < responseBody.length(); ++i)
+                if (responseBody.substring(i, i + 4).equals("text")) {
+                    int l = i + 7; int r = l;
+                    while (responseBody.charAt(r) != '\"') ++r;
 
-        int statusCode = conn.getResponseCode();
-        System.out.println("Status Code: " + statusCode);
-        BufferedReader br = new BufferedReader(new InputStreamReader(
-                (statusCode == 200) ? conn.getInputStream() : conn.getErrorStream()
-        ));
-        String output = "", temp;
-        while ((temp = br.readLine()) != null) {
-            output += "\n" + temp;
+                    word = responseBody.substring(l, r);
+                    break;
+                }
+            response.close();
+        } else {
+            System.out.println("Request was not successful. Response code: " + response.code());
         }
-        conn.disconnect();
-        return output;
+
+        return word;
     }
 
 }

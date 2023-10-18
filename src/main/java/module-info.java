@@ -7,6 +7,7 @@ module com.example.englishapplication {
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
     requires org.xerial.sqlitejdbc;
+    requires okhttp3;
 
     opens com.example.englishapplication to javafx.fxml;
     exports com.example.englishapplication;
