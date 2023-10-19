@@ -45,7 +45,7 @@ public class Database {
         }
     }*/
 
-    public static boolean addWord(String s) throws ClassNotFoundException {
+    public boolean addWord(String s) throws ClassNotFoundException {
         Class.forName("org.sqlite.JDBC");
         try {
             c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/WordDictionary/favoriteWords");
@@ -69,31 +69,8 @@ public class Database {
         return true;
     }
 
-    public static boolean deleteWord(String s) throws ClassNotFoundException {
-        Class.forName("org.sqlite.JDBC");
-        try {
-            c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/WordDictionary/favoriteWords");
-        } catch (SQLException e) {
-            System.out.println("Can't connect to database");
-            throw new RuntimeException(e);
-        }
 
-        Statement stmt = null;
-        try {
-            stmt = c.createStatement();
-            String sql = "DELETE FROM favorite_word " +
-                    "WHERE english_word = ('" + s + "');" ;
-            stmt.executeUpdate(sql);
-
-        } catch (SQLException e) {
-            System.out.println("Duplicate words!!!");
-            return false;
-        }
-
-        return true;
-    }
-
-    public static List<String> getAllWords() throws ClassNotFoundException {
+    public List<String> getAllWords() throws ClassNotFoundException {
         List<String> favoriteWords = new ArrayList<>();
 
         Class.forName("org.sqlite.JDBC");
@@ -123,14 +100,52 @@ public class Database {
         return favoriteWords;
     }
 
-    public static void main(String[] args) throws ClassNotFoundException {
-        startDatabase();
-        //endDatabase();
+    public boolean existWord(String s) throws ClassNotFoundException {
+        Class.forName("org.sqlite.JDBC");
+        try {
+            c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/WordDictionary/favoriteWords");
+        } catch (SQLException e) {
+            System.out.println("Can't start database");
+            throw new RuntimeException(e);
+        }
 
-        addWord("House");
-        addWord("Home");
-        List<String> favoriteWords = getAllWords();
+        Statement stmt = null;
+        ResultSet rs;
 
-        for (int i = 0; i < favoriteWords.size(); ++i) System.out.println(favoriteWords.get(i));
+        try {
+            stmt = c.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM favorite_word WHERE english_word = '" + s + "';");
+            while (rs.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            return false;
+        }
+
+        return false;
+    }
+
+    public boolean removeWord(String s) throws ClassNotFoundException {
+        Class.forName("org.sqlite.JDBC");
+        try {
+            c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/WordDictionary/favoriteWords");
+        } catch (SQLException e) {
+            System.out.println("Can't connect to database");
+            throw new RuntimeException(e);
+        }
+
+        Statement stmt = null;
+        try {
+            stmt = c.createStatement();
+            String sql = "DELETE FROM favorite_word " +
+                    "WHERE english_word = ('" + s + "');" ;
+            stmt.executeUpdate(sql);
+
+        } catch (SQLException e) {
+            System.out.println("Duplicate words!!!");
+            return false;
+        }
+
+        return true;
     }
 }

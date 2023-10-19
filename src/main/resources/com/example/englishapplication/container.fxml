@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="588.0" prefWidth="779.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.englishapplication.ContainerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="588.0" prefWidth="779.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.englishapplication.ContainerController">
    <children>
-      <AnchorPane layoutX="-1.0" layoutY="81.0" prefHeight="543.0" prefWidth="75.0">
+      <AnchorPane layoutX="-1.0" layoutY="81.0" prefHeight="543.0" prefWidth="75.0" style="-fx-background-color: FFE5CC;">
          <children>
             <VBox layoutY="45.0" prefHeight="377.0" prefWidth="75.0">
                <children>
@@ -19,12 +19,12 @@
                         <Font size="12.0" />
                      </font>
                   </Button>
-                  <Button id="EditButton" contentDisplay="TOP" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" styleClass="button-navigator" stylesheets="@style/container.css" text="Edit" textAlignment="CENTER">
+                  <Button id="TranslateButton" fx:id="translateButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#activeTranslatePane" prefHeight="75.0" prefWidth="75.0" styleClass="button-navigator" stylesheets="@style/container.css" text="Translate" textAlignment="CENTER">
                      <font>
                         <Font size="12.0" />
                      </font>
                   </Button>
-                  <Button id="TranslateButton" fx:id="translateButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#activeTranslatePane" prefHeight="75.0" prefWidth="75.0" styleClass="button-navigator" stylesheets="@style/container.css" text="Translate" textAlignment="CENTER">
+                  <Button id="RelativesButton" contentDisplay="TOP" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" styleClass="button-navigator" stylesheets="@style/container.css" text="Relatives" textAlignment="CENTER">
                      <font>
                         <Font size="12.0" />
                      </font>
@@ -59,6 +59,6 @@
          </children>
       </HBox>
       <Button layoutX="749.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="103.0" text="Button" />
-      <AnchorPane fx:id="mainContent" layoutX="83.0" layoutY="97.0" prefHeight="528.0" prefWidth="769.0" />
+      <AnchorPane fx:id="mainContent" layoutX="83.0" layoutY="97.0" prefHeight="528.0" prefWidth="765.0" />
    </children>
 </AnchorPane>
