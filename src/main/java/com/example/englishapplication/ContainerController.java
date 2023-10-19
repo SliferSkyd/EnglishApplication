@@ -17,10 +17,14 @@ import org.kordamp.bootstrapfx.scene.layout.Panel;
 public class ContainerController implements Initializable {
     SearchController searchController;
     TranslateController translateController;
+    RelativesController relativesController;
+
     @FXML
-    private AnchorPane mainContent, searchPane, translatePane;
+    private AnchorPane mainContent, searchPane, translatePane, relativesPane;
+
     @FXML
-    private Button searchButton, translateButton;
+    private Button searchButton, translateButton, relativesButton;
+
     public void setActive(AnchorPane anchorPane) {
         mainContent.getChildren().setAll(anchorPane);
     }
@@ -28,6 +32,7 @@ public class ContainerController implements Initializable {
     public void resetAll() {
         searchButton.getStyleClass().removeAll("active");
         translateButton.getStyleClass().removeAll("active");
+        relativesButton.getStyleClass().removeAll("active");
     }
 
     @FXML
@@ -42,6 +47,12 @@ public class ContainerController implements Initializable {
         resetAll();
         translateButton.getStyleClass().add("active");
         setActive(translatePane);
+    }
+
+    public void activeRelativesPane() {
+        resetAll();
+        relativesButton.getStyleClass().add("active");
+        setActive(relativesPane);
     }
 
     @Override
@@ -61,6 +72,15 @@ public class ContainerController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("relatives.fxml"));
+            relativesPane = loader.load();
+            relativesController = loader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         activeSearchPane();
     }
 }
