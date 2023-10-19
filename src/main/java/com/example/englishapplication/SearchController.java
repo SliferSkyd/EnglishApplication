@@ -1,5 +1,6 @@
 package com.example.englishapplication;
 
+import com.example.englishapplication.base.Database;
 import com.example.englishapplication.base.DictionaryManagement;
 import com.example.englishapplication.base.Word;
 import javafx.beans.value.ChangeListener;
@@ -18,13 +19,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class SearchController implements Initializable {
+public class SearchController extends BaseController implements Initializable {
     public ListView<String> listView;
     public TextField searchField;
     public WebView definitionView;
-    List<String> currentSearchWord = new ArrayList<>();
+    private List<String> currentSearchWord = new ArrayList<>();
 
-    ObservableList<String> listWords;
+    private ObservableList<String> listWords;
     public void searchFieldAction() {
         String prefix = searchField.getText();
         currentSearchWord.clear();
@@ -38,6 +39,15 @@ public class SearchController implements Initializable {
     public void listViewAction() {
         searchField.setText(listView.getSelectionModel().getSelectedItem());
         searchFieldAction();
+    }
+
+    public void starAction() throws ClassNotFoundException {
+        String word = searchField.getText();
+        if (favoriteWords.existWord(word)) {
+            favoriteWords.removeWord(word);
+        } else {
+            favoriteWords.addWord(word);
+        }
     }
 
     @Override

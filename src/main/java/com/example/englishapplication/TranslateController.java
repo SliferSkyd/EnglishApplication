@@ -13,7 +13,7 @@ import javafx.scene.web.WebView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class TranslateController implements Initializable {
+public class TranslateController extends BaseController implements Initializable {
     public TextArea input;
     public WebView output;
 
@@ -47,12 +47,6 @@ public class TranslateController implements Initializable {
         copyToClipboard(output.getEngine().getDocument().getDocumentElement().getTextContent());
     }
 
-    private void copyToClipboard(String text) {
-        final Clipboard clipboard = Clipboard.getSystemClipboard();
-        final ClipboardContent content = new ClipboardContent();
-        content.putString(text);
-        clipboard.setContent(content);
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
