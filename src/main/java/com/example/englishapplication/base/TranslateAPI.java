@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 
 public class TranslateAPI {
     /**
@@ -24,41 +25,22 @@ public class TranslateAPI {
      * Sends out a WhatsApp message via WhatsMate WA Gateway.
      */
     public static String translate(String text, String fromLang, String toLang) throws Exception {
-        // TODO: Should have used a 3rd party library to make a JSON string from an object
-        OkHttpClient client = new OkHttpClient().newBuilder()
-                .build();
-        MediaType mediaType = MediaType.parse("application/json");
-        //RequestBody body = RequestBody.create(mediaType, "{\n    \"Text\": \"hello world\"\n}");
-        System.out.println(text);
-        RequestBody body = RequestBody.create(mediaType, "{\n    \"Text\": \" + " + text + "\"\n}");
-        Request request = new Request.Builder()
-                .url("https://hoctap.coccoc.com/composer/proxyapi/translate?from=auto&to=vi")
-                .method("POST", body)
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Cookie", "coccoc_office=1")
-                .build();
-        Response response = client.newCall(request).execute();
-        String word = "";
+        String urlStr = "https://script.google.com/macros/s/AKfycbwWzt9xp75xQE9ODdMScAGVhqTnQvDmNSkOrVrTj4HdSIEeij1X_ZGyuqeBHLEHpsPv/exec" +
+                "?q=" + URLEncoder.encode(text, "UTF-8") +
+                "&target=" + toLang +
+                "&source=" + fromLang;
 
-        if (response.isSuccessful()) {
-            String responseBody = response.body().string();
-            System.out.println("Response Body:");
-            System.out.println(responseBody);
-
-            for (int i = 0; i < responseBody.length(); ++i)
-                if (responseBody.substring(i, i + 4).equals("text")) {
-                    int l = i + 7; int r = l;
-                    while (responseBody.charAt(r) != '\"') ++r;
-
-                    word = responseBody.substring(l, r);
-                    break;
-                }
-            response.close();
-        } else {
-            System.out.println("Request was not successful. Response code: " + response.code());
+        URL url = new URL(urlStr);
+        StringBuilder response = new StringBuilder();
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestProperty("User-Agent", "Mozilla/5.0");
+        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
         }
-
-        return word;
+        in.close();
+        return response.toString();
     }
 
 }
