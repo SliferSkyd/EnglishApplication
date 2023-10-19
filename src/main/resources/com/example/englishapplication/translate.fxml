@@ -15,7 +15,7 @@
          <children>
             <TextArea fx:id="input" layoutX="2.0" layoutY="68.0" prefHeight="410.0" prefWidth="276.0" wrapText="true" />
             <ChoiceBox fx:id="fromLang" layoutX="17.0" layoutY="14.0" prefHeight="36.0" prefWidth="118.0" />
-            <Button id="ClipboardButton" layoutX="218.0" layoutY="14.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="36.0" styleClass="button-navigator" stylesheets="@style/container.css">
+            <Button id="ClipboardButton" layoutX="218.0" layoutY="14.0" mnemonicParsing="false" onAction="#copyInputToClipboardAction" prefHeight="36.0" prefWidth="36.0" styleClass="button-navigator" stylesheets="@style/container.css">
                <graphic>
                   <ImageView id="ClipboardButton" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -43,7 +43,7 @@
          <children>
             <WebView fx:id="output" layoutX="3.0" layoutY="68.0" prefHeight="409.0" prefWidth="275.0" />
             <ChoiceBox fx:id="toLang" layoutX="17.0" layoutY="14.0" prefHeight="36.0" prefWidth="118.0" />
-            <Button id="ClipboardButton" layoutX="218.0" layoutY="14.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="36.0" styleClass="button-navigator" stylesheets="@style/container.css">
+            <Button id="ClipboardButton" layoutX="218.0" layoutY="14.0" mnemonicParsing="false" onAction="#copyOutputToClipboardAction" prefHeight="36.0" prefWidth="36.0" styleClass="button-navigator" stylesheets="@style/container.css">
                <graphic>
                   <ImageView id="ClipboardButton" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>

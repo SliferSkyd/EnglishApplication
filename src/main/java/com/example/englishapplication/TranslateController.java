@@ -6,6 +6,8 @@ import javafx.collections.FXCollections;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.web.WebView;
 
 import java.net.URL;
@@ -37,8 +39,19 @@ public class TranslateController implements Initializable {
         output.getEngine().loadContent("Translating...");
     }
 
-    public void copyAction() {
-        input.setText(output.getEngine().getDocument().getDocumentElement().getTextContent());
+    public void copyInputToClipboardAction() {
+        copyToClipboard(input.getText());
+    }
+
+    public void copyOutputToClipboardAction() {
+        copyToClipboard(output.getEngine().getDocument().getDocumentElement().getTextContent());
+    }
+
+    private void copyToClipboard(String text) {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent content = new ClipboardContent();
+        content.putString(text);
+        clipboard.setContent(content);
     }
 
     @Override
