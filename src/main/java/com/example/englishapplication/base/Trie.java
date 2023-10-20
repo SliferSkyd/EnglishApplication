@@ -72,13 +72,13 @@ public class Trie {
         for (int i = 0; i < target.length(); ++i) {
             int ch = target.charAt(i);
             if (p.next[ch] == null)
-                return "Error: Word is not exist";
+                return null;
 
             p = p.next[ch];
         }
 
         if (p.getExplain().isEmpty())
-            return "Error: Word is not exist";
+            return null;
 
         return p.getExplain();
     }
