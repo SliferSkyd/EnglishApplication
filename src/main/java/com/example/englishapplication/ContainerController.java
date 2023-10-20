@@ -77,7 +77,7 @@ public class ContainerController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("relatives.fxml"));
             relativesPane = loader.load();
             relativesController = loader.getController();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

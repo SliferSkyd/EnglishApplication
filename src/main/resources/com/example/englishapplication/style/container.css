@@ -96,10 +96,10 @@
 }
 
 .search-field {
-    -fx-text-fill: #d1d8e0;
+    -fx-text-fill: black;
     -fx-font-family: "Poppins";
     -fx-font-weight: bold;
-    -fx-font-size: 13;
+    -fx-font-size: 16;
 }
 
 .choice-box {

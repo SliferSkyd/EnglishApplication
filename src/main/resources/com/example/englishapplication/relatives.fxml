@@ -1,35 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
+<?import java.net.URL?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.web.WebView?>
+<?import javafx.scene.layout.HBox?>
 
 <AnchorPane prefHeight="528.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.englishapplication.RelativesController">
     <children>
-        <AnchorPane layoutX="301.0" layoutY="15.0" prefHeight="498.0" prefWidth="417.0" styleClass="search-box" stylesheets="@style/container.css">
+        <AnchorPane layoutX="10.0" layoutY="5.0" prefHeight="62.0" prefWidth="742.0" styleClass="card" stylesheets="@style/container.css">
             <children>
-                <WebView fx:id="definitionView" layoutX="4.0" layoutY="1.0" prefHeight="498.0" prefWidth="449.0" />
-                <Button layoutX="384.0" layoutY="6.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="58.0" styleClass="button-navigator" stylesheets="@style/container.css">
-                    <graphic>
-                        <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@image/star1.png" />
-                            </image>
-                        </ImageView>
-                    </graphic></Button>
-            </children></AnchorPane>
-        <AnchorPane layoutX="10.0" layoutY="16.0" prefHeight="498.0" prefWidth="280.0" styleClass="card" stylesheets="@style/container.css">
-            <children>
-                <TextField fx:id="searchField" layoutX="6.0" layoutY="8.0" onKeyTyped="#searchFieldAction" prefHeight="46.0" prefWidth="267.0" promptText="Type your word..." styleClass="search-field" stylesheets="@style/container.css" />
-                <ListView fx:id="listView" layoutX="6.0" layoutY="66.0" onMouseClicked="#listViewAction" prefHeight="348.0" prefWidth="267.0" stylesheets="@style/container.css" />
-                <Button layoutX="6.0" layoutY="433.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="78.0" styleClass="btn-success" stylesheets="@style/container.css" text="Add" />
-                <Button layoutX="101.0" layoutY="433.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="78.0" styleClass="btn-warning" stylesheets="@style/container.css" text="Edit" />
-                <Button layoutX="195.0" layoutY="433.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="78.0" styleClass="btn-danger" stylesheets="@style/container.css" text="Delete" />
+                <TextField fx:id="input" layoutX="6.0" layoutY="8.0" onAction="#searchAction" prefHeight="46.0" prefWidth="729.0" promptText="Type your word..." styleClass="search-field" stylesheets="@style/container.css" />
             </children>
         </AnchorPane>
+      <ScrollPane layoutX="11.0" layoutY="74.0" prefHeight="443.0" prefWidth="742.0">
+         <content>
+            <HBox fx:id="content" prefHeight="440.0" prefWidth="738.0" styleClass="search-box">
+               <stylesheets>
+                  <URL value="@style/bootstrap.css" />
+                  <URL value="@style/container.css" />
+               </stylesheets></HBox>
+         </content>
+      </ScrollPane>
     </children>
 </AnchorPane>

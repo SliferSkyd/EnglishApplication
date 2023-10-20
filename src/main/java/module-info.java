@@ -8,6 +8,7 @@ module com.example.englishapplication {
     requires java.sql;
     requires org.xerial.sqlitejdbc;
     requires okhttp3;
+    requires json.simple;
 
     opens com.example.englishapplication to javafx.fxml;
     exports com.example.englishapplication;
