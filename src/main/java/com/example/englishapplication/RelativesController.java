@@ -3,17 +3,13 @@ package com.example.englishapplication;
 import com.example.englishapplication.base.RelativesAPI;
 import javafx.application.Platform;
 import javafx.fxml.Initializable;
-import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.TextFlow;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.w3c.dom.Text;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,7 +23,7 @@ public class RelativesController extends BaseController implements Initializable
     public TextField input;
     public HBox content;
     private void fetchData(JSONObject list, Object key) {
-        JSONArray relatives = (JSONArray) list.get(key);
+        JSONArray relatives = (JSONArray) list.get((String) key);
         Label label = new Label(key.toString());
         content.getChildren().add(label);
         TextFlow textFlow = new TextFlow();
@@ -57,4 +53,5 @@ public class RelativesController extends BaseController implements Initializable
         content.getChildren().clear();
         content.getChildren().add(new Label("Loading..."));
     }
+
 }
