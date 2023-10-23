@@ -53,23 +53,16 @@ public class SearchController extends BaseController implements Initializable {
         searchFieldAction();
     }
 
-    public void starAction() {
+    public void starAction() throws ClassNotFoundException {
         String word = searchField.getText();
-        Thread thread = new Thread(() -> {
-            try {
-                if (favoriteWords.existWord(word)) {
-                    star.setImage(starInactive.getImage());
-                    favoriteWords.removeWord(word);
-                } else {
-                    star.setImage(starActive.getImage());
-                    favoriteWords.addWord(word);
-                }
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        });
-        thread.setDaemon(true);
-        thread.start();
+
+        if (favoriteWords.existWord(word)) {
+            star.setImage(starInactive.getImage());
+            favoriteWords.removeWord(word);
+        } else {
+            star.setImage(starActive.getImage());
+            favoriteWords.addWord(word);
+        }
     }
 
     private final ImageView starActive = new ImageView(String.valueOf(getClass().getResource("image/star_active.png")));
@@ -83,5 +76,10 @@ public class SearchController extends BaseController implements Initializable {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void resetAll() {
+
     }
 }

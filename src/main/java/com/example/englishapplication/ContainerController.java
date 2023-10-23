@@ -18,12 +18,13 @@ public class ContainerController implements Initializable {
     SearchController searchController;
     TranslateController translateController;
     RelativesController relativesController;
+    FavoriteController favoriteController;
 
     @FXML
-    private AnchorPane mainContent, searchPane, translatePane, relativesPane;
+    private AnchorPane mainContent, searchPane, translatePane, relativesPane, favoritePane;
 
     @FXML
-    private Button searchButton, translateButton, relativesButton;
+    private Button searchButton, translateButton, relativesButton, favoriteButton;
 
     public void setActive(AnchorPane anchorPane) {
         mainContent.getChildren().setAll(anchorPane);
@@ -33,6 +34,7 @@ public class ContainerController implements Initializable {
         searchButton.getStyleClass().removeAll("active");
         translateButton.getStyleClass().removeAll("active");
         relativesButton.getStyleClass().removeAll("active");
+        favoriteButton.getStyleClass().removeAll("active");
     }
 
     @FXML
@@ -40,6 +42,7 @@ public class ContainerController implements Initializable {
         resetAll();
         searchButton.getStyleClass().add("active");
         setActive(searchPane);
+        searchController.resetAll();
     }
 
     @FXML
@@ -47,12 +50,21 @@ public class ContainerController implements Initializable {
         resetAll();
         translateButton.getStyleClass().add("active");
         setActive(translatePane);
+        translateController.resetAll();
     }
 
     public void activeRelativesPane() {
         resetAll();
         relativesButton.getStyleClass().add("active");
         setActive(relativesPane);
+        relativesController.resetAll();
+    }
+
+    public void activeFavoritePane() throws ClassNotFoundException {
+        resetAll();
+        favoriteButton.getStyleClass().add("active");
+        setActive(favoritePane);
+        favoriteController.resetAll();
     }
 
     @Override
@@ -77,6 +89,14 @@ public class ContainerController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("relatives.fxml"));
             relativesPane = loader.load();
             relativesController = loader.getController();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("favorite.fxml"));
+            favoritePane = loader.load();
+            favoriteController = loader.getController();
         } catch (Exception e) {
             e.printStackTrace();
         }

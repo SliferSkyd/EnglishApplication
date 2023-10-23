@@ -12,12 +12,24 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class BaseController {
-    protected static Database favoriteWords = new Database();
+public abstract class BaseController implements Initializable {
+    protected static Database favoriteWords;
+
+    static {
+        try {
+            favoriteWords = new Database();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     protected void copyToClipboard(String text) {
         final Clipboard clipboard = Clipboard.getSystemClipboard();
         final ClipboardContent content = new ClipboardContent();
         content.putString(text);
         clipboard.setContent(content);
     }
+
+    public abstract void initialize(URL url, ResourceBundle resourceBundle);
+    public abstract void resetAll() throws ClassNotFoundException;
 }
