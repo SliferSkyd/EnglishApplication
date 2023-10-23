@@ -20,6 +20,11 @@ public class RelativesController extends BaseController implements Initializable
         content.setSpacing(10);
     }
 
+    @Override
+    public void resetAll() {
+
+    }
+
     public TextField input;
     public HBox content;
     private void fetchData(JSONObject list, Object key) {

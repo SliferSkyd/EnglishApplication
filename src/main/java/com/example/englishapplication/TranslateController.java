@@ -59,4 +59,9 @@ public class TranslateController extends BaseController implements Initializable
         );
         toLang.getSelectionModel().selectLast();
     }
+
+    @Override
+    public void resetAll() {
+
+    }
 }

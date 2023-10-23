@@ -21,6 +21,7 @@ public class Main extends Application {
         DictionaryManagement.insertFromFile();
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("container.fxml")));
         primaryStage.setTitle("Dictionary");
+        primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
