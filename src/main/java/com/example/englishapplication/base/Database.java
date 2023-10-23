@@ -25,7 +25,6 @@ public class Database {
             stmt.execute(sql);
 
             stmt.close();
-            c.close();
         } catch (Exception e) {
             System.err.println("Can't start database");
             System.exit(0);
@@ -33,14 +32,6 @@ public class Database {
     }
 
     public boolean addWord(String s) throws ClassNotFoundException {
-        Class.forName("org.sqlite.JDBC");
-        try {
-            c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/WordDictionary/favoriteWords");
-        } catch (SQLException e) {
-            System.out.println("Can't connect to database");
-            throw new RuntimeException(e);
-        }
-
         System.out.println(existWord(s));
         Statement stmt = null;
         try {
@@ -60,14 +51,6 @@ public class Database {
 
 
     public List<String> getAllWords() throws ClassNotFoundException {
-        Class.forName("org.sqlite.JDBC");
-        try {
-            c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/WordDictionary/favoriteWords");
-        } catch (SQLException e) {
-            System.out.println("Can't connect to database");
-            throw new RuntimeException(e);
-        }
-
         List<String> favoriteWords = new ArrayList<>();
 
         Statement stmt = null;
@@ -90,14 +73,6 @@ public class Database {
     }
 
     public boolean existWord(String s) throws ClassNotFoundException {
-        Class.forName("org.sqlite.JDBC");
-        try {
-            c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/WordDictionary/favoriteWords");
-        } catch (SQLException e) {
-            System.out.println("Can't connect to database");
-            throw new RuntimeException(e);
-        }
-
         Statement stmt = null;
         ResultSet rs;
 
@@ -137,5 +112,16 @@ public class Database {
         }
 
         return true;
+    }
+
+    public static void main(String[] args) throws ClassNotFoundException {
+        Database database = new Database();
+
+        database.startDatabase();
+        database.removeWord("House");
+        database.addWord("House");
+        List<String> words = database.getAllWords();
+
+        for (String word : words) System.out.println(word);
     }
 }
