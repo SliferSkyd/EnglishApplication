@@ -11,9 +11,9 @@
 
 <AnchorPane maxHeight="528.0" maxWidth="769.0" minHeight="528.0" minWidth="769.0" prefHeight="528.0" prefWidth="769.0" stylesheets="@style/container.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.englishapplication.TranslateController">
    <children>
-      <AnchorPane layoutX="31.0" layoutY="26.0" prefHeight="476.0" prefWidth="278.0" styleClass="card">
+      <AnchorPane layoutX="31.0" layoutY="26.0" prefHeight="476.0" prefWidth="278.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="card">
          <children>
-            <TextArea fx:id="input" layoutX="2.0" layoutY="68.0" prefHeight="410.0" prefWidth="276.0" wrapText="true" />
+            <TextArea fx:id="input" layoutX="1.0" layoutY="68.0" prefHeight="403.0" prefWidth="275.0" style="-fx-border-color: transparency;" wrapText="true" />
             <ChoiceBox fx:id="fromLang" layoutX="17.0" layoutY="14.0" prefHeight="36.0" prefWidth="118.0" />
             <Button id="ClipboardButton" layoutX="218.0" layoutY="14.0" mnemonicParsing="false" onAction="#copyInputToClipboardAction" prefHeight="36.0" prefWidth="36.0" styleClass="button-navigator" stylesheets="@style/container.css">
                <graphic>
@@ -39,9 +39,9 @@
          </stylesheets>
       </AnchorPane>
       <Button layoutX="334.0" layoutY="205.0" mnemonicParsing="false" onAction="#translateAction" prefHeight="50.0" prefWidth="100.0" styleClass="btn-success" stylesheets="@style/bootstrap.css" text="Translate" />
-      <AnchorPane layoutX="458.0" layoutY="25.0" prefHeight="476.0" prefWidth="278.0" styleClass="card">
+      <AnchorPane layoutX="458.0" layoutY="25.0" prefHeight="476.0" prefWidth="278.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" styleClass="card">
          <children>
-            <WebView fx:id="output" layoutX="3.0" layoutY="68.0" prefHeight="409.0" prefWidth="275.0" />
+            <WebView fx:id="output" layoutX="3.0" layoutY="68.0" prefHeight="403.0" prefWidth="275.0" />
             <ChoiceBox fx:id="toLang" layoutX="17.0" layoutY="14.0" prefHeight="36.0" prefWidth="118.0" />
             <Button id="ClipboardButton" layoutX="218.0" layoutY="14.0" mnemonicParsing="false" onAction="#copyOutputToClipboardAction" prefHeight="36.0" prefWidth="36.0" styleClass="button-navigator" stylesheets="@style/container.css">
                <graphic>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="528.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.englishapplication.RelativesController">
     <children>
@@ -15,11 +15,11 @@
         </AnchorPane>
       <ScrollPane layoutX="11.0" layoutY="74.0" prefHeight="443.0" prefWidth="742.0">
          <content>
-            <HBox fx:id="content" prefHeight="440.0" prefWidth="738.0" styleClass="search-box">
-               <stylesheets>
-                  <URL value="@style/bootstrap.css" />
-                  <URL value="@style/container.css" />
-               </stylesheets></HBox>
+            <VBox fx:id="content" prefHeight="440.0" prefWidth="738.0" spacing="10.0">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
          </content>
       </ScrollPane>
     </children>

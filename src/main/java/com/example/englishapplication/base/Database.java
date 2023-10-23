@@ -24,7 +24,6 @@ public class Database {
             Statement stmt = c.createStatement();
             stmt.execute(sql);
 
-            stmt.close();
         } catch (Exception e) {
             System.err.println("Can't start database");
             System.exit(0);
@@ -90,14 +89,6 @@ public class Database {
     }
 
     public boolean removeWord(String s) throws ClassNotFoundException {
-        Class.forName("org.sqlite.JDBC");
-        try {
-            c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/WordDictionary/favoriteWords");
-        } catch (SQLException e) {
-            System.out.println("Can't connect to database");
-            throw new RuntimeException(e);
-        }
-
         Statement stmt = null;
         try {
             stmt = c.createStatement();

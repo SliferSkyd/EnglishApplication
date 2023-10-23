@@ -15,6 +15,14 @@ import java.util.ResourceBundle;
 public abstract class BaseController implements Initializable {
     protected static Database favoriteWords;
 
+    protected static Label loadingLabel;
+
+    BaseController() {
+        loadingLabel = new Label("Loading...");
+        loadingLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: red; -fx-font-weight: bold;");
+        loadingLabel.setPadding(new javafx.geometry.Insets(10, 10, 0, 0));
+    }
+
     static {
         try {
             favoriteWords = new Database();

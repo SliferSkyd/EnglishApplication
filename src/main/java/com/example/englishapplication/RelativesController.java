@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.TextFlow;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -26,15 +27,20 @@ public class RelativesController extends BaseController implements Initializable
     }
 
     public TextField input;
-    public HBox content;
+    public VBox content;
     private void fetchData(JSONObject list, Object key) {
         JSONArray relatives = (JSONArray) list.get((String) key);
         Label label = new Label(key.toString());
+        label.setStyle("-fx-text-fill: red; -fx-font-weight: bold; -fx-font-size: 16px;");
+
         content.getChildren().add(label);
         TextFlow textFlow = new TextFlow();
+        textFlow.setPadding(new javafx.geometry.Insets(0, 10, 0, 0));
+        textFlow.setLineSpacing(10);
         content.getChildren().add(textFlow);
-        for (Object relative : relatives) {
+        for (Object relative: relatives) {
             Button relativeWord = new Button(relative.toString());
+            relativeWord.setFont(new javafx.scene.text.Font(14));
             relativeWord.setOnAction(actionEvent -> {
                 input.setText(relative.toString());
                 searchAction();
@@ -56,7 +62,7 @@ public class RelativesController extends BaseController implements Initializable
         thread.setDaemon(true);
         thread.start();
         content.getChildren().clear();
-        content.getChildren().add(new Label("Loading..."));
+        content.getChildren().add(loadingLabel);
     }
 
 }
