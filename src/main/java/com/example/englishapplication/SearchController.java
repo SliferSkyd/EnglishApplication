@@ -7,12 +7,14 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeView;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.web.WebView;
 
 import java.net.URL;
@@ -28,7 +30,8 @@ public class SearchController extends BaseController implements Initializable {
     private List<String> currentSearchWord = new ArrayList<>();
 
     private ObservableList<String> listWords;
-    public void searchFieldAction() throws ClassNotFoundException {
+
+    private void reloadSearchWord() throws ClassNotFoundException {
         String prefix = searchField.getText();
         currentSearchWord.clear();
         currentSearchWord = DictionaryManagement.LookUp(prefix);
@@ -47,10 +50,30 @@ public class SearchController extends BaseController implements Initializable {
             star.setImage(starInactive.getImage());
         }
     }
+    public void searchFieldAction(KeyEvent keyEvent) throws ClassNotFoundException {
+        if (keyEvent.getCode() == keyEvent.getCode().DOWN) {
+            if (listView.getSelectionModel() == null)
+                listView.getSelectionModel().selectFirst();
+            else if (listView.getSelectionModel().getSelectedIndex() == listView.getItems().size() - 1)
+                listView.getSelectionModel().selectFirst();
+            else listView.getSelectionModel().selectNext();
+        } else if (keyEvent.getCode() == keyEvent.getCode().UP) {
+            if (listView.getSelectionModel() == null)
+                listView.getSelectionModel().selectFirst();
+            else if (listView.getSelectionModel().getSelectedIndex() == 0)
+                listView.getSelectionModel().selectLast();
+            else listView.getSelectionModel().selectPrevious();
+        } else if (keyEvent.getCode() == keyEvent.getCode().ENTER) {
+            listViewAction();
+        } else {
+            reloadSearchWord();
+        }
+    }
 
     public void listViewAction() throws ClassNotFoundException {
         searchField.setText(listView.getSelectionModel().getSelectedItem());
-        searchFieldAction();
+        searchField.positionCaret(searchField.getText().length());
+        reloadSearchWord();
     }
 
     public void starAction() throws ClassNotFoundException {
@@ -72,7 +95,7 @@ public class SearchController extends BaseController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         try {
-            searchFieldAction();
+            reloadSearchWord();
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
