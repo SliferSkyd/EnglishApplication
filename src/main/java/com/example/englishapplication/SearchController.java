@@ -2,6 +2,7 @@ package com.example.englishapplication;
 
 import com.example.englishapplication.base.Database;
 import com.example.englishapplication.base.DictionaryManagement;
+import com.example.englishapplication.base.FuzzySearch;
 import com.example.englishapplication.base.Word;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -38,16 +39,23 @@ public class SearchController extends BaseController implements Initializable {
         listWords = FXCollections.observableArrayList(currentSearchWord);
         listView.setItems(listWords);
         String meaning = DictionaryManagement.Search(prefix);
-        definitionView.getEngine().loadContent(meaning);
+
         if (meaning == null) {
             star.setVisible(false);
-            return;
-        }
-        star.setVisible(true);
-        if (favoriteWords.existWord(prefix)) {
-            star.setImage(starActive.getImage());
+            String correctWord = FuzzySearch.getCorrectWord(prefix);
+            if (correctWord.equals("")) {
+                definitionView.getEngine().loadContent("No result");
+                return;
+            }
+            definitionView.getEngine().loadContent("Did you mean: <b>" + String.join("</b>, <b>", FuzzySearch.getCorrectWord(prefix)) + "</b>");
         } else {
-            star.setImage(starInactive.getImage());
+            definitionView.getEngine().loadContent(meaning);
+            star.setVisible(true);
+            if (favoriteWords.existWord(prefix)) {
+                star.setImage(starActive.getImage());
+            } else {
+                star.setImage(starInactive.getImage());
+            }
         }
     }
     public void searchFieldAction(KeyEvent keyEvent) throws ClassNotFoundException {

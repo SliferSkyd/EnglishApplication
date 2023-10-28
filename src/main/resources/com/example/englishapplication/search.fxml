@@ -17,7 +17,7 @@
                   <ImageView fx:id="star" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" />
                </graphic></Button>
          </children></AnchorPane>
-      <TextField fx:id="searchField" layoutX="17.0" layoutY="18.0" onKeyPressed="#searchFieldAction" prefHeight="46.0" prefWidth="267.0" promptText="Type your word..." styleClass="search-field" stylesheets="@style/container.css" />
+      <TextField fx:id="searchField" layoutX="17.0" layoutY="18.0" onKeyReleased="#searchFieldAction" prefHeight="46.0" prefWidth="267.0" promptText="Type your word..." styleClass="search-field" stylesheets="@style/container.css" />
       <ListView fx:id="listView" layoutX="17.0" layoutY="76.0" onMouseClicked="#listViewAction" prefHeight="383.0" prefWidth="267.0" stylesheets="@style/container.css" />
       <Button layoutX="17.0" layoutY="468.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="78.0" styleClass="btn-success" stylesheets="@style/container.css" text="Add" />
       <Button layoutX="112.0" layoutY="468.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="78.0" styleClass="btn-warning" stylesheets="@style/container.css" text="Edit" />

@@ -85,8 +85,6 @@ public class Trie {
 
     private void dfs(Node u, String prefix, List<String> list) {
         if (!u.getExplain().isEmpty()) {
-            ++index;
-            System.out.printf("%-6d%c %-15s%c %-15s%n", index, '|', prefix, '|', u.getExplain());
             list.add(prefix);
         }
 
