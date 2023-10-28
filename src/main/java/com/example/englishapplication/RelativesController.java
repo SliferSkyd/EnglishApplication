@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -36,7 +37,6 @@ public class RelativesController extends BaseController implements Initializable
         content.getChildren().add(label);
         TextFlow textFlow = new TextFlow();
         textFlow.setPadding(new javafx.geometry.Insets(0, 10, 0, 0));
-        textFlow.setLineSpacing(10);
         content.getChildren().add(textFlow);
         for (Object relative: relatives) {
             Button relativeWord = new Button(relative.toString());
@@ -45,6 +45,7 @@ public class RelativesController extends BaseController implements Initializable
                 input.setText(relative.toString());
                 searchAction();
             });
+            relativeWord.getStyleClass().add("word");
             textFlow.getChildren().add(relativeWord);
         }
     }
@@ -64,5 +65,4 @@ public class RelativesController extends BaseController implements Initializable
         content.getChildren().clear();
         content.getChildren().add(loadingLabel);
     }
-
 }

@@ -130,3 +130,18 @@
     -fx-background-radius: 5;
     -fx-border-radius: 5;
 }
+
+.word {
+    -fx-background-color: #EAE0FF;
+    -fx-text-fill: #562BF7;
+    -fx-border-radius: 10;
+    -fx-padding: 10;
+
+    -fx-border-insets: 5;
+    -fx-background-insets: 5;
+}
+
+.word:hover {
+    -fx-background-color: #562BF7;
+    -fx-text-fill: #EAE0FF;
+}
