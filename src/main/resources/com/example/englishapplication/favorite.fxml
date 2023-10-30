@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="528.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.englishapplication.FavoriteController">
+<AnchorPane fx:id="card" prefHeight="528.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.englishapplication.FavoriteController">
    <children>
-      <ScrollPane prefHeight="523.0" prefWidth="767.0">
-         <content>
-            <FlowPane fx:id="content" prefHeight="517.0" prefWidth="762.0" rowValignment="TOP" />
-         </content>
-      </ScrollPane>
+      <AnchorPane layoutX="216.0" layoutY="121.0" onMouseClicked="#cardAction" prefHeight="285.0" prefWidth="369.0" styleClass="card" stylesheets="@style/container.css">
+         <children>
+            <Text fx:id="text" layoutX="88.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="192.13671875">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
    </children>
 
 </AnchorPane>

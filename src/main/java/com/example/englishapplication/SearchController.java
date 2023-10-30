@@ -47,7 +47,7 @@ public class SearchController extends BaseController implements Initializable {
                 definitionView.getEngine().loadContent("No result");
                 return;
             }
-            definitionView.getEngine().loadContent("Did you mean: <b>" + String.join("</b>, <b>", FuzzySearch.getCorrectWord(prefix)) + "</b>");
+            definitionView.getEngine().loadContent("<div style='-text-color: blue'> Did you mean: <b>" + String.join("</b>, <b>", FuzzySearch.getCorrectWord(prefix)) + "</b> </div>");
         } else {
             definitionView.getEngine().loadContent(meaning);
             star.setVisible(true);
@@ -60,13 +60,13 @@ public class SearchController extends BaseController implements Initializable {
     }
     public void searchFieldAction(KeyEvent keyEvent) throws ClassNotFoundException {
         if (keyEvent.getCode() == keyEvent.getCode().DOWN) {
-            if (listView.getSelectionModel() == null)
+            if (listView.getSelectionModel().getSelectedIndex() == -1)
                 listView.getSelectionModel().selectFirst();
             else if (listView.getSelectionModel().getSelectedIndex() == listView.getItems().size() - 1)
                 listView.getSelectionModel().selectFirst();
             else listView.getSelectionModel().selectNext();
         } else if (keyEvent.getCode() == keyEvent.getCode().UP) {
-            if (listView.getSelectionModel() == null)
+            if (listView.getSelectionModel().getSelectedIndex() == -1)
                 listView.getSelectionModel().selectFirst();
             else if (listView.getSelectionModel().getSelectedIndex() == 0)
                 listView.getSelectionModel().selectLast();
@@ -74,6 +74,7 @@ public class SearchController extends BaseController implements Initializable {
         } else if (keyEvent.getCode() == keyEvent.getCode().ENTER) {
             listViewAction();
         } else {
+            listView.getSelectionModel().clearSelection();
             reloadSearchWord();
         }
     }
@@ -102,6 +103,7 @@ public class SearchController extends BaseController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        listView.getSelectionModel().clearSelection();
         try {
             reloadSearchWord();
         } catch (ClassNotFoundException e) {

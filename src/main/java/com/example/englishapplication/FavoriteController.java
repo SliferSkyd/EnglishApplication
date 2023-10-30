@@ -2,6 +2,10 @@ package com.example.englishapplication;
 
 import com.example.englishapplication.base.DictionaryManagement;
 import com.example.englishapplication.base.Word;
+import javafx.animation.Interpolator;
+import javafx.animation.ParallelTransition;
+import javafx.animation.PauseTransition;
+import javafx.animation.RotateTransition;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -12,56 +16,68 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.scene.transform.Rotate;
 import javafx.scene.web.WebView;
+import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class FavoriteController extends BaseController implements Initializable {
+    public AnchorPane card;
+    public Text text;
+    private String targetWord, targetMeaning;
+    boolean isFrontShowing = true;
+    public void cardAction() {
+        System.out.println("card action");
+        RotateTransition rotator = new RotateTransition(Duration.millis(1000), card);
+        rotator.setAxis(Rotate.X_AXIS);
 
-    public FlowPane content;
-
-    public void modifyListWords() throws ClassNotFoundException {
-        content.getChildren().clear();
-        List<String> words = favoriteWords.getAllWords();
-        for (String word: words) {
-            Tooltip meaning = new Tooltip(DictionaryManagement.Search(word));
-            Button newWord = new Button(word);
-            newWord.getStyleClass().add("word");
-            newWord.setFont(new javafx.scene.text.Font(18));
-            newWord.setTooltip(meaning);
-            newWord.setOnAction(actionEvent -> {
-                int index = content.getChildren().indexOf(newWord);
-                content.getChildren().remove(index);
-
-                AnchorPane frame = new AnchorPane();
-                frame.getStyleClass().add("search-box");
-
-                WebView text = new WebView();
-                text.setPrefHeight(300);
-                text.setPrefWidth(300);
-
-                text.getEngine().loadContent(DictionaryManagement.Search(word));
-                frame.getChildren().add(text);
-
-                content.getChildren().add(index, frame);
-            });
-            content.getChildren().add(newWord);
+        if (isFrontShowing) {
+            rotator.setFromAngle(0);
+            rotator.setToAngle(180);
+        } else {
+            rotator.setFromAngle(180);
+            rotator.setToAngle(0);
         }
+        rotator.setInterpolator(Interpolator.LINEAR);
+        rotator.setCycleCount(1);
+
+
+        PauseTransition ptChangeCardFace = changeCardFace(card);
+        ParallelTransition parallelTransition = new ParallelTransition(rotator, ptChangeCardFace);
+        parallelTransition.play();
+        isFrontShowing = !isFrontShowing;
+    }
+
+    private PauseTransition changeCardFace(AnchorPane card) {
+        PauseTransition pause = new PauseTransition(Duration.millis(500));
+        if (isFrontShowing) {
+            pause.setOnFinished(e -> {
+                text.setText(targetMeaning);
+                text.setScaleY(-1);
+            });
+        } else {
+            pause.setOnFinished(e -> {
+                text.setText(targetWord);
+                text.setScaleY(1);
+            });
+        }
+        return pause;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            modifyListWords();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+
     }
 
     @Override
     public void resetAll() throws ClassNotFoundException {
-        modifyListWords();
+        List<String> words = DictionaryManagement.getAllWords();
+        targetMeaning = DictionaryManagement.Search(words.get(0));
+        targetWord = words.get(0);
     }
+
+
 }
