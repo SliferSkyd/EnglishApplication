@@ -8,9 +8,9 @@
 
 <AnchorPane prefHeight="528.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.englishapplication.RelativesController">
     <children>
-        <AnchorPane layoutX="10.0" layoutY="5.0" prefHeight="62.0" prefWidth="742.0" styleClass="card" stylesheets="@style/container.css">
+        <AnchorPane layoutX="10.0" layoutY="5.0" prefHeight="62.0" prefWidth="742.0" style="-fx-background-radius: 15;" styleClass="card" stylesheets="@style/container.css">
             <children>
-                <TextField fx:id="input" layoutX="6.0" layoutY="8.0" onAction="#searchAction" prefHeight="46.0" prefWidth="729.0" promptText="Type your word..." styleClass="search-field" stylesheets="@style/container.css" />
+                <TextField fx:id="input" layoutX="6.0" layoutY="8.0" onAction="#searchAction" prefHeight="46.0" prefWidth="729.0" promptText="Type your word..." style="-fx-background-radius: 20;" styleClass="search-field" stylesheets="@style/container.css" />
             </children>
         </AnchorPane>
       <ScrollPane layoutX="11.0" layoutY="74.0" prefHeight="443.0" prefWidth="742.0">

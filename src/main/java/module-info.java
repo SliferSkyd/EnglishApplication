@@ -11,6 +11,7 @@ module com.example.englishapplication {
     requires org.json;
     requires org.apache.commons.text;
     requires json.simple;
+    requires AnimateFX;
 
     opens com.example.englishapplication to javafx.fxml;
     exports com.example.englishapplication;
