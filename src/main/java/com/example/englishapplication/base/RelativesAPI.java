@@ -27,6 +27,8 @@ public class RelativesAPI {
                 response.append(inputLine);
             }
             inputStream.close();
+
+            System.out.println(response);
             return new JSONObject(StringEscapeUtils.unescapeHtml4(response.toString()));
         } catch (IOException e) {
             return new JSONObject("{\"hypernyms\":[],\"synonyms\":[],\"antonyms\":[],\"hyponyms\":[]}");

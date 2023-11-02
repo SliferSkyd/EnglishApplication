@@ -1,23 +1,14 @@
 package com.example.englishapplication;
 
 import com.example.englishapplication.base.DictionaryManagement;
-import com.example.englishapplication.base.Word;
 import javafx.animation.Interpolator;
 import javafx.animation.ParallelTransition;
 import javafx.animation.PauseTransition;
 import javafx.animation.RotateTransition;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import javafx.scene.transform.Rotate;
-import javafx.scene.web.WebView;
 import javafx.util.Duration;
 
 import java.net.URL;
@@ -75,7 +66,7 @@ public class FavoriteController extends BaseController implements Initializable 
     @Override
     public void resetAll() throws ClassNotFoundException {
         List<String> words = DictionaryManagement.getAllWords();
-        targetMeaning = DictionaryManagement.Search(words.get(0));
+        targetMeaning = DictionaryManagement.Search(words.get(0)).toString();
         targetWord = words.get(0);
     }
 

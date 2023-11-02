@@ -1,22 +1,17 @@
 package com.example.englishapplication;
 
-import com.example.englishapplication.base.Database;
 import com.example.englishapplication.base.DictionaryManagement;
 import com.example.englishapplication.base.FuzzySearch;
-import com.example.englishapplication.base.Word;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TreeView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.web.WebView;
+import org.json.JSONObject;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -38,7 +33,7 @@ public class SearchController extends BaseController implements Initializable {
         currentSearchWord = DictionaryManagement.LookUp(prefix);
         listWords = FXCollections.observableArrayList(currentSearchWord);
         listView.setItems(listWords);
-        String meaning = DictionaryManagement.Search(prefix);
+        JSONObject meaning = DictionaryManagement.Search(prefix);
 
         if (meaning == null) {
             star.setVisible(false);
@@ -49,7 +44,7 @@ public class SearchController extends BaseController implements Initializable {
             }
             definitionView.getEngine().loadContent("<div style='-text-color: blue'> Did you mean: <b>" + String.join("</b>, <b>", FuzzySearch.getCorrectWord(prefix)) + "</b> </div>");
         } else {
-            definitionView.getEngine().loadContent(meaning);
+            definitionView.getEngine().loadContent(meaning.toString());
             star.setVisible(true);
             if (favoriteWords.existWord(prefix)) {
                 star.setImage(starActive.getImage());

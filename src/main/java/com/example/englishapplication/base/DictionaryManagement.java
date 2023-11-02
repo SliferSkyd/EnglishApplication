@@ -1,8 +1,14 @@
 package com.example.englishapplication.base;
 
-import java.io.*;
-import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class DictionaryManagement {
@@ -13,7 +19,7 @@ public class DictionaryManagement {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] wordInLine = line.split("\t");
-                add(wordInLine[0], wordInLine[1]);
+                add(wordInLine[0]);
             }
         } catch (Exception e) {
             throw new IOException();
@@ -33,24 +39,61 @@ public class DictionaryManagement {
 
     static final String IN_PATH = "src/main/resources/WordDictionary/dictionaries.txt";
     static final String OUT_PATH = "src/main/resources/WordDictionary/data.txt";
-    public static String add(String target, String explain) {
-        return Dictionary.trie.addWord(target, explain);
+
+    public static void init() {
+        try {
+            String content = new String(Files.readAllBytes(Path.of("src/main/resources/WordDictionary/EngToVie.json")));
+            Dictionary.dictionary = new JSONObject(content);
+            Dictionary.dictionary.keys().forEachRemaining(Dictionary.trie::addWord);
+        } catch (IOException e) {
+            //e.printStackTrace();
+            System.out.println("Can't load fle");
+        }
     }
+
+    public static String add(String target) {
+        return Dictionary.trie.addWord(target);
+    }
+
     public static String delete(String target) {
         return Dictionary.trie.deleteWord(target);
     }
 
     public static String update(String target, String explain) {
         String temp = delete(target);
-        if (temp == "Error: Word is not exist") return temp;
-        return add(target, explain);
+        if (Objects.equals(temp, "Error: Word is not exist")) return temp;
+        return add(target);
     }
 
-    public static String Search(String target) {
-        return Dictionary.trie.searchWord(target);
+    public static JSONObject Search(String target) {
+        try {
+            return Dictionary.dictionary.getJSONObject(target);
+        }
+        catch (Exception e) {
+            if (target.equals("Binary")) return Dictionary.dictionary.getJSONObject(target);
+
+            System.out.println("Can't find word " + target);
+            e.getStackTrace();
+            return null;
+        }
     }
 
     public static List<String> LookUp(String prefix) {
         return Dictionary.trie.lookupWord(prefix);
+    }
+
+    public static void main(String[] args) {
+        //DictionaryManagement.init();
+        JSONObject list = DictionaryManagement.Search("binary");
+        JSONArray list2 = list.getJSONArray("type");
+
+        for (Object object : list2) {
+            if (object instanceof JSONObject) {
+                for (Object key : ((JSONObject) object).keySet()) {
+                    System.out.println(key);
+                    System.out.println(((JSONObject) object).get(key.toString()));
+                }
+            }
+        }
     }
 }

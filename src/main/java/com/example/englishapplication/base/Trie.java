@@ -4,54 +4,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Trie {
-    protected class Node {
-        private String explain;
-        private Node[] next;
-
-        public Node() {
-            explain = "";
-            next = new Node[256];
-        }
-
-        public Node(String explain) {
-            this.explain = explain;
-            next = new Node[256];
-        }
-
-        public String getExplain() {
-            return explain;
-        }
-
-        public void setExplain(String explain) {
-            this.explain = explain;
-        }
-    }
-
-    protected Node root;
-    protected static int index;
+    private TrieNode root;
+    public static int index;
     Trie() {
-        root = new Node();
+        root = new TrieNode();
     }
 
     // add duplicated word ????
-    protected String addWord(String target, String explain) {
-        Node p = root;
+    public String addWord(String target) {
+        System.out.println(target);
+
+        TrieNode p = root;
         for (int i = 0; i < target.length(); ++i) {
             int ch = target.charAt(i);
-            if (p.next[ch] == null) p.next[ch] = new Node();
+            if (ch >= 256) return "Word: " + target + " is not correct.";
+
+            //if (ch >= 256) System.out.println(target);
+            if (p.next[ch] == null) p.next[ch] = new TrieNode();
             p = p.next[ch];
         }
 
-        if (!p.getExplain().isEmpty())
+        if (p.isEndOfWord())
             return "Word: " + target + " already exists.";
 
-        p.setExplain(explain);
-        return "Successfully add word: " + target + " with meaning: " + explain;
+        p.setEndOfWord(true);
+        return "Successfully add word: " + target;
     }
 
     // delete word or duplicate word ????
-    protected String deleteWord(String target) {
-        Node p = root;
+    public String deleteWord(String target) {
+        TrieNode p = root;
         for (int i = 0; i < target.length(); ++i) {
             int ch = target.charAt(i);
             if (p.next[ch] == null)
@@ -60,15 +42,15 @@ public class Trie {
             p = p.next[ch];
         }
 
-        if (p.getExplain().isEmpty())
+        if (!p.isEndOfWord())
             return "Error: Word is not exist";
 
-        p.setExplain("");
+        p.setEndOfWord(false);
         return "Successfully delete word: " + target;
     }
 
-    protected String searchWord(String target) {
-        Node p = root;
+    public TrieNode searchWord(String target) {
+        TrieNode p = root;
         for (int i = 0; i < target.length(); ++i) {
             int ch = target.charAt(i);
             if (p.next[ch] == null)
@@ -77,14 +59,11 @@ public class Trie {
             p = p.next[ch];
         }
 
-        if (p.getExplain().isEmpty())
-            return null;
-
-        return p.getExplain();
+        return p;
     }
 
-    private void dfs(Node u, String prefix, List<String> list) {
-        if (!u.getExplain().isEmpty()) {
+    private void dfs(TrieNode u, String prefix, List<String> list) {
+        if (u.isEndOfWord()) {
             list.add(prefix);
         }
 
@@ -92,8 +71,8 @@ public class Trie {
             if (u.next[i] != null) dfs(u.next[i], prefix + (char)i, list);
     }
 
-    protected List<String> lookupWord(String prefix) {
-        Node p = root;
+    public List<String> lookupWord(String prefix) {
+        TrieNode p = root;
         for (int i = 0; i < prefix.length(); ++i) {
             int ch = prefix.charAt(i);
             if (p.next[ch] == null) return new ArrayList<>();
