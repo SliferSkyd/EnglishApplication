@@ -5,14 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import org.w3c.dom.events.MouseEvent;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
-
-import org.kordamp.bootstrapfx.BootstrapFX;
-import org.kordamp.bootstrapfx.scene.layout.Panel;
 
 public class ContainerController implements Initializable {
     SearchController searchController;
@@ -100,9 +96,6 @@ public class ContainerController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-
         activeSearchPane();
     }
 }

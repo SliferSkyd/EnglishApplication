@@ -103,9 +103,9 @@
 
 .search-field {
     -fx-text-fill: black;
-    -fx-font-family: "Poppins";
     -fx-font-weight: bold;
     -fx-font-size: 14;
+    -fx-background-insets: 0, 0 0 3 0;
 }
 
 .choice-box {
@@ -139,6 +139,7 @@
 
     -fx-border-insets: 5;
     -fx-background-insets: 5;
+    -fx-font: 14px "Verdana";
 }
 
 .word:hover {
