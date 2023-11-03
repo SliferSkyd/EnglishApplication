@@ -12,8 +12,6 @@ public class Trie {
 
     // add duplicated word ????
     public String addWord(String target) {
-        System.out.println(target);
-
         TrieNode p = root;
         for (int i = 0; i < target.length(); ++i) {
             int ch = target.charAt(i);

@@ -6,11 +6,10 @@ import javafx.collections.FXCollections;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import javafx.scene.web.WebView;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class TranslateController extends BaseController implements Initializable {
@@ -26,7 +25,7 @@ public class TranslateController extends BaseController implements Initializable
             try {
                 String from = fromLang.getSelectionModel().getSelectedItem();
                 String to = toLang.getSelectionModel().getSelectedItem();
-                result = TranslateAPI.translate(content, from == "Vietnamese" ? "vi" : "en", to == "Vietnamese" ? "vi" : "en");
+                result = TranslateAPI.translate(content, Objects.equals(from, "Vietnamese") ? "vi" : "en", Objects.equals(to, "Vietnamese") ? "vi" : "en");
             } catch (Exception e) {
                 e.printStackTrace();
             }
