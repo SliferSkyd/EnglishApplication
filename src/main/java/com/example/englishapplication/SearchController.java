@@ -2,6 +2,7 @@ package com.example.englishapplication;
 
 import com.example.englishapplication.base.DictionaryManagement;
 import com.example.englishapplication.base.FuzzySearch;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
@@ -29,22 +30,25 @@ public class SearchController extends BaseController implements Initializable {
 
     private void reloadSearchWord() throws ClassNotFoundException {
         String prefix = searchField.getText();
+
         currentSearchWord.clear();
         currentSearchWord = DictionaryManagement.LookUp(prefix);
+
         listWords = FXCollections.observableArrayList(currentSearchWord);
         listView.setItems(listWords);
         JSONObject meaning = DictionaryManagement.Search(prefix);
-
+        String result = "";
         if (meaning == null) {
             star.setVisible(false);
-            String correctWord = FuzzySearch.getCorrectWord(prefix);
-            if (correctWord.equals("")) {
-                definitionView.getEngine().loadContent("No result");
-                return;
+            result = "<div style='font-size: 20px; font-weight: bold;'>Not found</div>";
+
+            String suggestion = FuzzySearch.getCorrectWord(prefix);
+            if (suggestion != null) {
+                result += "<div style='font-size: 20px; font-weight: bold;'>Did you mean: " + suggestion + "</div>";
             }
-            definitionView.getEngine().loadContent("<div style='-text-color: blue'> Did you mean: <b>" + String.join("</b>, <b>", FuzzySearch.getCorrectWord(prefix)) + "</b> </div>");
+
         } else {
-            definitionView.getEngine().loadContent(meaning.toString());
+            result = "<div style='font-size: 20px; font-weight: bold;'>" + prefix + "</div>" + meaning.toString();
             star.setVisible(true);
             if (favoriteWords.existWord(prefix)) {
                 star.setImage(starActive.getImage());
@@ -52,6 +56,7 @@ public class SearchController extends BaseController implements Initializable {
                 star.setImage(starInactive.getImage());
             }
         }
+        definitionView.getEngine().loadContent(result);
     }
     public void searchFieldAction(KeyEvent keyEvent) throws ClassNotFoundException {
         if (keyEvent.getCode() == keyEvent.getCode().DOWN) {

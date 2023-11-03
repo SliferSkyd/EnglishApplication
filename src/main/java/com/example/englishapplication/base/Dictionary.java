@@ -21,8 +21,7 @@ public class Dictionary {
             Dictionary.dictionary = new JSONObject(content);
             Dictionary.dictionary.keys().forEachRemaining(Dictionary.trie::addWord);
         } catch (IOException e) {
-            //e.printStackTrace();
-            System.out.println("Can't load fle");
+            System.out.println("Can't load file");
         }
     }
 }

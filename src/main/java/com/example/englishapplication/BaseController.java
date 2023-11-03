@@ -1,18 +1,14 @@
 package com.example.englishapplication;
 
 import com.example.englishapplication.base.Database;
-import javafx.fxml.FXML;
+import com.example.englishapplication.base.Utils;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public abstract class BaseController implements Initializable {
+public abstract class BaseController extends Utils implements Initializable {
     protected static Database favoriteWords;
 
     protected static Label loadingLabel;
@@ -31,12 +27,6 @@ public abstract class BaseController implements Initializable {
         }
     }
 
-    protected void copyToClipboard(String text) {
-        final Clipboard clipboard = Clipboard.getSystemClipboard();
-        final ClipboardContent content = new ClipboardContent();
-        content.putString(text);
-        clipboard.setContent(content);
-    }
 
     public abstract void initialize(URL url, ResourceBundle resourceBundle);
     public abstract void resetAll() throws ClassNotFoundException;

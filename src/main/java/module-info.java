@@ -16,4 +16,6 @@ module com.example.englishapplication {
 
     opens com.example.englishapplication to javafx.fxml;
     exports com.example.englishapplication;
+    exports com.example.englishapplication.base;
+    opens com.example.englishapplication.base to javafx.fxml;
 }

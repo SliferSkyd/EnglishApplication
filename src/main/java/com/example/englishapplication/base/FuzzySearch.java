@@ -1,5 +1,6 @@
 package com.example.englishapplication.base;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FuzzySearch {
@@ -26,18 +27,35 @@ public class FuzzySearch {
         }
         return dp[n][m];
     }
-    public static String getCorrectWord(String s) {
-        List<String> words = DictionaryManagement.getAllWords();
-        int minDistance = (int)1e9;
-        String correctWord = "";
-        for (String word: words) {
-            int distance = LevenshteinDistance(s, word);
-            if (distance < minDistance) {
-                minDistance = distance;
-                correctWord = word;
+
+    private static void generate(List<String> words, String s, int depth, int maxDepth) {
+        if (words.size() > 0) return;
+        if (depth == maxDepth) {
+            if (Dictionary.trie.containsWord(s)) {
+                words.add(s);
+            }
+            return;
+        }
+        for (int i = s.length(); i >= 0; --i) {
+            if (i != s.length()) {
+                for (int c = 0; c < 26; ++c) {
+                    char ch = (char)('a' + c);
+                    generate(words, s.substring(0, i) + ch + s.substring(i + 1), depth + 1, maxDepth);
+                }
+                generate(words, s.substring(0, i) + s.substring(i + 1), depth + 1, maxDepth);
+            }
+            for (int c = 0; c < 26; ++c) {
+                char ch = (char)('a' + c);
+                generate(words, s.substring(0, i) + ch + s.substring(i), depth + 1, maxDepth);
             }
         }
-        if (minDistance > 2) return "";
-        return correctWord;
+
+    }
+    public static String getCorrectWord(String s) {
+        if (s.length() < 3) return null;
+        List<String> words = new ArrayList<>();
+        generate(words, s, 0, 2);
+        if (words.size() > 0) return words.get(0);
+        else return null;
     }
 }
