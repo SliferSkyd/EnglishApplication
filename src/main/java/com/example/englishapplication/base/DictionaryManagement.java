@@ -40,17 +40,6 @@ public class DictionaryManagement {
     static final String IN_PATH = "src/main/resources/WordDictionary/dictionaries.txt";
     static final String OUT_PATH = "src/main/resources/WordDictionary/data.txt";
 
-    public static void init() {
-        try {
-            String content = new String(Files.readAllBytes(Path.of("src/main/resources/WordDictionary/EngToVie.json")));
-            Dictionary.dictionary = new JSONObject(content);
-            Dictionary.dictionary.keys().forEachRemaining(Dictionary.trie::addWord);
-        } catch (IOException e) {
-            //e.printStackTrace();
-            System.out.println("Can't load fle");
-        }
-    }
-
     public static String add(String target) {
         return Dictionary.trie.addWord(target);
     }
@@ -70,8 +59,6 @@ public class DictionaryManagement {
             return Dictionary.dictionary.getJSONObject(target);
         }
         catch (Exception e) {
-            if (target.equals("Binary")) return Dictionary.dictionary.getJSONObject(target);
-
             System.out.println("Can't find word " + target);
             e.getStackTrace();
             return null;
@@ -83,6 +70,7 @@ public class DictionaryManagement {
     }
 
     public static void main(String[] args) {
+        System.out.println(DictionaryManagement.Search("binary"));
         //DictionaryManagement.init();
         JSONObject list = DictionaryManagement.Search("binary");
         JSONArray list2 = list.getJSONArray("type");

@@ -20,7 +20,7 @@ public class TranslateController extends BaseController implements Initializable
     public ChoiceBox<String> toLang;
     public void translateAction() {
         String content = input.getText();
-        Thread thread = new Thread(() -> {
+        parallelProcessing(() -> {
             String result = "";
             try {
                 String from = fromLang.getSelectionModel().getSelectedItem();
@@ -32,8 +32,6 @@ public class TranslateController extends BaseController implements Initializable
             String finalResult = result;
             Platform.runLater(() -> output.getEngine().loadContent(finalResult));
         });
-        thread.setDaemon(true);
-        thread.start();
 
         output.getEngine().loadContent("Translating...");
     }

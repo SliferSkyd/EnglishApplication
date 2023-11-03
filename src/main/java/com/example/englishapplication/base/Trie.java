@@ -47,6 +47,18 @@ public class Trie {
         return "Successfully delete word: " + target;
     }
 
+    public boolean containsWord(String target) {
+        TrieNode p = root;
+        for (int i = 0; i < target.length(); ++i) {
+            int ch = target.charAt(i);
+            if (p.next[ch] == null)
+                return false;
+
+            p = p.next[ch];
+        }
+
+        return p.isEndOfWord();
+    }
     public TrieNode searchWord(String target) {
         TrieNode p = root;
         for (int i = 0; i < target.length(); ++i) {

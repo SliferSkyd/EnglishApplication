@@ -2,15 +2,17 @@ package com.example.englishapplication;
 
 import com.example.englishapplication.base.DictionaryManagement;
 import com.example.englishapplication.base.FuzzySearch;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.net.URL;
@@ -21,36 +23,39 @@ import java.util.ResourceBundle;
 public class SearchController extends BaseController implements Initializable {
     public ListView<String> listView;
     public TextField searchField;
-    public WebView definitionView;
+    public VBox definitionView;
     public ImageView star;
+    public HBox headerBox;
+    public Button starButton;
     private List<String> currentSearchWord = new ArrayList<>();
 
     private ObservableList<String> listWords;
 
     private void reloadSearchWord() throws ClassNotFoundException {
         String prefix = searchField.getText();
+
         currentSearchWord.clear();
         currentSearchWord = DictionaryManagement.LookUp(prefix);
+        definitionView.getChildren().clear();
+
         listWords = FXCollections.observableArrayList(currentSearchWord);
         listView.setItems(listWords);
         JSONObject meaning = DictionaryManagement.Search(prefix);
-
         if (meaning == null) {
-            star.setVisible(false);
-            String correctWord = FuzzySearch.getCorrectWord(prefix);
-            if (correctWord.equals("")) {
-                definitionView.getEngine().loadContent("No result");
-                return;
-            }
-            definitionView.getEngine().loadContent("<div style='-text-color: blue'> Did you mean: <b>" + String.join("</b>, <b>", FuzzySearch.getCorrectWord(prefix)) + "</b> </div>");
+            HBox header = new HBox();
+            header.getChildren().add(new Label(prefix));
+
+            definitionView.getChildren().add(header);
+            starButton.setVisible(false);
         } else {
-            definitionView.getEngine().loadContent(meaning.toString());
-            star.setVisible(true);
+            starButton.setVisible(true);
             if (favoriteWords.existWord(prefix)) {
                 star.setImage(starActive.getImage());
             } else {
                 star.setImage(starInactive.getImage());
             }
+
+            buildTree(meaning.getJSONArray("type"), 0);
         }
     }
     public void searchFieldAction(KeyEvent keyEvent) throws ClassNotFoundException {
@@ -106,8 +111,22 @@ public class SearchController extends BaseController implements Initializable {
         }
     }
 
+    private void buildTree(JSONArray array, int depth) {
+        for (int i = 0; i < array.length(); ++i) {
+            JSONObject object = array.getJSONObject(i);
+            String name = object.keys().next();
+            if (object.get(name) instanceof JSONArray) {
+                Label label = new Label("\t".repeat(depth) + name);
+                definitionView.getChildren().add(label);
+                buildTree(object.getJSONArray(name), depth + 1);
+            } else {
+                Label label = new Label("\t".repeat(depth) + name + ": " + object.get(name));
+                definitionView.getChildren().add(label);
+            }
+        }
+    }
+
     @Override
     public void resetAll() {
-
     }
 }
