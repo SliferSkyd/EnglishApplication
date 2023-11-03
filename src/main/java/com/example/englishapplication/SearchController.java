@@ -6,12 +6,13 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.net.URL;
@@ -22,8 +23,10 @@ import java.util.ResourceBundle;
 public class SearchController extends BaseController implements Initializable {
     public ListView<String> listView;
     public TextField searchField;
-    public WebView definitionView;
+    public VBox definitionView;
     public ImageView star;
+    public HBox headerBox;
+    public Button starButton;
     private List<String> currentSearchWord = new ArrayList<>();
 
     private ObservableList<String> listWords;
@@ -33,30 +36,27 @@ public class SearchController extends BaseController implements Initializable {
 
         currentSearchWord.clear();
         currentSearchWord = DictionaryManagement.LookUp(prefix);
+        definitionView.getChildren().clear();
 
         listWords = FXCollections.observableArrayList(currentSearchWord);
         listView.setItems(listWords);
         JSONObject meaning = DictionaryManagement.Search(prefix);
-        String result = "";
         if (meaning == null) {
-            star.setVisible(false);
-            result = "<div style='font-size: 20px; font-weight: bold;'>Not found</div>";
+            HBox header = new HBox();
+            header.getChildren().add(new Label(prefix));
 
-            String suggestion = FuzzySearch.getCorrectWord(prefix);
-            if (suggestion != null) {
-                result += "<div style='font-size: 20px; font-weight: bold;'>Did you mean: " + suggestion + "</div>";
-            }
-
+            definitionView.getChildren().add(header);
+            starButton.setVisible(false);
         } else {
-            result = "<div style='font-size: 20px; font-weight: bold;'>" + prefix + "</div>" + meaning.toString();
-            star.setVisible(true);
+            starButton.setVisible(true);
             if (favoriteWords.existWord(prefix)) {
                 star.setImage(starActive.getImage());
             } else {
                 star.setImage(starInactive.getImage());
             }
+
+            buildTree(meaning.getJSONArray("type"), 0);
         }
-        definitionView.getEngine().loadContent(result);
     }
     public void searchFieldAction(KeyEvent keyEvent) throws ClassNotFoundException {
         if (keyEvent.getCode() == keyEvent.getCode().DOWN) {
@@ -111,8 +111,22 @@ public class SearchController extends BaseController implements Initializable {
         }
     }
 
+    private void buildTree(JSONArray array, int depth) {
+        for (int i = 0; i < array.length(); ++i) {
+            JSONObject object = array.getJSONObject(i);
+            String name = object.keys().next();
+            if (object.get(name) instanceof JSONArray) {
+                Label label = new Label("\t".repeat(depth) + name);
+                definitionView.getChildren().add(label);
+                buildTree(object.getJSONArray(name), depth + 1);
+            } else {
+                Label label = new Label("\t".repeat(depth) + name + ": " + object.get(name));
+                definitionView.getChildren().add(label);
+            }
+        }
+    }
+
     @Override
     public void resetAll() {
-
     }
 }
