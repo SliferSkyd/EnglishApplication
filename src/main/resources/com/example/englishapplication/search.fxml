@@ -16,13 +16,19 @@
       <Button layoutX="17.0" layoutY="468.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="78.0" styleClass="btn-success" stylesheets="@style/container.css" text="Add" />
       <Button layoutX="112.0" layoutY="468.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="78.0" styleClass="btn-warning" stylesheets="@style/container.css" text="Edit" />
       <Button layoutX="206.0" layoutY="468.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="78.0" styleClass="btn-danger" stylesheets="@style/container.css" text="Delete" />
-      <ScrollPane layoutX="306.0" layoutY="18.0" prefHeight="494.0" prefWidth="452.0" style="-fx-background-color: transparency;" styleClass="search-box" stylesheets="@style/container.css">
+      <ScrollPane layoutX="306.0" layoutY="18.0" prefHeight="494.0" prefWidth="452.0" styleClass="search-box" stylesheets="@style/container.css">
          <content>
-            <VBox fx:id="definitionView" prefHeight="483.0" prefWidth="443.0" stylesheets="@style/container.css" />
+            <VBox fx:id="definitionView" prefHeight="483.0" prefWidth="443.0" style="-fx-background-color: white;" stylesheets="@style/container.css">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding></VBox>
          </content>
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
       </ScrollPane>
       <Button fx:id="starButton" layoutX="687.0" layoutY="30.0" mnemonicParsing="false" onAction="#starAction" prefHeight="46.0" prefWidth="58.0" styleClass="button-navigator" stylesheets="@style/container.css">
          <graphic>

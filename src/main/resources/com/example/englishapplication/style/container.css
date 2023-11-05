@@ -146,3 +146,28 @@
     -fx-background-color: #562BF7;
     -fx-text-fill: #EAE0FF;
 }
+
+
+.word-type-label {
+    -fx-font-weight: bold;
+}
+
+.word-explain-label {
+    -fx-font-style: italic;
+}
+
+.word-example-label {
+    -fx-text-fill: purple;
+}
+
+.word-definition-label {
+    -fx-font-size: 16;
+    -fx-text-fill: red;
+    -fx-font-weight: bold;
+}
+
+.word-pronoun-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: purple;
+}
+
