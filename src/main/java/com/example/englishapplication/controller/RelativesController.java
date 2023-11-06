@@ -1,4 +1,4 @@
-package com.example.englishapplication;
+package com.example.englishapplication.controller;
 
 import com.example.englishapplication.base.RelativesAPI;
 import javafx.application.Platform;
@@ -6,10 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import org.json.JSONArray;
 import org.json.JSONObject;

@@ -12,67 +12,67 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane maxHeight="528.0" maxWidth="769.0" minHeight="528.0" minWidth="769.0" prefHeight="528.0" prefWidth="769.0" stylesheets="@style/container.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.englishapplication.TranslateController">
+<AnchorPane maxHeight="528.0" maxWidth="769.0" minHeight="528.0" minWidth="769.0" prefHeight="528.0" prefWidth="769.0" stylesheets="@../style/container.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.englishapplication.controller.TranslateController">
    <children>
       <AnchorPane layoutX="31.0" layoutY="26.0" prefHeight="476.0" prefWidth="278.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="card">
          <children>
-            <TextArea fx:id="input" focusTraversable="false" layoutX="1.0" layoutY="68.0" prefHeight="403.0" prefWidth="275.0" promptText="Type your content here..." styleClass="notes" stylesheets="@style/container.css" wrapText="true">
+            <TextArea fx:id="input" focusTraversable="false" layoutX="1.0" layoutY="76.0" prefHeight="395.0" prefWidth="275.0" promptText="Type your content here..." styleClass="text-area" stylesheets="@../style/container.css" wrapText="true">
                <font>
-                  <Font name="Arial" size="12.0" />
+                  <Font name="Times New Roman" size="12.0" />
                </font>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets></TextArea>
             <ChoiceBox fx:id="fromLang" layoutX="17.0" layoutY="14.0" prefHeight="36.0" prefWidth="118.0" />
-            <Button id="ClipboardButton" layoutX="218.0" layoutY="14.0" mnemonicParsing="false" onAction="#copyInputToClipboardAction" prefHeight="36.0" prefWidth="36.0" styleClass="button-navigator" stylesheets="@style/container.css">
+            <Button id="ClipboardButton" layoutX="218.0" layoutY="14.0" mnemonicParsing="false" onAction="#copyInputToClipboardAction" prefHeight="36.0" prefWidth="36.0" styleClass="button-navigator" stylesheets="@../style/container.css">
                <graphic>
                   <ImageView id="ClipboardButton" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@image/copy.png" />
+                        <Image url="@../image/copy.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button id="ClipboardButton" layoutX="155.0" layoutY="14.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="36.0" styleClass="button-navigator" stylesheets="@style/container.css">
+            <Button id="ClipboardButton" layoutX="155.0" layoutY="14.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="36.0" styleClass="button-navigator" stylesheets="@../style/container.css">
                <graphic>
                   <ImageView id="ClipboardButton" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@image/sound.png" />
+                        <Image url="@../image/sound.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
          </children>
          <stylesheets>
-            <URL value="@style/bootstrap.css" />
-            <URL value="@style/container.css" />
+            <URL value="@../style/bootstrap.css" />
+            <URL value="@../style/container.css" />
          </stylesheets>
       </AnchorPane>
       <AnchorPane layoutX="458.0" layoutY="25.0" prefHeight="476.0" prefWidth="278.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" styleClass="card">
          <children>
             <WebView fx:id="output" layoutX="3.0" layoutY="68.0" prefHeight="403.0" prefWidth="275.0" />
             <ChoiceBox fx:id="toLang" layoutX="17.0" layoutY="14.0" prefHeight="36.0" prefWidth="118.0" />
-            <Button id="ClipboardButton" layoutX="218.0" layoutY="14.0" mnemonicParsing="false" onAction="#copyOutputToClipboardAction" prefHeight="36.0" prefWidth="36.0" styleClass="button-navigator" stylesheets="@style/container.css">
+            <Button id="ClipboardButton" layoutX="218.0" layoutY="14.0" mnemonicParsing="false" onAction="#copyOutputToClipboardAction" prefHeight="36.0" prefWidth="36.0" styleClass="button-navigator" stylesheets="@../style/container.css">
                <graphic>
                   <ImageView id="ClipboardButton" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@image/copy.png" />
+                        <Image url="@../image/copy.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button id="ClipboardButton" layoutX="155.0" layoutY="14.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="36.0" styleClass="button-navigator" stylesheets="@style/container.css">
+            <Button id="ClipboardButton" layoutX="155.0" layoutY="14.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="36.0" styleClass="button-navigator" stylesheets="@../style/container.css">
                <graphic>
                   <ImageView id="ClipboardButton" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@image/sound.png" />
+                        <Image url="@../image/sound.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
          </children>
          <stylesheets>
-            <URL value="@style/bootstrap.css" />
-            <URL value="@style/container.css" />
+            <URL value="@../style/bootstrap.css" />
+            <URL value="@../style/container.css" />
          </stylesheets>
       </AnchorPane>
       <JFXButton buttonType="RAISED" layoutX="334.0" layoutY="236.0" onAction="#translateAction" prefHeight="53.0" prefWidth="101.0" style="-fx-background-color: green;" text="Translate" textFill="WHITE">

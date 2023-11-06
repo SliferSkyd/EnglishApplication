@@ -150,6 +150,8 @@
 
 .word-type-label {
     -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-text-size: 15;
 }
 
 .word-explain-label {
@@ -171,3 +173,9 @@
     -fx-text-fill: purple;
 }
 
+.text-area {
+    -fx-text-fill: black;
+    -fx-font-size: 14;
+    -fx-font-family: "Arial";
+    -fx-background-insets: 0, 0 0 0 0;
+}

@@ -1,20 +1,19 @@
-package com.example.englishapplication;
+package com.example.englishapplication.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import org.w3c.dom.events.MouseEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ContainerController implements Initializable {
-    SearchController searchController;
-    TranslateController translateController;
-    RelativesController relativesController;
-    FavoriteController favoriteController;
+    private SearchController searchController;
+    private TranslateController translateController;
+    private RelativesController relativesController;
+    private FavoriteController favoriteController;
 
     @FXML
     private AnchorPane mainContent, searchPane, translatePane, relativesPane, favoritePane;
@@ -66,7 +65,7 @@ public class ContainerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("search.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/englishapplication/view/search.fxml"));
             searchPane = loader.load();
             searchController = loader.getController();
         } catch (Exception e) {
@@ -74,7 +73,7 @@ public class ContainerController implements Initializable {
         }
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("translate.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/englishapplication/view/translate.fxml"));
             translatePane = loader.load();
             translateController = loader.getController();
         } catch (Exception e) {
@@ -82,7 +81,7 @@ public class ContainerController implements Initializable {
         }
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("relatives.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/englishapplication/view/relatives.fxml"));
             relativesPane = loader.load();
             relativesController = loader.getController();
         } catch (Exception e) {
@@ -90,7 +89,7 @@ public class ContainerController implements Initializable {
         }
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("favorite.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/englishapplication/view/favorite.fxml"));
             favoritePane = loader.load();
             favoriteController = loader.getController();
         } catch (Exception e) {

@@ -5,9 +5,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="528.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.englishapplication.FavoriteController">
+<AnchorPane prefHeight="528.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.englishapplication.controller.FavoriteController">
    <children>
-      <AnchorPane fx:id="card" layoutX="216.0" layoutY="121.0" onMouseClicked="#cardAction" prefHeight="285.0" prefWidth="369.0" stylesheets="@style/container.css">
+      <AnchorPane fx:id="card" layoutX="216.0" layoutY="121.0" onMouseClicked="#cardAction" prefHeight="285.0" prefWidth="369.0" stylesheets="@../style/container.css">
          <children>
             <Text fx:id="text" layoutX="30.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="308.80332946777344">
                <font>

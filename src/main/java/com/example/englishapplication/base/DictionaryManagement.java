@@ -65,6 +65,10 @@ public class DictionaryManagement {
         }
     }
 
+    public static boolean isExist(String target) {
+        return Dictionary.trie.containsWord(target);
+    }
+
     public static List<String> LookUp(String prefix) {
         return Dictionary.trie.lookupWord(prefix);
     }

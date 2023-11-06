@@ -1,4 +1,4 @@
-package com.example.englishapplication;
+package com.example.englishapplication.controller;
 
 import animatefx.animation.*;
 import com.example.englishapplication.base.DictionaryManagement;

@@ -1,4 +1,4 @@
-package com.example.englishapplication;
+package com.example.englishapplication.stage;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

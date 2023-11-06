@@ -3,7 +3,7 @@ package com.example.englishapplication.base;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FuzzySearch {
+public class RecommenderSystem {
     private static int LevenshteinDistance(String a, String b) {
         int n = a.length();
         int m = b.length();

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.englishapplication.controller.PopUpController">
+   <children>
+      <VBox layoutX="10.0" layoutY="10.0" prefHeight="431.0" prefWidth="379.0">
+         <children>
+            <HBox prefHeight="51.0" prefWidth="387.0" spacing="20.0">
+               <children>
+                  <VBox prefHeight="29.0" prefWidth="125.0">
+                     <children>
+                        <Label prefHeight="27.0" prefWidth="125.0" text="Word" />
+                        <TextField fx:id="wordField" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="29.0" prefWidth="125.0">
+                     <children>
+                        <Label prefHeight="27.0" prefWidth="125.0" text="Phonetic" />
+                        <TextField fx:id="phoneticField" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Label prefHeight="34.0" prefWidth="126.0" text="Explain" />
+            <JFXButton fx:id="addButton" text="Add">
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/plus.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <ScrollPane prefHeight="317.0" prefWidth="379.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+              </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

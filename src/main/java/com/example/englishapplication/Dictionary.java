@@ -19,7 +19,7 @@ public class Dictionary extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         DictionaryManagement.insertFromFile();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("container.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("view/container.fxml")));
         primaryStage.setTitle("Dictionary");
         primaryStage.setResizable(false);
         Scene scene = new Scene(root);

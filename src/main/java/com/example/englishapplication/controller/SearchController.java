@@ -1,8 +1,7 @@
-package com.example.englishapplication;
+package com.example.englishapplication.controller;
 
 import com.example.englishapplication.base.DictionaryManagement;
-import com.example.englishapplication.base.FuzzySearch;
-import javafx.application.Platform;
+import com.example.englishapplication.base.RecommenderSystem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
@@ -11,7 +10,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.web.WebView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -25,7 +23,6 @@ public class SearchController extends BaseController implements Initializable {
     public TextField searchField;
     public VBox definitionView;
     public ImageView star;
-    public HBox headerBox;
     public Button starButton;
     private List<String> currentSearchWord = new ArrayList<>();
 
@@ -43,7 +40,7 @@ public class SearchController extends BaseController implements Initializable {
         JSONObject meaning = DictionaryManagement.Search(prefix);
         if (meaning == null) {
             starButton.setVisible(false);
-            String suggestion = FuzzySearch.getCorrectWord(prefix);
+            String suggestion = RecommenderSystem.getCorrectWord(prefix);
             if (suggestion != null) {
                 HBox header = new HBox();
                 Label label = new Label("Did you mean: " + suggestion);
@@ -111,8 +108,8 @@ public class SearchController extends BaseController implements Initializable {
         }
     }
 
-    private final ImageView starActive = new ImageView(String.valueOf(getClass().getResource("image/star_active.png")));
-    private final ImageView starInactive = new ImageView(String.valueOf(getClass().getResource("image/star_inactive.png")));
+    private final ImageView starActive = new ImageView(String.valueOf(getClass().getResource("/com/example/englishapplication/image/star_active.png")));
+    private final ImageView starInactive = new ImageView(String.valueOf(getClass().getResource("/com/example/englishapplication/image/star_inactive.png")));
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -151,7 +148,56 @@ public class SearchController extends BaseController implements Initializable {
         }
     }
 
+    public void deleteAction() {
+        String prefix = searchField.getText();
+        if (DictionaryManagement.isExist(prefix)) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete word");
+            alert.setHeaderText("Are you sure you want to delete this word?");
+            alert.setContentText(prefix);
+            alert.showAndWait().ifPresent(buttonType -> {
+                if (buttonType == ButtonType.OK) {
+                    DictionaryManagement.delete(prefix);
+                    try {
+                        searchField.setText("");
+                        reloadSearchWord();
+                    } catch (ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Delete word");
+            alert.setHeaderText("This word is not exist");
+            alert.setContentText(prefix);
+            alert.showAndWait();
+        }
+    }
+
+    public void editAction() {
+        String prefix = searchField.getText();
+        if (DictionaryManagement.isExist(prefix)) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Edit word");
+            alert.setHeaderText("Are you sure you want to edit this word?");
+            alert.setContentText(prefix);
+            alert.showAndWait().ifPresent(buttonType -> {
+                if (buttonType == ButtonType.OK) {
+                    new PopUpController(prefix).show();
+                }
+            });
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Edit word");
+            alert.setHeaderText("This word is not exist");
+            alert.setContentText(prefix);
+            alert.showAndWait();
+        }
+    }
+
     @Override
     public void resetAll() {
+
     }
 }

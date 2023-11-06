@@ -1,4 +1,4 @@
-package com.example.englishapplication;
+package com.example.englishapplication.controller;
 
 import com.example.englishapplication.base.TranslateAPI;
 import javafx.application.Platform;
