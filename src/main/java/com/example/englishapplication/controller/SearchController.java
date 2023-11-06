@@ -2,6 +2,7 @@ package com.example.englishapplication.controller;
 
 import com.example.englishapplication.base.DictionaryManagement;
 import com.example.englishapplication.base.RecommenderSystem;
+import com.example.englishapplication.stage.PopUp;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
@@ -178,15 +179,7 @@ public class SearchController extends BaseController implements Initializable {
     public void editAction() {
         String prefix = searchField.getText();
         if (DictionaryManagement.isExist(prefix)) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Edit word");
-            alert.setHeaderText("Are you sure you want to edit this word?");
-            alert.setContentText(prefix);
-            alert.showAndWait().ifPresent(buttonType -> {
-                if (buttonType == ButtonType.OK) {
-                    new PopUpController(prefix).show();
-                }
-            });
+            new PopUp(prefix);
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Edit word");

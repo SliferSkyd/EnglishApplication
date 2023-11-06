@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -12,7 +13,7 @@
 
 <AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.englishapplication.controller.PopUpController">
    <children>
-      <VBox layoutX="10.0" layoutY="10.0" prefHeight="431.0" prefWidth="379.0">
+      <VBox layoutX="10.0" layoutY="10.0" prefHeight="431.0" prefWidth="379.0" spacing="5.0">
          <children>
             <HBox prefHeight="51.0" prefWidth="387.0" spacing="20.0">
                <children>
@@ -28,22 +29,38 @@
                         <TextField fx:id="phoneticField" />
                      </children>
                   </VBox>
+                  <JFXButton prefHeight="53.0" prefWidth="75.0" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="43.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/save.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
                </children>
             </HBox>
             <Label prefHeight="34.0" prefWidth="126.0" text="Explain" />
-            <JFXButton fx:id="addButton" text="Add">
+            <JFXButton onAction="#addTypeAction" text="Add new definition">
                <graphic>
                   <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/plus.png" />
+                        <Image url="@../image/add.png" />
                      </image>
                   </ImageView>
                </graphic>
             </JFXButton>
-            <ScrollPane prefHeight="317.0" prefWidth="379.0">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-              </content>
+            <ScrollPane prefHeight="302.0" prefWidth="379.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <content>
+                  <VBox id="content" fx:id="content" prefHeight="298.0" prefWidth="368.0" spacing="5.0" stylesheets="@../style/popup.css">
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </VBox>
+               </content>
             </ScrollPane>
          </children>
       </VBox>

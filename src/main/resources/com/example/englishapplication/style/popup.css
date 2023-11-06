@@ -1,0 +1,17 @@
+#content {
+    -fx-background-color: white;
+}
+
+pane {
+    -fx-background-color: white;
+}
+
+HBox {
+    -fx-alignment: TOP_RIGHT;
+    -fx-padding: 0 10 0 0;
+    -fx-spacing: 10;
+}
+
+VBox {
+    -fx-spacing: 5;
+}
