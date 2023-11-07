@@ -109,8 +109,8 @@
 }
 
 .choice-box {
-   -fx-background-color: black;
-   -fx-mark-color: orange;
+    -fx-background-color: black;
+    -fx-mark-color: orange;
 }
 
 .choice-box > .label {

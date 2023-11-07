@@ -1,6 +1,6 @@
 package com.example.englishapplication.controller;
 
-import com.example.englishapplication.base.Database;
+import com.example.englishapplication.helper.Database;
 import com.example.englishapplication.base.Utils;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;

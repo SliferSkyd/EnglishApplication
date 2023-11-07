@@ -1,4 +1,6 @@
-package com.example.englishapplication.base;
+package com.example.englishapplication.helper;
+
+import com.example.englishapplication.base.Dictionary;
 
 import java.util.ArrayList;
 import java.util.List;

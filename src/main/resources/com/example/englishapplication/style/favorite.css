@@ -1,0 +1,7 @@
+.search-field {
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 14;
+    -fx-background-insets: 0, 0 0 3 0;
+}
+

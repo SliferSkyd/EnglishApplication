@@ -1,6 +1,6 @@
 package com.example.englishapplication.controller;
 
-import com.example.englishapplication.base.TranslateAPI;
+import com.example.englishapplication.helper.TranslateAPI;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.Initializable;

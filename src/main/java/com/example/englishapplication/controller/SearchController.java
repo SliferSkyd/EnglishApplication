@@ -1,7 +1,7 @@
 package com.example.englishapplication.controller;
 
 import com.example.englishapplication.base.DictionaryManagement;
-import com.example.englishapplication.base.RecommenderSystem;
+import com.example.englishapplication.helper.RecommenderSystem;
 import com.example.englishapplication.stage.PopUp;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -44,7 +44,9 @@ public class SearchController extends BaseController implements Initializable {
             String suggestion = RecommenderSystem.getCorrectWord(prefix);
             if (suggestion != null) {
                 HBox header = new HBox();
-                Label label = new Label("Did you mean: " + suggestion);
+                Label label = new Label("Did you mean: ");
+                Button button = new Button(suggestion);
+                button.getStyleClass().add("word-suggestion-button");
                 label.getStyleClass().add("word-definition-label");
                 header.getChildren().add(label);
                 definitionView.getChildren().add(header);

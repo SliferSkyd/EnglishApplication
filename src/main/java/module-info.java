@@ -22,4 +22,6 @@ module com.example.englishapplication {
     opens com.example.englishapplication.stage to javafx.fxml;
     exports com.example.englishapplication.controller;
     opens com.example.englishapplication.controller to javafx.fxml;
+    exports com.example.englishapplication.helper;
+    opens com.example.englishapplication.helper to javafx.fxml;
 }
