@@ -17,7 +17,7 @@ public class RandomWord {
         this.randomWord = randomWord;
     }
 
-    public String WordAddLetter() {
+    public String WordLetter() {
         String filePath = "src/main/resources/recentWord.txt";
         ArrayList<String> words = new ArrayList<>();
 
@@ -32,19 +32,19 @@ public class RandomWord {
             return null;
         }
 
+        int randomPosition=0;
+        char randomChar='h';
         while (randomWord.length() > 12 || randomWord.length()<=1 ) {
             Random random = new Random();
             int randomIndex = random.nextInt(words.size());
             randomWord = words.get(randomIndex);
-            int randomPosition = random.nextInt(randomWord.length());
-            char randomChar = (char) (random.nextInt(26) + 'a');
-            return randomWord.substring(0, randomPosition) + randomChar + randomWord.substring(randomPosition);
+
         }
-        return "hellou";
+        return randomWord;
     }
 
     public static void main(String[] args) {
         RandomWord key = new RandomWord();
-        System.out.println(key.WordAddLetter());
+        System.out.println(key.WordLetter());
     }
 }

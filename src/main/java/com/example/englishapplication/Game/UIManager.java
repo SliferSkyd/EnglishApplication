@@ -111,9 +111,12 @@ public class UIManager {
 
     }
     void LetterFunc(BorderPane root) {
-        root.setCenter(gameManager.textAnimation.getButtonContainer());
-        gameManager.textAnimation.getButtonContainer().setAlignment(Pos.CENTER);
-        gameManager.textAnimation.getButtonContainer().setPadding(new Insets(0, 0, 150, 0));
+        VBox letterBox = new VBox();
+        letterBox.getChildren().addAll(gameManager.textAnimation.getButtonContainer2(),gameManager.textAnimation.getButtonContainer());
+        root.setCenter(letterBox);
+        int num = (WIDTH-gameManager.textAnimation.getWord().length()*75)/2;
+        letterBox.setPadding(new Insets(20, 0, 0, num));
+        //gameManager.textAnimation.getButtonContainer().setPadding(new Insets(0, 0, -300, 0));
     }
 
     void PlayAgain() {

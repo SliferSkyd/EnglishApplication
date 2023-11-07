@@ -20,14 +20,8 @@ public class GameManager {
     }
 
     void calculateScore() {
-        String word = textAnimation.getWord();
-        String finalWord = "";
-        for (int i = 0; i < word.length(); i++)
-            if (i != textAnimation.getLetterDown()) finalWord += word.charAt(i);
-        System.out.println(finalWord+" "+textAnimation.getNumberDown());
 
-        boolean existed = (Dictionary.trie.searchWord(finalWord) != null);
-
+        boolean existed = (Dictionary.trie.searchWord(textAnimation.getFinalword()) != null);
         if (existed) {
             setScore(score+10);
             soundManager.playSoundEffect("/fxml/Sound/correct.mp3");
@@ -40,7 +34,7 @@ public class GameManager {
     }
 
     public void checkSubmit() {
-        if (!isEndGame() && textAnimation.getNumberDown()==1) {
+        if (!isEndGame() && textAnimation.getFinalword().length()==textAnimation.getWord().length()) {
             calculateScore();
             textAnimation.Text();
         }
