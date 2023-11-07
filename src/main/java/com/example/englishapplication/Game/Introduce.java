@@ -1,6 +1,6 @@
 package com.example.englishapplication.Game;
 
-import com.example.englishapplication.base.DictionaryManagement;
+import com.example.englishapplication.core.DictionaryManagement;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;

@@ -1,6 +1,6 @@
 package com.example.englishapplication.Game;
 
-import com.example.englishapplication.base.Dictionary;
+import com.example.englishapplication.core.DictionaryManagement;
 import javafx.scene.control.Button;
 
 public class GameManager {
@@ -20,8 +20,7 @@ public class GameManager {
     }
 
     void calculateScore() {
-
-        boolean existed = (Dictionary.trie.searchWord(textAnimation.getFinalword()) != null);
+        boolean existed = (DictionaryManagement.trie.searchWord(textAnimation.getFinalword()) != null);
         if (existed) {
             setScore(score+10);
             soundManager.playSoundEffect("/fxml/Sound/correct.mp3");

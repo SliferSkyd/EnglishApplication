@@ -1,6 +1,7 @@
 package com.example.englishapplication;
 
-import com.example.englishapplication.base.DictionaryManagement;
+import com.example.englishapplication.core.DictionaryManagement;
+import com.example.englishapplication.core.Database;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,7 +20,9 @@ public class Dictionary extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         DictionaryManagement.insertFromFile();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("view/container.fxml")));
+        Database.startDatabase();
+
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/englishapplication/view/container.fxml")));
         primaryStage.setTitle("Dictionary");
         primaryStage.setResizable(false);
         Scene scene = new Scene(root);
@@ -37,5 +40,6 @@ public class Dictionary extends Application {
 
     @Override
     public void stop() throws IOException {
+        Database.stopDatabase();
     }
 }

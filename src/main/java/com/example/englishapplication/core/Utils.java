@@ -1,4 +1,4 @@
-package com.example.englishapplication.base;
+package com.example.englishapplication.core;
 
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
