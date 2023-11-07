@@ -1,7 +1,10 @@
 package com.example.englishapplication.helper;
 
-import java.io.*;
-import java.net.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,15 +13,19 @@ import java.util.Objects;
 
 public class VoiceAPI {
     public static void main(String[] args) {
-        String textToSpeech = "This is an English text.";
+        String textToSpeech = "Bé Ngọc Ánh thúii.";
         // if u want to speak Vietnamese, change "English" to "Vietnamese"
-        String audioFilePath = generateTextToSpeech(textToSpeech, "English");
+        String audioFilePath = generateTextToSpeech(textToSpeech, "Vietnamese");
 
         if (audioFilePath != null) {
             System.out.println("Đường dẫn tệp âm thanh: " + audioFilePath);
         } else {
             System.out.println("Không thể tạo tệp âm thanh.");
         }
+
+//        Media pick = new Media(new File(audioFilePath).toURI().toString()); //throws here
+//        MediaPlayer player = new MediaPlayer(pick);
+//        player.play();
     }
 
     public static String generateTextToSpeech(String text, String language) {

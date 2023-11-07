@@ -1,6 +1,7 @@
 module com.example.englishapplication {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.media;
     requires javafx.base;
     requires javafx.web;
     requires javafx.graphics;
@@ -18,10 +19,5 @@ module com.example.englishapplication {
     exports com.example.englishapplication;
     exports com.example.englishapplication.base;
     opens com.example.englishapplication.base to javafx.fxml;
-    exports com.example.englishapplication.stage;
-    opens com.example.englishapplication.stage to javafx.fxml;
-    exports com.example.englishapplication.controller;
-    opens com.example.englishapplication.controller to javafx.fxml;
-    exports com.example.englishapplication.helper;
-    opens com.example.englishapplication.helper to javafx.fxml;
+    exports com.example.englishapplication.Game;
 }
