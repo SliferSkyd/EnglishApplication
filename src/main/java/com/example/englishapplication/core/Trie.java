@@ -1,4 +1,4 @@
-package com.example.englishapplication.base;
+package com.example.englishapplication.core;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,40 +11,36 @@ public class Trie {
     }
 
     // add duplicated word ????
-    public String addWord(String target) {
+    public boolean addWord(String target) {
         TrieNode p = root;
         for (int i = 0; i < target.length(); ++i) {
             int ch = target.charAt(i);
-            if (ch >= 256) return "Word: " + target + " is not correct.";
+            if (ch >= 256) return false;
 
-            //if (ch >= 256) System.out.println(target);
             if (p.next[ch] == null) p.next[ch] = new TrieNode();
             p = p.next[ch];
         }
 
-        if (p.isEndOfWord())
-            return "Word: " + target + " already exists.";
+        if (p.isEndOfWord()) return false;
 
         p.setEndOfWord(true);
-        return "Successfully add word: " + target;
+        return true;
     }
 
     // delete word or duplicate word ????
-    public String deleteWord(String target) {
+    public boolean deleteWord(String target) {
         TrieNode p = root;
         for (int i = 0; i < target.length(); ++i) {
             int ch = target.charAt(i);
             if (p.next[ch] == null)
-                return "Error: Word is not exist";
-
+                return false;
             p = p.next[ch];
         }
 
         if (!p.isEndOfWord())
-            return "Error: Word is not exist";
-
+            return false;
         p.setEndOfWord(false);
-        return "Successfully delete word: " + target;
+        return true;
     }
 
     public boolean containsWord(String target) {

@@ -1,6 +1,6 @@
 package com.example.englishapplication.Game;
 
-import com.example.englishapplication.base.Dictionary;
+import com.example.englishapplication.core.DictionaryManagement;
 import javafx.scene.control.Button;
 
 public class GameManager {
@@ -26,7 +26,7 @@ public class GameManager {
             if (i != textAnimation.getLetterDown()) finalWord += word.charAt(i);
         System.out.println(finalWord+" "+textAnimation.getNumberDown());
 
-        boolean existed = (Dictionary.trie.searchWord(finalWord) != null);
+        boolean existed = DictionaryManagement.isExist(finalWord);
 
         if (existed) {
             setScore(score+10);

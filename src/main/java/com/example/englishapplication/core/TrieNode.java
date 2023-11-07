@@ -1,4 +1,4 @@
-package com.example.englishapplication.base;
+package com.example.englishapplication.core;
 
 public class TrieNode {
     private boolean isEndOfWord;

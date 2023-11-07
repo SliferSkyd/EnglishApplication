@@ -1,16 +1,11 @@
 package com.example.englishapplication.controller;
 
-import com.example.englishapplication.base.DictionaryManagement;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
+import com.example.englishapplication.core.DictionaryManagement;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 import org.json.JSONObject;
 
 public class PopUpController {
@@ -20,7 +15,7 @@ public class PopUpController {
 
     public void setWord(String word) {
         wordField.setText(word);
-        JSONObject meaning = DictionaryManagement.Search(word);
+        JSONObject meaning = DictionaryManagement.search(word);
         if (meaning != null) {
             phoneticField.setText(meaning.getString("pronoun"));
         }

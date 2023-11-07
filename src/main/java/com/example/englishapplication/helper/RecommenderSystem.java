@@ -1,6 +1,6 @@
 package com.example.englishapplication.helper;
 
-import com.example.englishapplication.base.Dictionary;
+import com.example.englishapplication.core.DictionaryManagement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,7 @@ public class RecommenderSystem {
     private static void generate(List<String> words, String s, int depth, int maxDepth) {
         if (words.size() > 0) return;
         if (depth == maxDepth) {
-            if (Dictionary.trie.containsWord(s)) {
+            if (DictionaryManagement.isExist(s)) {
                 words.add(s);
             }
             return;

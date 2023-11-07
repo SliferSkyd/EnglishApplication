@@ -1,7 +1,8 @@
 package com.example.englishapplication.controller;
 
 import animatefx.animation.*;
-import com.example.englishapplication.base.DictionaryManagement;
+import com.example.englishapplication.core.Word;
+import com.example.englishapplication.core.Database;
 import javafx.animation.*;
 import javafx.fxml.Initializable;
 import javafx.scene.input.KeyEvent;
@@ -20,7 +21,16 @@ public class FavoriteController extends BaseController implements Initializable 
     public Text text;
     private String targetWord, targetMeaning;
     boolean isFrontShowing = true;
+
     public void cardAction() {
+        PauseTransition ptChangeCardFace = changeCardFace();
+        RotateTransition rotator = rotateCard();
+        ParallelTransition parallelTransition = new ParallelTransition(rotator, ptChangeCardFace);
+        parallelTransition.play();
+        isFrontShowing = !isFrontShowing;
+    }
+
+    private RotateTransition rotateCard() {
         RotateTransition rotator = new RotateTransition(Duration.millis(1000), card);
         rotator.setAxis(Rotate.X_AXIS);
 
@@ -33,14 +43,9 @@ public class FavoriteController extends BaseController implements Initializable 
         }
         rotator.setInterpolator(Interpolator.LINEAR);
         rotator.setCycleCount(1);
-
-        PauseTransition ptChangeCardFace = changeCardFace(card);
-        ParallelTransition parallelTransition = new ParallelTransition(rotator, ptChangeCardFace);
-        parallelTransition.play();
-        isFrontShowing = !isFrontShowing;
+        return rotator;
     }
-
-    private PauseTransition changeCardFace(AnchorPane card) {
+    private PauseTransition changeCardFace() {
         PauseTransition pause = new PauseTransition(Duration.millis(500));
         if (isFrontShowing) {
             pause.setOnFinished(e -> {
@@ -79,15 +84,15 @@ public class FavoriteController extends BaseController implements Initializable 
 
     }
 
-    private List<String> words = DictionaryManagement.getAllWords();
+    private List<Word> words;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
 
     private void apply(int index) {
-        targetMeaning = DictionaryManagement.Search(words.get(index)).toString();
-        targetWord = words.get(index);
+        targetWord = words.get(index).getTarget();
+        targetMeaning = words.get(index).getExplain();
         text.setText(targetWord);
         text.setScaleY(1);
         isFrontShowing = true;
@@ -95,8 +100,8 @@ public class FavoriteController extends BaseController implements Initializable 
 
     @Override
     public void resetAll() {
-        card.getScene().addEventHandler(KeyEvent.KEY_RELEASED, this::changeCardAction);
-        System.out.println(card.getScene().toString());
+        words = Database.getAllWords();
+        card.getScene().setOnKeyReleased(this::changeCardAction);
         Collections.shuffle(words);
         currentIndex = 0;
         apply(currentIndex);

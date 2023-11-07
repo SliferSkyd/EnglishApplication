@@ -1,6 +1,8 @@
 package com.example.englishapplication.controller;
 
-import com.example.englishapplication.base.DictionaryManagement;
+import com.example.englishapplication.core.DictionaryManagement;
+import com.example.englishapplication.core.Word;
+import com.example.englishapplication.core.Database;
 import com.example.englishapplication.helper.RecommenderSystem;
 import com.example.englishapplication.stage.PopUp;
 import javafx.collections.FXCollections;
@@ -38,7 +40,7 @@ public class SearchController extends BaseController implements Initializable {
 
         listWords = FXCollections.observableArrayList(currentSearchWord);
         listView.setItems(listWords);
-        JSONObject meaning = DictionaryManagement.Search(prefix);
+        JSONObject meaning = DictionaryManagement.search(prefix);
         if (meaning == null) {
             starButton.setVisible(false);
             String suggestion = RecommenderSystem.getCorrectWord(prefix);
@@ -48,7 +50,8 @@ public class SearchController extends BaseController implements Initializable {
                 Button button = new Button(suggestion);
                 button.getStyleClass().add("word-suggestion-button");
                 label.getStyleClass().add("word-definition-label");
-                header.getChildren().add(label);
+                header.getChildren().addAll(label, button);
+
                 definitionView.getChildren().add(header);
             }
         } else {
@@ -64,7 +67,7 @@ public class SearchController extends BaseController implements Initializable {
             header.getChildren().add(label);
             definitionView.getChildren().add(header);
 
-            if (favoriteWords.existWord(prefix)) {
+            if (Database.existWord(prefix)) {
                 star.setImage(starActive.getImage());
             } else {
                 star.setImage(starInactive.getImage());
@@ -102,12 +105,13 @@ public class SearchController extends BaseController implements Initializable {
     public void starAction() throws ClassNotFoundException {
         String word = searchField.getText();
 
-        if (favoriteWords.existWord(word)) {
+        if (Database.existWord(word)) {
             star.setImage(starInactive.getImage());
-            favoriteWords.removeWord(word);
+            Database.removeWord(word);
         } else {
             star.setImage(starActive.getImage());
-            favoriteWords.addWord(word);
+            String meaning = DictionaryManagement.getMeaning(word);
+            Database.addWord(new Word(word, meaning));
         }
     }
 
