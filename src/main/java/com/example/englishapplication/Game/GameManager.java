@@ -10,12 +10,12 @@ public class GameManager {
     private int question = 0;
     private int wrongAnswer = 0;
     private int numberQuestion = 10;
-    public SoundManager soundManager = new SoundManager("/fxml/Sound/cute.mp3");
+    public MediaManager mediaManager = new MediaManager("/fxml/Sound/cute.mp3");
     TextAnimation textAnimation =new TextAnimation();
 
 
     public void initializeGame() {
-        soundManager.playBackgroundMusic(0.25);
+        mediaManager.playBackgroundMusic(0.25);
         textAnimation.Text();
     }
 
@@ -23,11 +23,11 @@ public class GameManager {
         boolean existed = (DictionaryManagement.trie.searchWord(textAnimation.getFinalword()) != null);
         if (existed) {
             setScore(score+10);
-            soundManager.playSoundEffect("/fxml/Sound/correct.mp3");
+            mediaManager.playSoundEffect("/fxml/Sound/correct.mp3");
         }
         else {
             setWrongAnswer(++wrongAnswer);
-            soundManager.playSoundEffect("/fxml/Sound/DuckWrong.wav");
+            mediaManager.playSoundEffect("/fxml/Sound/DuckWrong.wav");
         }
         setQuestion(++question);
     }
@@ -40,7 +40,7 @@ public class GameManager {
     }
 
     public void checkSound(Button sound) {
-        soundManager.ButtonCheck(sound);
+        mediaManager.ButtonCheck(sound);
     }
 
     public int getScore() {

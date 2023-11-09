@@ -4,60 +4,44 @@ import com.example.englishapplication.core.DictionaryManagement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 public class RecommenderSystem {
-    private static int LevenshteinDistance(String a, String b) {
-        int n = a.length();
-        int m = b.length();
-        int[][] dp = new int[n + 1][m + 1];
-        for (int i = 0; i <= n; ++i) {
-            for (int j = 0; j <= m; ++j) {
-                dp[i][j] = (int)1e9;
-            }
+    private static class Node {
+        public String word;
+        public int depth;
+        public Node(String word, int depth) {
+            this.word = word;
+            this.depth = depth;
         }
-        for (int i = 0; i <= n; ++i) {
-            for (int j = 0; j <= m; ++j) {
-                if (i == 0 && j == 0) {
-                    dp[i][j] = 0;
-                    continue;
-                }
-                if (i > 0) dp[i][j] = Math.min(dp[i][j], dp[i - 1][j] + 1);
-                if (j > 0) dp[i][j] = Math.min(dp[i][j], dp[i][j - 1] + 1);
-                if (i > 0 && j > 0) dp[i][j] = Math.min(dp[i][j], dp[i - 1][j - 1] + 1);
-                if (i > 0 && j > 0 && a.charAt(i - 1) == b.charAt(j - 1)) dp[i][j] = Math.min(dp[i][j], dp[i - 1][j - 1]);
-            }
-        }
-        return dp[n][m];
     }
-
-    private static void generate(List<String> words, String s, int depth, int maxDepth) {
-        if (words.size() > 0) return;
-        if (depth == maxDepth) {
-            if (DictionaryManagement.isExist(s)) {
-                words.add(s);
-            }
-            return;
-        }
-        for (int i = s.length(); i >= 0; --i) {
-            if (i != s.length()) {
+    private static String generate(String s, int maxDepth) {
+        Queue<Node> queue = new java.util.LinkedList<>();
+        queue.add(new Node(s, 0));
+        while (!queue.isEmpty()) {
+            Node curNode = queue.poll();
+            String u = curNode.word;
+            int depth = curNode.depth;
+            if (DictionaryManagement.isExist(u)) return u;
+            if (depth == maxDepth) continue;
+            for (int i = u.length(); i >= 0; --i) {
+                if (i != u.length()) {
+                    for (int c = 0; c < 26; ++c) {
+                        char ch = (char)('a' + c);
+                        queue.add(new Node(u.substring(0, i) + ch + u.substring(i + 1), depth + 1));
+                    }
+                    queue.add(new Node(u.substring(0, i) + u.substring(i + 1), depth + 1));
+                }
                 for (int c = 0; c < 26; ++c) {
                     char ch = (char)('a' + c);
-                    generate(words, s.substring(0, i) + ch + s.substring(i + 1), depth + 1, maxDepth);
+                    queue.add(new Node(u.substring(0, i) + ch + u.substring(i), depth + 1));
                 }
-                generate(words, s.substring(0, i) + s.substring(i + 1), depth + 1, maxDepth);
-            }
-            for (int c = 0; c < 26; ++c) {
-                char ch = (char)('a' + c);
-                generate(words, s.substring(0, i) + ch + s.substring(i), depth + 1, maxDepth);
             }
         }
-
+        return null;
     }
     public static String getCorrectWord(String s) {
         if (s.length() < 3) return null;
-        List<String> words = new ArrayList<>();
-        generate(words, s, 0, 2);
-        if (words.size() > 0) return words.get(0);
-        else return null;
+        return generate(s, 2);
     }
 }

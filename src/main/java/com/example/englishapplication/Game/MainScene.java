@@ -20,7 +20,7 @@ public class MainScene extends Application {
 
         uiManager.initializeUI(stage);
         stage.setOnCloseRequest(event -> {
-            gameManager.soundManager.stopSoundEffect();
+            gameManager.mediaManager.stopSoundEffect();
         });
     }
 

@@ -7,12 +7,12 @@ import javafx.scene.media.MediaPlayer;
 import static javafx.scene.paint.Color.TRANSPARENT;
 import static javafx.scene.paint.Color.WHITE;
 
-public class SoundManager {
-    private boolean isSoundEnabled = true;
+public class MediaManager {
+    private static boolean isSoundEnabled = true;
     private MediaPlayer backgroundMusic;
-    private MediaPlayer soundEffect;
+    private static MediaPlayer soundEffect;
 
-    public SoundManager(String backgroundMusicPath) {
+    public MediaManager(String backgroundMusicPath) {
         Media backgroundMedia = new Media(getClass().getResource(backgroundMusicPath).toString());
         backgroundMusic = new MediaPlayer(backgroundMedia);
     }
@@ -24,11 +24,13 @@ public class SoundManager {
         backgroundMusic.play();
     }
 
-    public void playSoundEffect(String soundEffectPath) {
+    public static void playSoundEffect(String soundEffectPath) {
         if(!isSoundEnabled()) return;
-        Media soundEffectMedia = new Media(getClass().getResource(soundEffectPath).toString());
+        Media soundEffectMedia = new Media(MediaManager.class.getResource(soundEffectPath).toString());
+
         soundEffect = new MediaPlayer(soundEffectMedia);
         soundEffect.play();
+        System.out.println(soundEffectPath);
         setSoundEnabled(true);
     }
 
@@ -39,7 +41,7 @@ public class SoundManager {
             soundEffect.stop();
         }
     }
-    void ButtonCheck(Button sound) {
+    public void ButtonCheck(Button sound) {
         if (isSoundEnabled) {
             stopSoundEffect();
             sound.setTextFill(WHITE);
@@ -49,11 +51,11 @@ public class SoundManager {
         }
     }
 
-    public boolean isSoundEnabled() {
+    public static boolean isSoundEnabled() {
         return isSoundEnabled;
     }
 
-    public void setSoundEnabled(boolean soundEnabled) {
+    public static void setSoundEnabled(boolean soundEnabled) {
         isSoundEnabled = soundEnabled;
     }
 }

@@ -14,8 +14,8 @@ public class Database {
 
             String sql = "CREATE TABLE IF NOT EXISTS " + "favoriteWords" + " (\n"
                     +   "id integer PRIMARY KEY,\n"
-                    +   "englishWord text UNIQUE NOT NULL,\n"
-                    +   "vietnameseWord text NOT NULL\n"
+                    +   "englishWord varchar UNIQUE NOT NULL,\n"
+                    +   "vietnameseWord varchar NOT NULL\n"
                     +   ");";
             System.out.println(sql);
             Statement stmt = c.createStatement();

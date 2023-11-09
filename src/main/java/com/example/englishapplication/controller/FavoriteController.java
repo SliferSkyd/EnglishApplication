@@ -39,7 +39,7 @@ public class FavoriteController extends BaseController implements Initializable 
             rotator.setToAngle(180);
         } else {
             rotator.setFromAngle(180);
-            rotator.setToAngle(0);
+            rotator.setToAngle(360);
         }
         rotator.setInterpolator(Interpolator.LINEAR);
         rotator.setCycleCount(1);
@@ -50,12 +50,14 @@ public class FavoriteController extends BaseController implements Initializable 
         if (isFrontShowing) {
             pause.setOnFinished(e -> {
                 text.setText(targetMeaning);
-                text.setScaleY(-1);
+                text.setScaleY(text.getScaleY() * -1);
+                System.out.println(text.getScaleY());
             });
         } else {
             pause.setOnFinished(e -> {
                 text.setText(targetWord);
-                text.setScaleY(1);
+                text.setScaleY(text.getScaleY() * -1);
+                System.out.println(text.getScaleY());
             });
         }
         return pause;
@@ -93,17 +95,26 @@ public class FavoriteController extends BaseController implements Initializable 
     private void apply(int index) {
         targetWord = words.get(index).getTarget();
         targetMeaning = words.get(index).getExplain();
-        text.setText(targetWord);
         text.setScaleY(1);
+        text.setText(targetWord);
         isFrontShowing = true;
     }
 
+    public void removeAction() throws ClassNotFoundException {
+        Database.removeWord(words.get(currentIndex).getTarget());
+        words.remove(currentIndex);
+        if (currentIndex == words.size()) {
+            currentIndex = 0;
+        }
+        resetAll();
+    }
     @Override
     public void resetAll() {
         words = Database.getAllWords();
         card.getScene().setOnKeyReleased(this::changeCardAction);
         Collections.shuffle(words);
-        currentIndex = 0;
+        new BounceInLeft(card).play();
         apply(currentIndex);
+        new FlipInX(card).play();
     }
 }

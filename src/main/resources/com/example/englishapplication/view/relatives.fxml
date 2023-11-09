@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="528.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.englishapplication.controller.RelativesController">
+<AnchorPane prefHeight="528.0" prefWidth="769.0" stylesheets="@../style/relatives.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.englishapplication.controller.RelativesController">
     <children>
-          <TextField fx:id="input" layoutX="12.0" layoutY="13.0" onAction="#searchAction" prefHeight="46.0" prefWidth="742.0" promptText="Type your word..." style="-fx-background-radius: 15;" styleClass="search-field" stylesheets="@../style/container.css" />
+          <TextField fx:id="input" layoutX="12.0" layoutY="13.0" onAction="#searchAction" prefHeight="46.0" prefWidth="742.0" promptText="Type your word..." style="-fx-background-radius: 15;" styleClass="search-field" />
         <ScrollPane layoutX="11.0" layoutY="74.0" prefHeight="443.0" prefWidth="742.0" style="-fx-background-radius: 10;">
             <content>
                 <VBox fx:id="content" prefHeight="418.0" prefWidth="722.0" spacing="10.0">

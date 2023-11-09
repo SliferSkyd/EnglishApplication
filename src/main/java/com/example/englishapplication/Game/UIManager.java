@@ -81,7 +81,7 @@ public class UIManager {
     {
         HBox infoBox = new HBox();
 
-        if (gameManager.soundManager.isSoundEnabled()) sound.setTextFill(TRANSPARENT); else sound.setTextFill(WHITE);
+        if (gameManager.mediaManager.isSoundEnabled()) sound.setTextFill(TRANSPARENT); else sound.setTextFill(WHITE);
         sound.getStyleClass().add("sound");
 
         sound.setTranslateX(WIDTH-380);
@@ -125,7 +125,7 @@ public class UIManager {
             MainScene mainScene = new MainScene();
             try {
                 mainScene.start(stage);
-                gameManager.soundManager.stopSoundEffect();
+                gameManager.mediaManager.stopSoundEffect();
             } catch (IOException e) {
                 e.printStackTrace();
             }

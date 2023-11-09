@@ -5,12 +5,35 @@
 
 .choice-box > .label {
     -fx-text-fill: white;
+    -fx-font-size: 14;
 }
 
 .choice-box .context-menu { -fx-background-color: black; }
 
 .choice-box .menu-item:focused { -fx-background-color: orange; }
 
-.choice-box .menu-item > .label { -fx-text-fill: white; }
+.choice-box .menu-item > .label { -fx-text-fill: white; -fx-font-size: 14; }
 
 .choice-box .menu-item:focused > .label { -fx-text-fill: black; }
+
+.text-area {
+    -fx-background-color: transparent;
+    -fx-control-inner-background: #FFFFFF;
+    -fx-border-color: transparent;
+    -fx-background-radius: 10;
+    -fx-font-family: SansSerif;
+    -fx-text-fill: black;
+    -fx-font-size: 14;
+}
+
+.text-area:focused {
+    -fx-faint-focus-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 10;
+}
+
+.button {
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}

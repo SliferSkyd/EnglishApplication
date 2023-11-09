@@ -1,77 +1,33 @@
 package com.example.englishapplication.helper;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.util.Objects;
+import com.example.englishapplication.core.Utils;
+import com.voicerss.tts.AudioCodec;
+import com.voicerss.tts.AudioFormat;
+import com.voicerss.tts.Languages;
+import com.voicerss.tts.VoiceParameters;
+import com.voicerss.tts.VoiceProvider;
 
-public class VoiceAPI {
-    public static void main(String[] args) {
-        String textToSpeech = "Bé Ngọc Ánh thúii.";
-        // if u want to speak Vietnamese, change "English" to "Vietnamese"
-        String audioFilePath = generateTextToSpeech(textToSpeech, "Vietnamese");
+import javax.sound.sampled.*;
+import java.io.ByteArrayInputStream;
 
-        if (audioFilePath != null) {
-            System.out.println("Đường dẫn tệp âm thanh: " + audioFilePath);
-        } else {
-            System.out.println("Không thể tạo tệp âm thanh.");
-        }
+import static com.example.englishapplication.helper.AudioManager.startPlaying;
 
-//        Media pick = new Media(new File(audioFilePath).toURI().toString()); //throws here
-//        MediaPlayer player = new MediaPlayer(pick);
-//        player.play();
-    }
-
-    public static String generateTextToSpeech(String text, String language) {
-        try {
-            String apiKey = "e230f7cdd26244cd935aa625a8f5b82d";
-            String apiUrl = "https://api.voicerss.org/";
-
-            URL url = new URL(apiUrl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            setConnectionProperties(connection);
-            String data = "key=" + apiKey + "&src=" + text  ;
-            if(Objects.equals(language, "Vietnamese"))  data = data + "&hl=vi-VN";
-            sendDataToApi(connection, data);
-
-            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                InputStream is = connection.getInputStream();
-                Path outputPath = Paths.get("output.mp3");
-                Files.copy(is, outputPath, StandardCopyOption.REPLACE_EXISTING);
-                is.close();
-                connection.disconnect();
-                return outputPath.toAbsolutePath().toString();
-            } else {
-                System.out.println("API request failed with HTTP code: " + connection.getResponseCode());
+public class VoiceAPI extends Utils {
+    public static void getTextToSpeech(String text, String language) {
+        parallelProcessing(() -> {
+            try {
+                VoiceProvider tts = new VoiceProvider("600b8fac7a214e5e91fff8c9baf69a4a");
+                VoiceParameters params = new VoiceParameters(text, (language.equals("en") ? Languages.English_UnitedStates : Languages.Vietnamese));
+                params.setCodec(AudioCodec.WAV);
+                params.setFormat(AudioFormat.Format_44KHZ.AF_44khz_16bit_stereo);
+                params.setBase64(false);
+                params.setSSML(false);
+                params.setRate(0);
+                byte[] voice = tts.speech(params);
+                startPlaying(voice);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    private static void setConnectionProperties(HttpURLConnection connection) {
-        try {
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-            connection.setDoOutput(true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static void sendDataToApi(HttpURLConnection connection, String data) {
-        try {
-            OutputStream os = connection.getOutputStream();
-            os.write(data.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        });
     }
 }

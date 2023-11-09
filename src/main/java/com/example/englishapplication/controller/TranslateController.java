@@ -12,6 +12,8 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+import static com.example.englishapplication.helper.VoiceAPI.getTextToSpeech;
+
 public class TranslateController extends BaseController implements Initializable {
     public TextArea input;
     public WebView output;
@@ -44,6 +46,13 @@ public class TranslateController extends BaseController implements Initializable
         copyToClipboard(output.getEngine().getDocument().getDocumentElement().getTextContent());
     }
 
+    public void pronounceInputAction() {
+        getTextToSpeech(input.getText(), Objects.equals(fromLang.getSelectionModel().getSelectedItem(), "Vietnamese") ? "vi" : "en");
+    }
+
+    public void pronounceOutputAction() {
+        getTextToSpeech(output.getEngine().getDocument().getDocumentElement().getTextContent(), Objects.equals(toLang.getSelectionModel().getSelectedItem(), "Vietnamese") ? "vi" : "en");
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

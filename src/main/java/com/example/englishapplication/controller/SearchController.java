@@ -4,6 +4,7 @@ import com.example.englishapplication.core.DictionaryManagement;
 import com.example.englishapplication.core.Word;
 import com.example.englishapplication.core.Database;
 import com.example.englishapplication.helper.RecommenderSystem;
+import com.example.englishapplication.helper.VoiceAPI;
 import com.example.englishapplication.stage.PopUp;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -65,6 +66,15 @@ public class SearchController extends BaseController implements Initializable {
             label = new Label(String.format("[%s]", meaning.getString("pronoun")));
             label.getStyleClass().add("word-pronoun-label");
             header.getChildren().add(label);
+
+            ImageView speaker = new ImageView(String.valueOf(getClass().getResource("/com/example/englishapplication/image/speaker.png")));
+            speaker.setFitHeight(20);
+            speaker.setFitWidth(20);
+            speaker.setOnMouseClicked(mouseEvent -> {
+                VoiceAPI.getTextToSpeech(prefix, "en");
+            });
+            speaker.getStyleClass().add("word-speaker-image");
+            header.getChildren().add(speaker);
             definitionView.getChildren().add(header);
 
             if (Database.existWord(prefix)) {

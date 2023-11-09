@@ -14,6 +14,8 @@ module com.example.englishapplication {
     requires json.simple;
     requires AnimateFX;
     requires com.jfoenix;
+    requires java.desktop;
+    requires voicerss.tts;
 
     opens com.example.englishapplication to javafx.fxml;
     exports com.example.englishapplication;
@@ -27,4 +29,5 @@ module com.example.englishapplication {
     exports com.example.englishapplication.helper;
     opens com.example.englishapplication.helper to javafx.fxml;
     exports com.example.englishapplication.Game;
+    opens com.example.englishapplication.Game to javafx.fxml;
 }
