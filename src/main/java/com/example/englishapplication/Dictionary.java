@@ -26,14 +26,6 @@ public class Dictionary extends Application {
         primaryStage.setTitle("Dictionary");
         primaryStage.setResizable(false);
         Scene scene = new Scene(root);
-/*
-        scene.getStylesheets().add(String.valueOf(getClass().getResource("style/container.css")));
-        scene.getStylesheets().add(String.valueOf(getClass().getResource("style/search.css")));
-        scene.getStylesheets().add(String.valueOf(getClass().getResource("style/translate.css")));
-        scene.getStylesheets().add(String.valueOf(getClass().getResource("style/relatives.css")));
-        scene.getStylesheets().add(String.valueOf(getClass().getResource("style/favorite.css")));
-        scene.getStylesheets().add(String.valueOf(getClass().getResource("style/popup.css")));
-*/
         primaryStage.setScene(scene);
         primaryStage.show();
     }

@@ -49,6 +49,15 @@ public class SearchController extends BaseController implements Initializable {
                 HBox header = new HBox();
                 Label label = new Label("Did you mean: ");
                 Button button = new Button(suggestion);
+                button.setOnMouseClicked(mouseEvent -> {
+                    searchField.setText(suggestion);
+                    searchField.positionCaret(searchField.getText().length());
+                    try {
+                        reloadSearchWord();
+                    } catch (ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
                 button.getStyleClass().add("word-suggestion-button");
                 label.getStyleClass().add("word-definition-label");
                 header.getChildren().addAll(label, button);
@@ -70,6 +79,7 @@ public class SearchController extends BaseController implements Initializable {
             ImageView speaker = new ImageView(String.valueOf(getClass().getResource("/com/example/englishapplication/image/speaker.png")));
             speaker.setFitHeight(20);
             speaker.setFitWidth(20);
+            speaker.setId("speaker");
             speaker.setOnMouseClicked(mouseEvent -> {
                 VoiceAPI.getTextToSpeech(prefix, "en");
             });
@@ -131,12 +141,6 @@ public class SearchController extends BaseController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        listView.getSelectionModel().clearSelection();
-        try {
-            reloadSearchWord();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     private Label setStyleLabel(Label label, int depth) {
@@ -207,6 +211,12 @@ public class SearchController extends BaseController implements Initializable {
 
     @Override
     public void resetAll() {
-
+        searchField.setText("");
+        listView.getSelectionModel().clearSelection();
+        try {
+            reloadSearchWord();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

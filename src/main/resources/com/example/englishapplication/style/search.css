@@ -66,3 +66,16 @@
     -fx-font-size: 14;
     -fx-background-insets: 0, 0 0 3 0;
 }
+
+.search-box {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 15, 0, 0, 0);
+    -fx-border-color: green;
+    -fx-border-width: 2;
+}
+
+#speaker:hover {
+    -fx-background-color: rgba(0, 0, 0, .15);
+}

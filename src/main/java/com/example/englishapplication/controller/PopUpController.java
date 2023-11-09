@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class PopUpController {
@@ -18,10 +19,48 @@ public class PopUpController {
         JSONObject meaning = DictionaryManagement.search(word);
         if (meaning != null) {
             phoneticField.setText(meaning.getString("pronoun"));
+            buildTree(meaning.getJSONArray("type"), content, 0);
         }
     }
 
-    public void addTypeAction() {
+    private void setText(VBox vBox, String text, int index) {
+        if (vBox.getChildren().get(index) instanceof HBox) {
+            HBox hBox = (HBox) vBox.getChildren().get(index);
+            for (int i = 0; i < hBox.getChildren().size(); ++i) {
+                if (hBox.getChildren().get(i) instanceof TextField) {
+                    ((TextField) hBox.getChildren().get(i)).setText(text);
+                }
+            }
+        }
+    }
+    private void buildTree(JSONArray array, Object parent, int depth) {
+        for (int i = 0; i < array.length(); ++i) {
+            JSONObject object = array.getJSONObject(i);
+            String name = object.keys().next();
+            VBox current = null;
+            if (object.get(name) instanceof JSONArray) {
+                if (depth == 0) {
+                    current = addTypeAction();
+                    setText(current, name, 0);
+                } else if (depth == 1) {
+                    current = addMeaningAction((VBox) parent);
+                    setText(current, name, 0);
+                } else if (depth == 2) {
+                    current = addExampleAction((VBox) parent);
+                    System.out.println("Error");
+                }
+                buildTree(object.getJSONArray(name), current, depth + 1);
+            } else {
+                if (depth != 2) {
+                    System.out.println("Error");
+                }
+                current = addExampleAction((VBox) parent);
+                setText(current, name, 0);
+                setText(current, object.getString(name), 1);
+            }
+        }
+    }
+    public VBox addTypeAction() {
         VBox typeVBox = new VBox();
         HBox typeHBox = new HBox();
         ImageView addMeaningButton = new ImageView(String.valueOf(getClass().getResource("/com/example/englishapplication/image/add.png")));
@@ -52,9 +91,10 @@ public class PopUpController {
 
         typeVBox.getChildren().add(typeHBox);
         content.getChildren().add(typeVBox);
+        return typeVBox;
     }
 
-    public void addMeaningAction(VBox typeBox) {
+    public VBox addMeaningAction(VBox typeBox) {
         VBox meaningVBox = new VBox();
         HBox meaningHBox = new HBox();
         ImageView addExampleButton = new ImageView(String.valueOf(getClass().getResource("/com/example/englishapplication/image/add.png")));
@@ -85,9 +125,10 @@ public class PopUpController {
 
         meaningVBox.getChildren().add(meaningHBox);
         typeBox.getChildren().add(meaningVBox);
+        return meaningVBox;
     }
 
-    public void addExampleAction(VBox meaningBox) {
+    public VBox addExampleAction(VBox meaningBox) {
         VBox exampleVBox = new VBox();
         HBox exampleHBox = new HBox();
 
@@ -127,5 +168,6 @@ public class PopUpController {
         exampleVBox.getChildren().add(exampleHBox);
         
         meaningBox.getChildren().add(exampleVBox);
+        return exampleVBox;
     }
 }
