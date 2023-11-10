@@ -1,4 +1,4 @@
-package com.example.englishapplication.controller;
+package com.example.englishapplication.controller.pane;
 
 import com.example.englishapplication.core.DictionaryManagement;
 import com.example.englishapplication.core.Word;
@@ -207,6 +207,10 @@ public class SearchController extends BaseController implements Initializable {
             alert.setContentText(prefix);
             alert.showAndWait();
         }
+    }
+
+    public void addAction() {
+        new PopUp("");
     }
 
     @Override

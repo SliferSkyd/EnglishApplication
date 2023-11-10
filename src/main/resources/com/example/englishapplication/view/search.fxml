@@ -9,16 +9,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="528.0" prefWidth="769.0" stylesheets="@../style/search.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.englishapplication.controller.SearchController">
+<AnchorPane prefHeight="528.0" prefWidth="769.0" stylesheets="@../style/search.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.englishapplication.controller.pane.SearchController">
    <children>
-      <TextField fx:id="searchField" layoutX="17.0" layoutY="18.0" onKeyReleased="#searchFieldAction" prefHeight="46.0" prefWidth="267.0" promptText="Type your word..." styleClass="search-field" stylesheets="@../style/search.css" />
-      <ListView fx:id="listView" layoutX="17.0" layoutY="76.0" onMouseClicked="#listViewAction" prefHeight="383.0" prefWidth="267.0" stylesheets="@../style/container.css" />
-      <Button layoutX="17.0" layoutY="468.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="78.0" styleClass="btn-success" stylesheets="@../style/container.css" text="Add" />
-      <Button layoutX="112.0" layoutY="468.0" mnemonicParsing="false" onAction="#editAction" prefHeight="39.0" prefWidth="78.0" styleClass="btn-warning" stylesheets="@../style/container.css" text="Edit" />
-      <Button layoutX="206.0" layoutY="468.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="39.0" prefWidth="78.0" styleClass="btn-danger" stylesheets="@../style/container.css" text="Delete" />
-      <ScrollPane layoutX="306.0" layoutY="18.0" prefHeight="494.0" prefWidth="452.0" styleClass="search-box" stylesheets="@../style/container.css">
+      <TextField fx:id="searchField" layoutX="17.0" layoutY="18.0" onKeyReleased="#searchFieldAction" prefHeight="46.0" prefWidth="267.0" promptText="Type your word..." styleClass="search-field" />
+      <ListView fx:id="listView" layoutX="17.0" layoutY="76.0" onMouseClicked="#listViewAction" prefHeight="383.0" prefWidth="267.0" />
+      <Button layoutX="17.0" layoutY="468.0" mnemonicParsing="false" onAction="#addAction" prefHeight="39.0" prefWidth="78.0" styleClass="btn-success" text="Add" />
+      <Button layoutX="112.0" layoutY="468.0" mnemonicParsing="false" onAction="#editAction" prefHeight="39.0" prefWidth="78.0" styleClass="btn-warning" text="Edit" />
+      <Button layoutX="206.0" layoutY="468.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="39.0" prefWidth="78.0" styleClass="btn-danger" text="Delete" />
+      <ScrollPane layoutX="306.0" layoutY="18.0" prefHeight="494.0" prefWidth="452.0" styleClass="search-box">
          <content>
-            <VBox fx:id="definitionView" prefHeight="483.0" prefWidth="443.0" style="-fx-background-color: white;" stylesheets="@../style/container.css">
+            <VBox fx:id="definitionView" prefHeight="483.0" prefWidth="443.0" style="-fx-background-color: white;">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding></VBox>

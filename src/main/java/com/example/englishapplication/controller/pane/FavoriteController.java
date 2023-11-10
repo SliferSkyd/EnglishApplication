@@ -1,4 +1,4 @@
-package com.example.englishapplication.controller;
+package com.example.englishapplication.controller.pane;
 
 import animatefx.animation.*;
 import com.example.englishapplication.core.Word;

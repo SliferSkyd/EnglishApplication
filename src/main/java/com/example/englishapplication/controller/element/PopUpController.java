@@ -1,22 +1,27 @@
-package com.example.englishapplication.controller;
+package com.example.englishapplication.controller.element;
 
 import com.example.englishapplication.core.DictionaryManagement;
+import com.example.englishapplication.core.Utils;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class PopUpController {
+public class PopUpController extends Utils {
     public TextField wordField;
     public TextField phoneticField;
     public VBox content;
-
+    private String originalWord;
     public void setWord(String word) {
+        originalWord = word;
         wordField.setText(word);
         JSONObject meaning = DictionaryManagement.search(word);
+        System.out.println(meaning);
         if (meaning != null) {
             phoneticField.setText(meaning.getString("pronoun"));
             buildTree(meaning.getJSONArray("type"), content, 0);
@@ -33,6 +38,17 @@ public class PopUpController {
             }
         }
     }
+    private String getText(VBox vBox, int index) {
+        if (vBox.getChildren().get(index) instanceof HBox) {
+            HBox hBox = (HBox) vBox.getChildren().get(index);
+            for (int i = 0; i < hBox.getChildren().size(); ++i) {
+                if (hBox.getChildren().get(i) instanceof TextField) {
+                    return ((TextField) hBox.getChildren().get(i)).getText();
+                }
+            }
+        }
+        return null;
+    }
     private void buildTree(JSONArray array, Object parent, int depth) {
         for (int i = 0; i < array.length(); ++i) {
             JSONObject object = array.getJSONObject(i);
@@ -45,20 +61,61 @@ public class PopUpController {
                 } else if (depth == 1) {
                     current = addMeaningAction((VBox) parent);
                     setText(current, name, 0);
-                } else if (depth == 2) {
-                    current = addExampleAction((VBox) parent);
-                    System.out.println("Error");
                 }
                 buildTree(object.getJSONArray(name), current, depth + 1);
             } else {
-                if (depth != 2) {
-                    System.out.println("Error");
-                }
                 current = addExampleAction((VBox) parent);
                 setText(current, name, 0);
                 setText(current, object.getString(name), 1);
             }
         }
+    }
+
+    public void saveAction() {
+        String word = wordField.getText();
+        String phonetic = phoneticField.getText();
+        JSONObject meaning = new JSONObject();
+        meaning.put("pronoun", phonetic);
+        JSONArray typeArray = new JSONArray();
+        for (int i = 0; i < content.getChildren().size(); ++i) {
+            VBox typeVBox = (VBox) content.getChildren().get(i);
+            JSONObject typeObject = new JSONObject();
+            String type = getText(typeVBox, 0);
+            typeObject.put(type, new JSONArray());
+            JSONArray meaningArray = typeObject.getJSONArray(type);
+            for (int j = 1; j < typeVBox.getChildren().size(); ++j) {
+                VBox meaningVBox = (VBox) typeVBox.getChildren().get(j);
+                JSONObject meaningObject = new JSONObject();
+                String meaningString = getText(meaningVBox, 0);
+                meaningObject.put(meaningString, new JSONArray());
+                JSONArray exampleArray = meaningObject.getJSONArray(meaningString);
+                for (int k = 1; k < meaningVBox.getChildren().size(); ++k) {
+                    VBox exampleVBox = (VBox) meaningVBox.getChildren().get(k);
+                    String englishExample = getText(exampleVBox, 0);
+                    String vietnameseExample = getText(exampleVBox, 1);
+                    JSONObject exampleObject = new JSONObject();
+                    exampleObject.put(englishExample, vietnameseExample);
+                    exampleArray.put(exampleObject);
+                }
+                meaningArray.put(meaningObject);
+            }
+            typeArray.put(typeObject);
+        }
+        meaning.put("type", typeArray);
+        System.out.println(meaning.toString());
+        if (confirm("Are you sure you want to save this word?", word)) {
+            if (originalWord != null) {
+                DictionaryManagement.delete(originalWord);
+            }
+            DictionaryManagement.add(word, meaning);
+            Stage thisStage = (Stage) content.getScene().getWindow();
+            thisStage.close();
+        }
+
+        if (originalWord != null) {
+            DictionaryManagement.delete(originalWord);
+        }
+        DictionaryManagement.add(word, meaning);
     }
     public VBox addTypeAction() {
         VBox typeVBox = new VBox();

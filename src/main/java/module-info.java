@@ -24,10 +24,12 @@ module com.example.englishapplication {
 
     exports com.example.englishapplication.stage;
     opens com.example.englishapplication.stage to javafx.fxml;
-    exports com.example.englishapplication.controller;
-    opens com.example.englishapplication.controller to javafx.fxml;
     exports com.example.englishapplication.helper;
     opens com.example.englishapplication.helper to javafx.fxml;
     exports com.example.englishapplication.Game;
     opens com.example.englishapplication.Game to javafx.fxml;
+    exports com.example.englishapplication.controller.pane;
+    opens com.example.englishapplication.controller.pane to javafx.fxml;
+    exports com.example.englishapplication.controller.element;
+    opens com.example.englishapplication.controller.element to javafx.fxml;
 }

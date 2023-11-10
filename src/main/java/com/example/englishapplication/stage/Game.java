@@ -1,6 +1,6 @@
 package com.example.englishapplication.stage;
 
-import com.example.englishapplication.controller.PopUpController;
+import com.example.englishapplication.controller.element.PopUpController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;

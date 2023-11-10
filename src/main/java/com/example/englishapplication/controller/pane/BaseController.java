@@ -1,4 +1,4 @@
-package com.example.englishapplication.controller;
+package com.example.englishapplication.controller.pane;
 
 import com.example.englishapplication.core.Utils;
 import javafx.fxml.Initializable;

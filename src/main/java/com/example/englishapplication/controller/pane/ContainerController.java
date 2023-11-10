@@ -1,4 +1,4 @@
-package com.example.englishapplication.controller;
+package com.example.englishapplication.controller.pane;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
