@@ -10,16 +10,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ContainerController implements Initializable {
-    private SearchController searchController;
-    private TranslateController translateController;
-    private RelativesController relativesController;
-    private FavoriteController favoriteController;
+    private BaseController searchController, translateController, relativesController, favoriteController, gameController;
 
     @FXML
-    private AnchorPane mainContent, searchPane, translatePane, relativesPane, favoritePane;
+    private AnchorPane mainContent, searchPane, translatePane, relativesPane, favoritePane, gamePane;
 
     @FXML
-    private Button searchButton, translateButton, relativesButton, favoriteButton;
+    private Button searchButton, translateButton, relativesButton, favoriteButton, gameButton;
 
     public void setActive(AnchorPane anchorPane) {
         mainContent.getChildren().setAll(anchorPane);
@@ -33,7 +30,7 @@ public class ContainerController implements Initializable {
     }
 
     @FXML
-    public void activeSearchPane() {
+    public void activeSearchPane() throws ClassNotFoundException {
         resetAll();
         searchButton.getStyleClass().add("active");
         setActive(searchPane);
@@ -41,14 +38,14 @@ public class ContainerController implements Initializable {
     }
 
     @FXML
-    public void activeTranslatePane() {
+    public void activeTranslatePane() throws ClassNotFoundException {
         resetAll();
         translateButton.getStyleClass().add("active");
         setActive(translatePane);
         translateController.resetAll();
     }
 
-    public void activeRelativesPane() {
+    public void activeRelativesPane() throws ClassNotFoundException {
         resetAll();
         relativesButton.getStyleClass().add("active");
         setActive(relativesPane);
@@ -62,6 +59,11 @@ public class ContainerController implements Initializable {
         favoriteController.resetAll();
     }
 
+    public void activeGamePane() throws ClassNotFoundException {
+        resetAll();
+        setActive(gamePane);
+        gameController.resetAll();
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -95,6 +97,18 @@ public class ContainerController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        activeSearchPane();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/englishapplication/view/game.fxml"));
+            gamePane = loader.load();
+            gameController = loader.getController();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            activeSearchPane();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -16,6 +16,7 @@ module com.example.englishapplication {
     requires com.jfoenix;
     requires java.desktop;
     requires voicerss.tts;
+    requires MaterialFX;
 
     opens com.example.englishapplication to javafx.fxml;
     exports com.example.englishapplication;
@@ -26,10 +27,10 @@ module com.example.englishapplication {
     opens com.example.englishapplication.stage to javafx.fxml;
     exports com.example.englishapplication.helper;
     opens com.example.englishapplication.helper to javafx.fxml;
-    exports com.example.englishapplication.Game;
-    opens com.example.englishapplication.Game to javafx.fxml;
     exports com.example.englishapplication.controller.pane;
     opens com.example.englishapplication.controller.pane to javafx.fxml;
     exports com.example.englishapplication.controller.element;
     opens com.example.englishapplication.controller.element to javafx.fxml;
+    exports com.example.englishapplication.controller.game;
+    opens com.example.englishapplication.controller.game to javafx.fxml;
 }

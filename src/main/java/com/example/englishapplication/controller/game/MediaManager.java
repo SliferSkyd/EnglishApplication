@@ -1,4 +1,4 @@
-package com.example.englishapplication.Game;
+package com.example.englishapplication.controller.game;
 
 import javafx.scene.control.Button;
 import javafx.scene.media.Media;
@@ -8,9 +8,9 @@ import static javafx.scene.paint.Color.TRANSPARENT;
 import static javafx.scene.paint.Color.WHITE;
 
 public class MediaManager {
-    private static boolean isSoundEnabled = true;
+    private boolean isSoundEnabled = true;
     private MediaPlayer backgroundMusic;
-    private static MediaPlayer soundEffect;
+    private MediaPlayer soundEffect;
 
     public MediaManager(String backgroundMusicPath) {
         Media backgroundMedia = new Media(getClass().getResource(backgroundMusicPath).toString());
@@ -24,7 +24,7 @@ public class MediaManager {
         backgroundMusic.play();
     }
 
-    public static void playSoundEffect(String soundEffectPath) {
+    public void playSoundEffect(String soundEffectPath) {
         if(!isSoundEnabled()) return;
         Media soundEffectMedia = new Media(MediaManager.class.getResource(soundEffectPath).toString());
 
@@ -51,11 +51,11 @@ public class MediaManager {
         }
     }
 
-    public static boolean isSoundEnabled() {
+    public boolean isSoundEnabled() {
         return isSoundEnabled;
     }
 
-    public static void setSoundEnabled(boolean soundEnabled) {
+    public void setSoundEnabled(boolean soundEnabled) {
         isSoundEnabled = soundEnabled;
     }
 }

@@ -41,23 +41,6 @@
     -fx-graphic: url("../image/settings.png");
 }
 
-
-#SoundButton {
-    -fx-border-color: green;
-}
-
-#ClipboardButton {
-    -fx-border-color: green;
-    -fx-background-color: #E5CCFF;
-}
-
-.card {
-    -fx-background-color: white;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 15, 0, 0, 0);
-}
-
-
-
 .root {
     -fx-background-color: linear-gradient(to top right, #752e65, #44008b);
     -fx-background-radius: 5;

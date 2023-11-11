@@ -1,5 +1,7 @@
 package com.example.englishapplication.core;
 
+import animatefx.animation.AnimationFX;
+import javafx.animation.Animation;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.Clipboard;
@@ -44,5 +46,10 @@ public abstract class Utils {
             }
         });
         return result.get();
+    }
+
+    protected static void playAnimation(AnimationFX animation, double speed) {
+        animation.setSpeed(speed);
+        animation.play();
     }
 }
