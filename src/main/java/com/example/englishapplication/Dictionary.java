@@ -2,6 +2,8 @@ package com.example.englishapplication;
 
 import com.example.englishapplication.core.DictionaryManagement;
 import com.example.englishapplication.core.Database;
+import io.github.palexdev.materialfx.css.themes.MFXThemeManager;
+import io.github.palexdev.materialfx.css.themes.Themes;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

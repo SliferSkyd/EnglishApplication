@@ -41,15 +41,7 @@ public class MediaManager {
             soundEffect.stop();
         }
     }
-    public void ButtonCheck(Button sound) {
-        if (isSoundEnabled) {
-            stopSoundEffect();
-            sound.setTextFill(WHITE);
-        } else {
-            playBackgroundMusic(0.25);
-            sound.setTextFill(TRANSPARENT);
-        }
-    }
+
 
     public boolean isSoundEnabled() {
         return isSoundEnabled;

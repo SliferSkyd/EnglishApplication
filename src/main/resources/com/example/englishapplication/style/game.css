@@ -1,0 +1,49 @@
+@font-face {
+    font-family: 'Flying Bird';
+    src: url('../font/FlyingBird.otf');
+}
+
+@font-face {
+    font-family: 'Quwen King Regular';
+    src: url('../font/QuwenKingRegular.ttf');
+}
+
+@font-face {
+    font-family: 'blomberg';
+    src: url('../font/blomberg.otf');
+}
+
+@font-face {
+    font-family: 'Hongalia';
+    src: url('../font/Hongalia.otf');
+}
+
+@font-face {
+    font-family: 'Hello Kids';
+    src: url('../font/HelloKids.ttf');
+}
+
+#rearrange {
+    -fx-font-family: 'blomberg';
+    -fx-font-size: 50px;
+    -fx-fill: #00FF00;
+}
+
+#letters {
+    -fx-font-family: 'Hello Kids';
+    -fx-font-size: 80;
+    -fx-fill: white;
+}
+
+.content {
+    -fx-font-family: 'Hongalia';
+    -fx-font-size: 20;
+    -fx-fill: white;
+}
+
+.button:hover {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
+    -fx-opacity: 0.8;
+}

@@ -2,14 +2,22 @@ package com.example.englishapplication.controller.game;
 
 import com.example.englishapplication.core.DictionaryManagement;
 import javafx.scene.control.Button;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+import java.sql.Time;
 
 public class Rule {
+    private Stage stage;
     private int score = 0;
-    private boolean endGame = false;
     private int currentQuestion = 0;
     private int numberWrongAnswer = 0;
     private int numberQuestion = 10;
-
+    private TimeManager timeManager;
+    public Rule(Stage stage, Text timeText) {
+        this.stage = stage;
+        this.timeManager = new TimeManager(this, timeText);
+    }
     public void updateScore(boolean isCorrectAnswer) {
         ++currentQuestion;
         if (isCorrectAnswer) {
@@ -18,10 +26,12 @@ public class Rule {
             ++numberWrongAnswer;
         }
         if (currentQuestion == numberQuestion) {
-            endGame = true;
+            endGame();
         }
     }
-
+    public void startCountDown() {
+        timeManager.start();
+    }
     public int getScore() {
         return score;
     }
@@ -33,5 +43,8 @@ public class Rule {
     }
     public int getNumberQuestion() {
         return numberQuestion;
+    }
+    public void endGame() {
+        stage.fireEvent(new GameEvent(GameEvent.GAME_OVER, score, timeManager.getEclipsedTime()));
     }
 }

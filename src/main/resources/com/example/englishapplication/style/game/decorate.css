@@ -15,7 +15,7 @@
     -fx-fill: white;
 }
 
-.border {
+.border-button:hover {
     -fx-border-radius: 10; /* Bán kính của viền, tạo góc tròn */
     -fx-border-color: #35A3FA; /* Màu viền nét đứt */
     -fx-border-width: 5; /* Độ rộng của viền */

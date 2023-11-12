@@ -13,6 +13,15 @@
     -fx-background-radius: 35; /* Bo góc tròn */
     -fx-padding: 5 28; /* Khoảng cách giữa văn bản và biên của nút */
 }
+
+.submit-button:hover {
+    -fx-background-color: #16380B; /* Màu nền xanh lá */
+    -fx-text-fill: #FFFFFF; /* Màu chữ trắng */
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
+}
+
 .time {
     -fx-font-family: 'Reporter #2';
     -fx-font-size: 35;

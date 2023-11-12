@@ -6,22 +6,21 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public class TimeManager {
+    private static final int TIME_LIMIT = 90;
     private Rule rule;
     private int totalTime;
     private int remainingTime;
     private Timeline countDown = new Timeline();
     private Text timeText;
-    public TimeManager(int totalTime, Rule rule, Text text) {
+    public TimeManager(Rule rule, Text text) {
         this.rule = rule;
-        this.totalTime = totalTime;
-        this.remainingTime = totalTime;
+        this.totalTime = TIME_LIMIT;
+        this.remainingTime = TIME_LIMIT;
         this.timeText = text;
-    }
-    public void setTimeText(Text timeText) {
-        this.timeText = timeText;
+        text.setText(getRemainingTime());
     }
     public void start() {
-        this.countDown = new Timeline(new KeyFrame(Duration.seconds(1), event ->  updateCountdown()));
+        this.countDown = new Timeline(new KeyFrame(Duration.seconds(1), event -> updateCountdown()));
         countDown.setCycleCount(Timeline.INDEFINITE);
         countDown.play();
     }
@@ -33,7 +32,7 @@ public class TimeManager {
         } else {
             countDown.stop();
             timeText.setText("00:00");
-            timeText.fireEvent(new GameEvent(GameEvent.GAME_OVER));
+            rule.endGame();
         }
     }
     public String getRemainingTime() {
