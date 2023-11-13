@@ -1,12 +1,12 @@
 package com.example.englishapplication.controller.game;
 
+import animatefx.animation.*;
+import com.example.englishapplication.helper.MediaManager;
 import com.jfoenix.controls.JFXButton;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -25,7 +25,7 @@ public class GameOverScene extends BaseScene {
         gameOverImage.setFitHeight(HEIGHT / 1.5);
         Text gameOverText = new Text("Congratulations!");
         gameOverText.getStyleClass().add("GameOver");
-        gameOverText.getStyleClass().add("Congratulations"); // Đặt lớp CSS cho văn bản nếu cần
+        gameOverText.getStyleClass().add("Congratulations");
         gameOverText.setTranslateY(60);
         VBox gameOverBox = new VBox();
         gameOverBox.setSpacing(20);
@@ -58,5 +58,7 @@ public class GameOverScene extends BaseScene {
         playAgainButton.setOnMouseClicked(event -> {
             stage.fireEvent(new GameEvent(GameEvent.PLAY_AGAIN, 0, ""));
         });
+        MediaManager.playBackgroundMusic(MediaManager.Sound.GAME_OVER, 0.25);
+        new JackInTheBox(root).play();
     }
 }

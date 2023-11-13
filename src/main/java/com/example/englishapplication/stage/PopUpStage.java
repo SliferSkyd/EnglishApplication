@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class PopUpStage extends BaseStage {
     public PopUpStage(String word) {
-        super("Add new word", 200, 200);
+        super("Add new word", 400, 60);
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/englishapplication/view/popup.fxml"));
             AnchorPane root = loader.load();

@@ -1,6 +1,7 @@
 package com.example.englishapplication.controller.pane;
 
 import animatefx.animation.FlipInX;
+import animatefx.animation.JackInTheBox;
 import com.example.englishapplication.core.Utils;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;

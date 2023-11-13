@@ -1,5 +1,7 @@
 package com.example.englishapplication.controller.game;
 
+import animatefx.animation.*;
+import com.example.englishapplication.helper.MediaManager;
 import com.jfoenix.controls.JFXButton;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,8 +18,6 @@ import static javafx.scene.paint.Color.TRANSPARENT;
 import static javafx.scene.paint.Color.WHITE;
 
 public class MainScene extends BaseScene {
-    private MediaManager mediaManager = new MediaManager("/com/example/englishapplication/sound/cute.mp3");
-
     private Rule rule;
     private Question question = new Question();
     private VBox letterBox = new VBox();
@@ -30,7 +30,7 @@ public class MainScene extends BaseScene {
 
     public MainScene(Stage stage) {
         super(stage);
-        mediaManager.playBackgroundMusic(0.25);
+        MediaManager.playBackgroundMusic(MediaManager.Sound.MAIN, 0.25);
 
         countDownText = new Text("01:00");
 
@@ -44,10 +44,10 @@ public class MainScene extends BaseScene {
         submitButton.setOnAction(event -> {
             if (question.finished() && question.checkAnswer()) {
                 rule.updateScore(true);
-                mediaManager.playSoundEffect(mediaManager.CORRECT);
+                MediaManager.playSoundEffect(MediaManager.Sound.CORRECT);
             } else {
                 rule.updateScore(false);
-                mediaManager.playSoundEffect(mediaManager.INCORRECT);
+                MediaManager.playSoundEffect(MediaManager.Sound.INCORRECT);
             }
             showQuestion();
         });
@@ -71,17 +71,16 @@ public class MainScene extends BaseScene {
 
         HBox infoBox = new HBox();
 
-        if (mediaManager.isSoundEnabled()) soundButton.setTextFill(TRANSPARENT);
+        if (MediaManager.isSoundEnabled()) soundButton.setTextFill(TRANSPARENT);
         else soundButton.setTextFill(WHITE);
 
         soundButton.getStyleClass().add("sound");
-        mediaManager.playBackgroundMusic(0.25);
         soundButton.setOnMouseClicked(event -> {
-            if (mediaManager.isSoundEnabled()) {
-                mediaManager.stopSound();
+            if (MediaManager.isSoundEnabled()) {
+                MediaManager.stopSound();
                 soundButton.setTextFill(WHITE);
             } else {
-                mediaManager.playBackgroundMusic(0.25);
+                MediaManager.playBackgroundMusic(MediaManager.Sound.MAIN, 0.25);
                 soundButton.setTextFill(TRANSPARENT);
             }
         });
@@ -114,9 +113,9 @@ public class MainScene extends BaseScene {
 
         root.setCenter(letterBox);
         stage.addEventHandler(WindowEvent.WINDOW_HIDDEN, event -> {
-            mediaManager.stopSound();
+            MediaManager.stopSound();
         });
-
+        new FadeIn(root).play();
         showQuestion();
         rule.startCountDown();
     }

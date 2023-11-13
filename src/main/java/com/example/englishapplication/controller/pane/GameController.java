@@ -1,28 +1,27 @@
 package com.example.englishapplication.controller.pane;
 
-import com.example.englishapplication.controller.game.MediaManager;
+import animatefx.animation.*;
+import com.example.englishapplication.helper.MediaManager;
 import com.example.englishapplication.stage.GameStage;
 import javafx.scene.image.ImageView;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 public class GameController extends BaseController {
-    private MediaManager mediaManager = new MediaManager("/com/example/englishapplication/sound/duck.mp3");
     public ImageView playButton;
     public void playAction() {
-        mediaManager.stopSound();
+        MediaManager.stopSound();
         new GameStage();
     }
 
     @Override
     public void start() {
         super.start();
-        mediaManager.playBackgroundMusic(0.25);
+        playAnimation(new JackInTheBox(root), 1);
+        MediaManager.playBackgroundMusic(MediaManager.Sound.INTRODUCE, 0.25);
     }
 
     @Override
     public void stop() {
-        mediaManager.stopSound();
+        MediaManager.stopSound();
         super.stop();
     }
 }
