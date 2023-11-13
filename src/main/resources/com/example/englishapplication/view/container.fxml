@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -12,48 +15,87 @@
          <children>
             <VBox layoutY="45.0" prefHeight="377.0" prefWidth="75.0">
                <children>
-                  <Button id="SearchButton" fx:id="searchButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#activeSearchPane" prefHeight="75.0" prefWidth="75.0" styleClass="button-navigator" stylesheets="@../style/container.css" text="Search" textAlignment="CENTER">
+                  <Button id="SearchButton" fx:id="searchButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#activePaneAction" prefHeight="75.0" prefWidth="75.0" styleClass="button-navigator" stylesheets="@../style/container.css" text="Search" textAlignment="CENTER">
                      <font>
                         <Font size="12.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/search.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button id="TranslateButton" fx:id="translateButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#activeTranslatePane" prefHeight="75.0" prefWidth="75.0" styleClass="button-navigator" stylesheets="@../style/container.css" text="Translate" textAlignment="CENTER">
+                  <Button id="TranslateButton" fx:id="translateButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#activePaneAction" prefHeight="75.0" prefWidth="75.0" styleClass="button-navigator" stylesheets="@../style/container.css" text="Translate" textAlignment="CENTER">
                      <font>
                         <Font size="12.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/translate.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button id="RelativesButton" fx:id="relativesButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#activeRelativesPane" prefHeight="75.0" prefWidth="75.0" styleClass="button-navigator" stylesheets="@../style/container.css" text="Relatives" textAlignment="CENTER">
+                  <Button id="RelativesButton" fx:id="relativesButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#activePaneAction" prefHeight="75.0" prefWidth="75.0" styleClass="button-navigator" stylesheets="@../style/container.css" text="Relatives" textAlignment="CENTER">
                      <font>
                         <Font size="12.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/relatives.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button id="FavoriteButton" fx:id="favoriteButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#activeFavoritePane" prefHeight="75.0" prefWidth="75.0" styleClass="button-navigator" stylesheets="@../style/container.css" text="Favorite" textAlignment="CENTER">
+                  <Button id="FavoriteButton" fx:id="favoriteButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#activePaneAction" prefHeight="75.0" prefWidth="75.0" styleClass="button-navigator" stylesheets="@../style/container.css" text="Favorite" textAlignment="CENTER">
                      <font>
                         <Font size="12.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/favorite.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button id="GameButton" fx:id="gameButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#activeGamePane" prefHeight="75.0" prefWidth="75.0" styleClass="button-navigator" stylesheets="@../style/container.css" text="Game" textAlignment="CENTER">
+                  <Button id="GameButton" fx:id="gameButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#activePaneAction" prefHeight="75.0" prefWidth="75.0" styleClass="button-navigator" stylesheets="@../style/container.css" text="Game" textAlignment="CENTER">
                      <font>
                         <Font size="12.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/game.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                </children>
             </VBox>
          </children>
       </AnchorPane>
-      <Button id="SettingsButton" fx:id="SearchButton111" contentDisplay="TOP" layoutX="-1.0" layoutY="550.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" styleClass="button-navigator" stylesheets="@../style/container.css" text="Settings" textAlignment="CENTER">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </Button>
       <AnchorPane fx:id="mainContent" layoutX="83.0" layoutY="97.0" prefHeight="528.0" prefWidth="765.0" />
       <AnchorPane prefHeight="83.0" prefWidth="853.0" style="-fx-background-color: #2a3140;">
          <children>
-            <Text fill="WHITE" layoutX="105.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dictionary Application" wrappingWidth="456.00004069010424">
+            <Text fill="WHITE" layoutX="105.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dictionary Application" wrappingWidth="456.00004069010424">
                <font>
                   <Font name="Gill Sans MT" size="46.0" />
                </font>
             </Text>
+            <JFXButton layoutX="758.0" layoutY="9.0" prefHeight="68.0" prefWidth="82.0" text=" ">
+               <graphic>
+                  <ImageView fitHeight="54.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/export.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
          </children>
       </AnchorPane>
    </children>

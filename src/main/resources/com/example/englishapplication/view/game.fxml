@@ -32,7 +32,7 @@
       <VBox layoutX="102.0" layoutY="180.0" prefHeight="174.0" prefWidth="400.0" spacing="20.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="content" text="There are 10 questions, in each of them you are given a number of letters." wrappingWidth="400.0" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="content" text="Your task is rearraging these letters in a right order to make a correct English word." wrappingWidth="400.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="content" text="Your task is rearranging these letters in a right order to make a correct English word." wrappingWidth="400.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="content" text="You have 1m30s to complete 10 questions and take 10 points for each correct answer." wrappingWidth="350.0" />
          </children>
       </VBox>

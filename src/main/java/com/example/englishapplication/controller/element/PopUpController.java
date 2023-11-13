@@ -2,6 +2,8 @@ package com.example.englishapplication.controller.element;
 
 import com.example.englishapplication.core.DictionaryManagement;
 import com.example.englishapplication.core.Utils;
+import com.jfoenix.controls.JFXTextField;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -132,7 +134,7 @@ public class PopUpController extends Utils {
         typeLabel.setPrefHeight(20);
         typeHBox.getChildren().add(typeLabel);
 
-        TextField typeField = new TextField();
+        JFXTextField typeField = new JFXTextField();
         typeField.setPromptText("Type");
         typeField.setPrefHeight(20);
         typeField.setPrefWidth(255);
@@ -166,7 +168,7 @@ public class PopUpController extends Utils {
         meaningLabel.setPrefHeight(20);
         meaningHBox.getChildren().add(meaningLabel);
 
-        TextField meaningField = new TextField();
+        JFXTextField meaningField = new JFXTextField();
         meaningField.setPromptText("Meaning");
         meaningField.setPrefHeight(20);
         meaningField.setPrefWidth(223);
@@ -193,7 +195,7 @@ public class PopUpController extends Utils {
         EnglishExampleLabel.setPrefHeight(20);
         exampleHBox.getChildren().add(EnglishExampleLabel);
 
-        TextField EnglishExampleField = new TextField();
+        JFXTextField EnglishExampleField = new JFXTextField();
         EnglishExampleField.setPromptText("English Example");
         EnglishExampleField.setPrefHeight(20);
         EnglishExampleField.setPrefWidth(207);
@@ -211,7 +213,7 @@ public class PopUpController extends Utils {
 
         exampleHBox = new HBox();
 
-        TextField VietnameseExampleField = new TextField();
+        JFXTextField VietnameseExampleField = new JFXTextField();
         VietnameseExampleField.setPromptText("Vietnamese Example");
         VietnameseExampleField.setPrefHeight(20);
         VietnameseExampleField.setPrefWidth(207);

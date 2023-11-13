@@ -5,7 +5,8 @@ import com.example.englishapplication.core.Word;
 import com.example.englishapplication.core.Database;
 import com.example.englishapplication.helper.RecommenderSystem;
 import com.example.englishapplication.helper.VoiceAPI;
-import com.example.englishapplication.stage.PopUp;
+import com.example.englishapplication.stage.PopUpStage;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
@@ -35,12 +36,19 @@ public class SearchController extends BaseController implements Initializable {
     private void reloadSearchWord() throws ClassNotFoundException {
         String prefix = searchField.getText();
 
-        currentSearchWord.clear();
-        currentSearchWord = DictionaryManagement.LookUp(prefix);
+        parallelProcessing(() -> {
+            try {
+                currentSearchWord.clear();
+                currentSearchWord = DictionaryManagement.LookUp(prefix);
+                listWords = FXCollections.observableArrayList(currentSearchWord);
+                Platform.runLater(() -> listView.setItems(listWords));
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+
         definitionView.getChildren().clear();
 
-        listWords = FXCollections.observableArrayList(currentSearchWord);
-        listView.setItems(listWords);
         JSONObject meaning = DictionaryManagement.search(prefix);
         if (meaning == null) {
             starButton.setVisible(false);
@@ -199,7 +207,7 @@ public class SearchController extends BaseController implements Initializable {
     public void editAction() {
         String prefix = searchField.getText();
         if (DictionaryManagement.isExist(prefix)) {
-            new PopUp(prefix);
+            new PopUpStage(prefix);
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Edit word");
@@ -210,11 +218,12 @@ public class SearchController extends BaseController implements Initializable {
     }
 
     public void addAction() {
-        new PopUp("");
+        new PopUpStage("");
     }
 
     @Override
-    public void resetAll() {
+    public void start() {
+        super.start();
         searchField.setText("");
         listView.getSelectionModel().clearSelection();
         try {

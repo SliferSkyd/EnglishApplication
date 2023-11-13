@@ -2,6 +2,7 @@ package com.example.englishapplication;
 
 import com.example.englishapplication.core.DictionaryManagement;
 import com.example.englishapplication.core.Database;
+import com.example.englishapplication.stage.DictionaryStage;
 import io.github.palexdev.materialfx.css.themes.MFXThemeManager;
 import io.github.palexdev.materialfx.css.themes.Themes;
 import javafx.application.Application;
@@ -23,13 +24,7 @@ public class Dictionary extends Application {
     public void start(Stage primaryStage) throws IOException {
         DictionaryManagement.insertFromFile();
         Database.startDatabase();
-
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/englishapplication/view/container.fxml")));
-        primaryStage.setTitle("Dictionary");
-        primaryStage.setResizable(false);
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        new DictionaryStage();
     }
 
     @Override

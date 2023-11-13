@@ -45,6 +45,7 @@ public class Rule {
         return numberQuestion;
     }
     public void endGame() {
+        timeManager.stop();
         stage.fireEvent(new GameEvent(GameEvent.GAME_OVER, score, timeManager.getEclipsedTime()));
     }
 }

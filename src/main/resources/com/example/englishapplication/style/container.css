@@ -2,11 +2,19 @@
     -fx-background-color: transparent;
 }
 
-.button-navigator:hover {
+.button-navigator:hover > .image-view {
     -fx-scale-x: 1.1;
     -fx-scale-y: 1.1;
     -fx-scale-z: 1.1;
+}
+
+.button-navigator:hover {
     -fx-background-color: rgba(0, 0, 0, .15);
+}
+
+.button-navigator {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
 }
 
 .button-navigator:pressed {
@@ -17,25 +25,6 @@
     -fx-background-color: rgba(0, 0, 0, .15);
 }
 
-#SearchButton {
-    -fx-graphic: url("../image/search.png");
-}
-
-#RelativesButton {
-    -fx-graphic: url("../image/relatives.png");
-}
-
-#TranslateButton {
-    -fx-graphic: url("../image/translate.png");
-}
-
-#FavoriteButton {
-    -fx-graphic: url("../image/favorite.png");
-}
-
-#GameButton {
-    -fx-graphic: url("../image/game.png");
-}
 
 #SettingsButton {
     -fx-graphic: url("../image/settings.png");

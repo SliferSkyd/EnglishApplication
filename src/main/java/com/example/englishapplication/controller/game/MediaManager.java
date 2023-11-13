@@ -1,17 +1,14 @@
 package com.example.englishapplication.controller.game;
 
-import javafx.scene.control.Button;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-
-import static javafx.scene.paint.Color.TRANSPARENT;
-import static javafx.scene.paint.Color.WHITE;
 
 public class MediaManager {
     private boolean isSoundEnabled = true;
     private MediaPlayer backgroundMusic;
     private MediaPlayer soundEffect;
-
+    public static final String CORRECT = "/com/example/englishapplication/sound/correct.mp3";
+    public static final String INCORRECT = "/com/example/englishapplication/sound/DuckWrong.wav";
     public MediaManager(String backgroundMusicPath) {
         Media backgroundMedia = new Media(getClass().getResource(backgroundMusicPath).toString());
         backgroundMusic = new MediaPlayer(backgroundMedia);
@@ -34,7 +31,7 @@ public class MediaManager {
         setSoundEnabled(true);
     }
 
-    public void stopSoundEffect() {
+    public void stopSound() {
         setSoundEnabled(false);
         backgroundMusic.stop();
         if (soundEffect != null) {

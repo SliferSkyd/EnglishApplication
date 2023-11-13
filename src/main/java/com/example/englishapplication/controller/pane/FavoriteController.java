@@ -87,10 +87,6 @@ public class FavoriteController extends BaseController implements Initializable 
     }
 
     private List<Word> words;
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
 
     private void apply(int index) {
         targetWord = words.get(index).getTarget();
@@ -106,10 +102,11 @@ public class FavoriteController extends BaseController implements Initializable 
         if (currentIndex == words.size()) {
             currentIndex = 0;
         }
-        resetAll();
+        start();
     }
     @Override
-    public void resetAll() {
+    public void start() {
+        super.start();
         words = Database.getAllWords();
         card.getScene().setOnKeyReleased(this::changeCardAction);
         Collections.shuffle(words);

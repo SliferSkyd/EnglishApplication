@@ -24,7 +24,9 @@ public class TimeManager {
         countDown.setCycleCount(Timeline.INDEFINITE);
         countDown.play();
     }
-
+    public void stop() {
+        countDown.stop();
+    }
     private void updateCountdown() {
         if (remainingTime > 0) {
             --remainingTime;
