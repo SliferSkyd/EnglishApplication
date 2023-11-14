@@ -53,7 +53,7 @@ public class Question extends Utils {
                         javafx.scene.control.Button letter = (javafx.scene.control.Button) letters.getChildren().get(j);
                         if (!letter.isVisible() && letter.getText().equals(answerLetter.getText())) {
                             letter.setVisible(true);
-                           // playAnimation(new FadeInDown(letter), 1.25);
+                            playAnimation(new FadeInDown(letter), 1.5);
                             answerLetter.getStyleClass().remove("border-button");
                             answerLetter.setText("_");
                             break;

@@ -123,16 +123,4 @@ public class Database {
             System.out.println("Something went wrong!");
         }
     }
-    public static void main(String[] args) {
-        startDatabase();
-//        addWord(new Word("helloaa", "xin chào"));
-//        clearData();
-
-        List<Word> wordList = getAllWords();
-        for (Word word : wordList) {
-            System.out.println(word.getTarget() + " " + word.getExplain());
-        }
-
-        stopDatabase();
-    }
 }

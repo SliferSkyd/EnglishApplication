@@ -23,6 +23,24 @@
     -fx-text-fill: purple;
 }
 
+.link-button {
+    -fx-font-size: 14;
+    -fx-background-color: transparent;
+    -fx-border-radius: 3;
+    -fx-text-fill: #0096FF;
+    -fx-underline: true;
+    -fx-cursor: hand;
+}
+
+.link-button:armed,
+.link-button:focused {
+    -fx-border-color: #006BFF;
+    -fx-text-fill: #006BFF;
+}
+
+.link-button .mfx-ripple-generator {
+    -mfx-ripple-color: #D9E9FF;
+}
 
 .btn-success {
     -fx-text-fill: #fff;

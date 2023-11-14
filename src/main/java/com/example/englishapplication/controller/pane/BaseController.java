@@ -2,6 +2,7 @@ package com.example.englishapplication.controller.pane;
 
 import animatefx.animation.FlipInX;
 import animatefx.animation.JackInTheBox;
+import com.example.englishapplication.Showable;
 import com.example.englishapplication.core.Utils;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -11,7 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public abstract class BaseController extends Utils implements Initializable {
+public abstract class BaseController extends Utils implements Initializable, Showable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }

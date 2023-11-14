@@ -9,13 +9,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <AnchorPane prefHeight="528.0" prefWidth="769.0" stylesheets="@../style/search.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.englishapplication.controller.pane.SearchController">
    <children>
       <TextField fx:id="searchField" layoutX="17.0" layoutY="18.0" onKeyReleased="#searchFieldAction" prefHeight="46.0" prefWidth="267.0" promptText="Type your word..." styleClass="search-field" />
       <ListView fx:id="listView" layoutX="17.0" layoutY="76.0" onMouseClicked="#listViewAction" prefHeight="383.0" prefWidth="267.0" />
-      <Button layoutX="17.0" layoutY="468.0" mnemonicParsing="false" onAction="#addAction" prefHeight="39.0" prefWidth="78.0" styleClass="btn-success" text="Add" />
-      <Button layoutX="112.0" layoutY="468.0" mnemonicParsing="false" onAction="#editAction" prefHeight="39.0" prefWidth="78.0" styleClass="btn-warning" text="Edit" />
-      <Button layoutX="206.0" layoutY="468.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="39.0" prefWidth="78.0" styleClass="btn-danger" text="Delete" />
+      <MFXButton layoutX="17.0" layoutY="468.0" mnemonicParsing="false" onAction="#addAction" prefHeight="39.0" prefWidth="78.0" styleClass="btn-success" text="Add" />
+      <MFXButton layoutX="112.0" layoutY="468.0" mnemonicParsing="false" onAction="#editAction" prefHeight="39.0" prefWidth="78.0" styleClass="btn-warning" text="Edit" />
+      <MFXButton layoutX="206.0" layoutY="468.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="39.0" prefWidth="78.0" styleClass="btn-danger" text="Delete" />
       <ScrollPane layoutX="306.0" layoutY="18.0" prefHeight="494.0" prefWidth="452.0" styleClass="search-box">
          <content>
             <VBox fx:id="definitionView" prefHeight="483.0" prefWidth="443.0" style="-fx-background-color: white;">

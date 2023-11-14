@@ -6,6 +6,7 @@ import com.example.englishapplication.core.Database;
 import com.example.englishapplication.helper.RecommenderSystem;
 import com.example.englishapplication.helper.VoiceAPI;
 import com.example.englishapplication.stage.PopUpStage;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -56,7 +57,8 @@ public class SearchController extends BaseController implements Initializable {
             if (suggestion != null) {
                 HBox header = new HBox();
                 Label label = new Label("Did you mean: ");
-                Button button = new Button(suggestion);
+                MFXButton button = new MFXButton(suggestion);
+                button.getStyleClass().add("link-button");
                 button.setOnMouseClicked(mouseEvent -> {
                     searchField.setText(suggestion);
                     searchField.positionCaret(searchField.getText().length());
@@ -66,7 +68,6 @@ public class SearchController extends BaseController implements Initializable {
                         throw new RuntimeException(e);
                     }
                 });
-                button.getStyleClass().add("word-suggestion-button");
                 label.getStyleClass().add("word-definition-label");
                 header.getChildren().addAll(label, button);
 
