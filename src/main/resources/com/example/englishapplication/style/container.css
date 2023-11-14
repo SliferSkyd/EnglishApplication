@@ -1,3 +1,7 @@
+.button:hover {
+    -fx-cursor: hand;
+}
+
 .button-navigator {
     -fx-background-color: transparent;
 }

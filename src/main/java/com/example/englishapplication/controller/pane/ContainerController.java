@@ -1,12 +1,16 @@
 package com.example.englishapplication.controller.pane;
 
+import com.example.englishapplication.core.DictionaryManagement;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -19,7 +23,6 @@ public class ContainerController implements Initializable {
     @FXML
     private Button searchButton, translateButton, relativesButton, favoriteButton, gameButton;
     private List<BaseController> controllers = new ArrayList<>();
-
     public void activePaneAction(Event event) {
         Button source = (Button) event.getSource();
         for (int i = 0; i < controllers.size(); ++i) {
@@ -73,5 +76,13 @@ public class ContainerController implements Initializable {
             throw new RuntimeException(e);
         }
         controllers.get(0).start();
+    }
+    private FileChooser fileChooser = new FileChooser();
+    public void exportDataAction() throws FileNotFoundException {
+        fileChooser.setTitle("Export Data");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+        fileChooser.setInitialFileName("dictionary.txt");
+        File file = fileChooser.showSaveDialog(mainContent.getScene().getWindow());
+        DictionaryManagement.exportToFile(file);
     }
 }

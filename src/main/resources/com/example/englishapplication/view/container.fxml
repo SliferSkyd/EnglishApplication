@@ -87,7 +87,7 @@
                   <Font name="Gill Sans MT" size="46.0" />
                </font>
             </Text>
-            <JFXButton layoutX="758.0" layoutY="9.0" prefHeight="68.0" prefWidth="82.0" text=" ">
+            <JFXButton layoutX="758.0" layoutY="9.0" onAction="#exportDataAction" prefHeight="68.0" prefWidth="82.0" text=" ">
                <graphic>
                   <ImageView fitHeight="54.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -24,6 +24,6 @@ public class Dictionary extends Application {
     @Override
     public void stop() throws IOException {
         Database.stopDatabase();
-        DictionaryManagement.exportToFile();
+        DictionaryManagement.saveData();
     }
 }

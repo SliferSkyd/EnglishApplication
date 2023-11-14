@@ -7,11 +7,12 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 
+import java.io.FileNotFoundException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class Utils {
     protected interface DoSomeThing {
-        void process() throws ClassNotFoundException;
+        void process() throws ClassNotFoundException, FileNotFoundException;
     }
     protected static void copyToClipboard(String text) {
         final Clipboard clipboard = Clipboard.getSystemClipboard();
@@ -26,6 +27,8 @@ public abstract class Utils {
                 parallelProcessing.process();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
             }
         });
         thread.setDaemon(true);

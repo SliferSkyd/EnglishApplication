@@ -1,14 +1,4 @@
 @font-face {
-    font-family: 'Flying Bird';
-    src: url('../font/FlyingBird.otf');
-}
-
-@font-face {
-    font-family: 'Quwen King Regular';
-    src: url('../font/QuwenKingRegular.ttf');
-}
-
-@font-face {
     font-family: 'blomberg';
     src: url('../font/blomberg.otf');
 }

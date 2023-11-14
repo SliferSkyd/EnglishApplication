@@ -89,6 +89,8 @@ public class SearchController extends BaseController implements Initializable {
             speaker.setFitHeight(20);
             speaker.setFitWidth(20);
             speaker.setId("speaker");
+            speaker.setPickOnBounds(true);
+            speaker.getStyleClass().add("button");
             speaker.setOnMouseClicked(mouseEvent -> {
                 VoiceAPI.getTextToSpeech(prefix, "en");
             });

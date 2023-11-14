@@ -23,7 +23,6 @@ public class PopUpController extends Utils {
         originalWord = word;
         wordField.setText(word);
         JSONObject meaning = DictionaryManagement.search(word);
-        System.out.println(meaning);
         if (meaning != null) {
             phoneticField.setText(meaning.getString("pronoun"));
             buildTree(meaning.getJSONArray("type"), content, 0);

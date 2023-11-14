@@ -17,7 +17,6 @@ public class Database {
                     +   "englishWord varchar UNIQUE NOT NULL,\n"
                     +   "vietnameseWord varchar NOT NULL\n"
                     +   ");";
-            System.out.println(sql);
             Statement stmt = c.createStatement();
             stmt.execute(sql);
 
@@ -32,8 +31,7 @@ public class Database {
         try {
             stmt = c.createStatement();
             String sql = "INSERT INTO favoriteWords(englishWord, vietnameseWord) " +
-                    "VALUES ('" + word.getTarget() + "', '" + word.getExplain() + "');" ;
-            System.out.println(sql);
+                    "VALUES ('" + word.getTarget() + "', '" + word.getExplain() + "');";
             stmt.executeUpdate(sql);
 
         } catch (SQLException e) {
@@ -91,8 +89,7 @@ public class Database {
         try {
             stmt = c.createStatement();
             String sql = "DELETE FROM favoriteWords " +
-                    "WHERE englishWord = '" + s + "';" ;
-            System.out.println(sql);
+                    "WHERE englishWord = '" + s + "';";
             stmt.executeUpdate(sql);
 
         } catch (SQLException e) {
@@ -115,8 +112,7 @@ public class Database {
         Statement stmt = null;
         try {
             stmt = c.createStatement();
-            String sql = "DELETE FROM favoriteWords;" ;
-            System.out.println(sql);
+            String sql = "DELETE FROM favoriteWords;";
             stmt.executeUpdate(sql);
 
         } catch (SQLException e) {

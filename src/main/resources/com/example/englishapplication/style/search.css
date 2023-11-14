@@ -32,8 +32,7 @@
     -fx-cursor: hand;
 }
 
-.link-button:armed,
-.link-button:focused {
+.link-button:armed, .link-button:focused {
     -fx-border-color: #006BFF;
     -fx-text-fill: #006BFF;
 }
@@ -95,5 +94,8 @@
 }
 
 #speaker:hover {
-    -fx-background-color: rgba(0, 0, 0, .15);
+    -fx-opacity: 0.75;
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-scale-z: 1.2;
 }
