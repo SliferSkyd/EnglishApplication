@@ -24,7 +24,11 @@ public class DictionaryManagement {
 
 
     public static void exportToFile() {
-
+        try {
+            Files.writeString(Path.of(OUT_PATH), dictionary.toString());
+        } catch (IOException e) {
+            System.out.println("Can't export to file");
+        }
     }
 
     public static String getMeaning(String word) {
@@ -44,19 +48,36 @@ public class DictionaryManagement {
     }
 
     static final String IN_PATH = "src/main/resources/com/example/englishapplication/data/EngToVie.json";
-    static final String OUT_PATH = "src/main/resources/com/example/englishapplication/data/data.json";
+    static final String OUT_PATH = "src/main/resources/com/example/englishapplication/data/EngToVie.json";
 
     public static boolean add(String target, JSONObject meaning) {
-        return trie.addWord(target);
+        if (trie.addWord(target)) {
+            dictionary.put(target, meaning);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static boolean delete(String target) {
-        return trie.deleteWord(target);
+        if (trie.deleteWord(target)) {
+            dictionary.remove(target);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static boolean update(String target, JSONObject meaning) {
         if (!delete(target)) return false;
-        return add(target, meaning);
+        dictionary.remove(target);
+
+        if (add(target, meaning)) {
+            return true;
+        } else {
+            add(target, meaning);
+            return false;
+        }
     }
 
     public static JSONObject search(String target) {
