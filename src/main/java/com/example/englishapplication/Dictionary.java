@@ -22,7 +22,7 @@ public class Dictionary extends Application {
     }
 
     @Override
-    public void stop() throws IOException {
+    public void stop() {
         Database.stopDatabase();
         DictionaryManagement.saveData();
     }

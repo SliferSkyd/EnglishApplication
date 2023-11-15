@@ -15,7 +15,6 @@ public class GameController extends BaseController {
     @Override
     public void start() {
         super.start();
-        playAnimation(new JackInTheBox(root), 1);
         MediaManager.playBackgroundMusic(MediaManager.Sound.INTRODUCE, 0.25);
     }
 

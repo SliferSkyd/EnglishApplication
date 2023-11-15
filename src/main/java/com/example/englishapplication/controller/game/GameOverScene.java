@@ -56,6 +56,7 @@ public class GameOverScene extends BaseScene {
         root.setCenter(content);
 
         playAgainButton.setOnMouseClicked(event -> {
+            MediaManager.stopSound();
             stage.fireEvent(new GameEvent(GameEvent.PLAY_AGAIN, 0, ""));
         });
         MediaManager.playBackgroundMusic(MediaManager.Sound.GAME_OVER, 0.25);

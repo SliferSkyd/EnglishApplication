@@ -1,0 +1,88 @@
+@font-face {
+    font-family: 'Hobo Bold';
+    src: url('../../font/HoboBold.ttf');
+}
+
+@font-face {
+    font-family: 'Reporter #2';
+    src: url('../../font/Reporter.otf');
+}
+
+.root {
+    -fx-background-image: url('background.jpg');
+    -fx-background-size: 1000px 600px;
+}
+
+.letter {
+    -fx-font-family: 'Hobo Bold';
+    -fx-font-size: 85;
+    -fx-text-fill:#eb4d7d
+}
+
+.answer {
+    -fx-text-fill: green;
+}
+
+.border-button:hover {
+    -fx-border-radius: 10;
+    -fx-border-color: #35A3FA;
+    -fx-border-width: 5;
+    -fx-border-style: dashed;
+}
+
+.custom-transparent-button {
+    -fx-padding: -2px 12px -2px 12px;
+    -fx-background-color: transparent;
+}
+
+.info-text {
+    -fx-font-size: 20px;
+    -fx-padding: 10;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-color: #eb4d7d;
+    -fx-background-radius: 5;
+    -fx-border-color: white;
+    -fx-border-width: 1;
+}
+
+.sound {
+    -fx-font-size: 45px;
+    -fx-background-color: transparent;
+}
+
+.submit-button {
+    -fx-border-color: #16380B;
+    -fx-border-width: 3;
+    -fx-border-radius: 35;
+    -fx-font-family: 'Reporter #2';
+    -fx-font-size: 25;
+    -fx-background-color: #314A06;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius: 35;
+    -fx-padding: 5 28;
+}
+
+.submit-button:hover {
+    -fx-background-color: #16380B;
+    -fx-text-fill: #FFFFFF;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
+}
+
+.time {
+    -fx-font-family: 'Reporter #2';
+    -fx-font-size: 35;
+    -fx-text-fill: white;
+    -fx-padding: 5 28;
+}
+
+.GameOver {
+    -fx-font-family: 'Reporter #2';
+    -fx-font-size: 30px;
+    -fx-text-fill: black;
+}
+.Congratulations {
+    -fx-font-size: 50px;
+}

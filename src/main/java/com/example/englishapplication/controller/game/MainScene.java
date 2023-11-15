@@ -3,6 +3,10 @@ package com.example.englishapplication.controller.game;
 import animatefx.animation.*;
 import com.example.englishapplication.helper.MediaManager;
 import com.jfoenix.controls.JFXButton;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.animation.Transition;
+import javafx.animation.TranslateTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -13,6 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import javafx.util.Duration;
 
 import static javafx.scene.paint.Color.TRANSPARENT;
 import static javafx.scene.paint.Color.WHITE;
@@ -43,9 +48,11 @@ public class MainScene extends BaseScene {
 
         submitButton.setOnAction(event -> {
             if (question.finished() && question.checkAnswer()) {
+                correctAnimation();
                 rule.updateScore(true);
                 MediaManager.playSoundEffect(MediaManager.Sound.CORRECT);
             } else {
+                incorrectAnimation();
                 rule.updateScore(false);
                 MediaManager.playSoundEffect(MediaManager.Sound.INCORRECT);
             }
@@ -119,7 +126,25 @@ public class MainScene extends BaseScene {
         showQuestion();
         rule.startCountDown();
     }
+    private void incorrectAnimation() {
+        incorrectImage.setVisible(true);
+        AnimationFX animation = new FadeInUp(incorrectImage);
+        animation.setSpeed(1.5);
+        animation.getTimeline().setOnFinished(event -> {
+            playAnimation(new FadeOutDown(incorrectImage), 2);
+        });
+        animation.play();
+    }
 
+    private void correctAnimation() {
+        correctImage.setVisible(true);
+        AnimationFX animation = new FadeInRight(correctImage);
+        animation.setSpeed(1.5);
+        animation.getTimeline().setOnFinished(event -> {
+            playAnimation(new FadeOutRight(correctImage), 2);
+        });
+        animation.play();
+    }
     private void showQuestion() {
         question = new Question();
 

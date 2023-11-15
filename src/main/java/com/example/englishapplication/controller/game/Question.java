@@ -19,12 +19,12 @@ public class Question extends Utils {
             letter.getStyleClass().add("letter");
             letter.getStyleClass().add("custom-transparent-button");
             letter.getStyleClass().add("border-button");
-            letter.setStyle("-fx-text-fill:#eb4d7d");
             letters.getChildren().add(letter);
         }
         for (int i = 0; i < wordToGuess.length(); i++) {
             javafx.scene.control.Button letter = new Button("_");
             letter.getStyleClass().add("letter");
+            letter.getStyleClass().add("answer");
             letter.getStyleClass().add("custom-transparent-button");
             answerLetters.getChildren().add(letter);
         }

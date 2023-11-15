@@ -15,3 +15,11 @@ HBox {
 VBox {
     -fx-spacing: 5;
 }
+
+.button {
+    -fx-cursor: hand;
+}
+
+.image-view {
+    -fx-cursor: hand;
+}

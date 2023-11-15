@@ -46,6 +46,8 @@ public class Rule {
     }
     public void endGame() {
         timeManager.stop();
-        stage.fireEvent(new GameEvent(GameEvent.GAME_OVER, score, timeManager.getEclipsedTime()));
+        if (stage.isShowing()) {
+            stage.fireEvent(new GameEvent(GameEvent.GAME_OVER, score, timeManager.getEclipsedTime()));
+        }
     }
 }
