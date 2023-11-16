@@ -1,8 +1,7 @@
 package com.example.englishapplication.base;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class DictionaryManagement {
@@ -17,8 +16,8 @@ public class DictionaryManagement {
         }
     }
 
-    public static void insertFromFile() throws IOException {
-        FileInputStream fileInputStream = new FileInputStream(IN_PATH);
+    public static void insertFromFile(String path) throws IOException {
+        FileInputStream fileInputStream = new FileInputStream(path);
         Scanner scanner = new Scanner(fileInputStream);
         try {
             while (scanner.hasNextLine()) {
@@ -43,16 +42,21 @@ public class DictionaryManagement {
         }*/
     }
 
-    public static void exportToFile() throws IOException {
-        File output = new File(OUT_PATH);
+    public static void exportToFile(String path) throws IOException {
+        File output = new File(path);
         PrintStream stream = new PrintStream(output);
         System.setOut(stream);
 
-        showAllWords();
+        if (path.equals(IN_PATH)) {
+            Dictionary.trie.printToRootFile(Dictionary.trie.root, "");
+        } else {
+            showAllWords();
+        }
 
         System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
         stream.close();
     }
+
 
     static final String IN_PATH = "src/main/resources/WordDictionary/dictionaries.txt";
     static final String OUT_PATH = "src/main/resources/WordDictionary/data.txt";
@@ -75,7 +79,7 @@ public class DictionaryManagement {
 
     public static String update(String target, String explain) {
         String temp = delete(target);
-        if (temp == "Error: Word is not exist") return temp;
+        if (Objects.equals(temp, "Error: Word is not exist")) return temp;
 
         return add(target, explain);
     }

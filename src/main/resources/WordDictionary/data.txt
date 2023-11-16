@@ -5,7 +5,8 @@ No    | English        | Vietnamese
 4     | Index          | Chỉ số         
 5     | Love           | Yêu thương     
 6     | Object         | Đối tượng      
-7     | School         | Trường học     
-8     | Search         | Tìm kiếm       
-9     | Tree           | Cây            
-10    | University     | Trường đại học 
+7     | Scholarship    | Học bổng       
+8     | School         | Trường học     
+9     | Search         | Tìm kiếm       
+10    | Tree           | Cây            
+11    | University     | Trường đại học 

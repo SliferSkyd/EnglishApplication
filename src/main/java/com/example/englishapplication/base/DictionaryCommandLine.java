@@ -27,6 +27,7 @@ public class DictionaryCommandLine {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 0: {
+                    DictionaryManagement.exportToFile(DictionaryManagement.IN_PATH);
                     System.exit(0);
                 }
                 case 1: {
@@ -74,11 +75,11 @@ public class DictionaryCommandLine {
 
                 }
                 case 8: {
-                    DictionaryManagement.insertFromFile();
+                    DictionaryManagement.insertFromFile(DictionaryManagement.IN_PATH);
                     break;
                 }
                 case 9: {
-                    DictionaryManagement.exportToFile();
+                    DictionaryManagement.exportToFile(DictionaryManagement.OUT_PATH);
                     break;
                 }
             }
