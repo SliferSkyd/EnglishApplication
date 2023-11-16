@@ -137,6 +137,13 @@
             <artifactId>commons-text</artifactId>
             <version>1.10.0</version>
         </dependency>
+        <dependency>
+            <groupId>voicerss.tts</groupId>
+            <artifactId>voicerss_tts</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/com/example/englishapplication/lib/voicerss_tts.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <build>
