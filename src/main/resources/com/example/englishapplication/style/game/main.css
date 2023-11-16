@@ -9,7 +9,7 @@
 }
 
 .root {
-    -fx-background-image: url('background.jpg');
+    -fx-background-image: url('../../image/game/background.jpg');
     -fx-background-size: 1000px 600px;
 }
 
