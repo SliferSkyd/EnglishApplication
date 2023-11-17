@@ -22,7 +22,6 @@ public class Database {
 
         } catch (Exception e) {
             System.err.println("Can't start database");
-            System.exit(0);
         }
     }
 

@@ -13,6 +13,10 @@
     -fx-background-size: 1000px 600px;
 }
 
+.button:hover {
+    -fx-cursor: hand;
+}
+
 .letter {
     -fx-font-family: 'Hobo Bold';
     -fx-font-size: 85;
