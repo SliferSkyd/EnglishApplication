@@ -1,6 +1,6 @@
 package com.example.englishapplication;
 
-public interface Showable {
+public interface Presentable {
     void start();
     void stop();
 }

@@ -50,3 +50,7 @@
     -fx-background-color: white;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 15, 0, 0, 0);
 }
+
+.button:hover {
+    -fx-opacity: 0.75;
+}

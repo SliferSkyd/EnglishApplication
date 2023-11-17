@@ -7,6 +7,7 @@ import javafx.animation.*;
 import javafx.fxml.Initializable;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
@@ -17,7 +18,7 @@ import java.util.ResourceBundle;
 
 public class FavoriteController extends BaseController implements Initializable {
     private int currentIndex = 0;
-    public AnchorPane card;
+    public GridPane card;
     public Text text;
     private String targetWord, targetMeaning;
     boolean isFrontShowing = true;
@@ -51,13 +52,11 @@ public class FavoriteController extends BaseController implements Initializable 
             pause.setOnFinished(e -> {
                 text.setText(targetMeaning);
                 text.setScaleY(text.getScaleY() * -1);
-                System.out.println(text.getScaleY());
             });
         } else {
             pause.setOnFinished(e -> {
                 text.setText(targetWord);
                 text.setScaleY(text.getScaleY() * -1);
-                System.out.println(text.getScaleY());
             });
         }
         return pause;
