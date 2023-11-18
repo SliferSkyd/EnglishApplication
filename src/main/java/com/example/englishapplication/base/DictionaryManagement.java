@@ -24,7 +24,16 @@ public class DictionaryManagement {
                 String line = scanner.nextLine();
                 String[] wordInLine = line.split("\t");
                 //Dictionary.wordList.add(new Word(wordInLine[0], wordInLine[1]));
-                add(wordInLine[0], wordInLine[1]);
+
+                System.out.println(line);
+
+                StringBuilder meaning = new StringBuilder();
+                for (int i = 1; i < wordInLine.length; ++i) {
+                    meaning.append(wordInLine[i]);
+                    if (i != wordInLine.length - 1) meaning.append("\t");
+                };
+
+                Dictionary.trie.addWord(wordInLine[0], meaning.toString());
             }
         } catch (Exception e) {
             throw new IOException();
@@ -58,7 +67,7 @@ public class DictionaryManagement {
     }
 
 
-    static final String IN_PATH = "src/main/resources/WordDictionary/dictionaries.txt";
+    static final String IN_PATH = "src/main/resources/WordDictionary/CommandLineData.txt";
     static final String OUT_PATH = "src/main/resources/WordDictionary/data.txt";
     public static String add(String target, String explain) {
         //Dictionary.wordList.add(new Word(target, explain));
