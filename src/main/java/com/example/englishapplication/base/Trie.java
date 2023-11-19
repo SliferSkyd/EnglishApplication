@@ -16,7 +16,7 @@ public class Trie {
         }
 
         public String getExplain() {
-            return explain;
+            return explain.replaceAll("\t", "\n");
         }
 
         public void setExplain(String explain) {
@@ -83,7 +83,15 @@ public class Trie {
     private void dfs(Node u, String prefix) {
         if (!u.getExplain().isEmpty()) {
             ++index;
-            System.out.printf("%-6d%c %-15s%c %-15s%n", index, '|', prefix, '|', u.getExplain());
+            String format = "%-6s%c %-15s%c %-15s%n";
+            String meaningList = u.getExplain();
+            String[] meaning = meaningList.split("\n");
+
+            //System.out.printf("%-6d%c %-15s%c %-15s%n", index, '|', prefix, '|', u.getExplain());
+            System.out.printf(format, index, '|', prefix, '|', meaning[0]);
+            for (int i = 1; i < meaning.length; ++i) {
+                System.out.printf(format, "", '|', "", '|', meaning[i]);
+            }
         }
 
         for (int i = 0; i < 256; ++i)
