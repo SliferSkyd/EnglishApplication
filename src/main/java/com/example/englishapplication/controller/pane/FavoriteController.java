@@ -88,14 +88,22 @@ public class FavoriteController extends BaseController implements Initializable 
     private List<Word> words;
 
     private void apply(int index) {
-        targetWord = words.get(index).getTarget();
-        targetMeaning = words.get(index).getExplain();
+        if (words.size() == 0) {
+            targetWord = "Your favorite collection is empty";
+            targetMeaning = "Please add some words to see something amazing";
+        } else {
+            targetWord = words.get(index).getTarget();
+            targetMeaning = words.get(index).getExplain();
+        }
         text.setScaleY(1);
         text.setText(targetWord);
         isFrontShowing = true;
     }
 
     public void removeAction() throws ClassNotFoundException {
+        if (words.size() == 0) {
+            return;
+        }
         Database.removeWord(words.get(currentIndex).getTarget());
         words.remove(currentIndex);
         if (currentIndex == words.size()) {
