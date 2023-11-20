@@ -19,6 +19,10 @@ public class Trie {
             return explain.replaceAll("\t", "\n");
         }
 
+        public String getRawExplain() {
+            return explain;
+        }
+
         public void setExplain(String explain) {
             this.explain = explain;
         }
@@ -100,7 +104,7 @@ public class Trie {
 
     public void printToRootFile(Node u, String prefix) {
         if (!u.getExplain().isEmpty()) {
-            System.out.println(prefix + "\t" + u.getExplain());
+            System.out.println(prefix + "\t" + u.getRawExplain());
         }
 
         for (int i = 0; i < 256; ++i)

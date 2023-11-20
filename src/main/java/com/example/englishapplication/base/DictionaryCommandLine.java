@@ -27,7 +27,7 @@ public class DictionaryCommandLine {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 0: {
-                    //DictionaryManagement.exportToFile(DictionaryManagement.IN_PATH);
+                    DictionaryManagement.exportToFile(DictionaryManagement.IN_PATH);
                     System.exit(0);
                 }
                 case 1: {
@@ -35,6 +35,8 @@ public class DictionaryCommandLine {
                     Scanner lineScanner = new Scanner(System.in);
                     String target = lineScanner.nextLine();
                     String explain = lineScanner.nextLine();
+
+                    target = target.toLowerCase();
                     System.out.println(DictionaryManagement.add(target, explain));
                     break;
                 }
@@ -42,6 +44,8 @@ public class DictionaryCommandLine {
                     System.out.print("Type your word: ");
                     Scanner lineScanner = new Scanner(System.in);
                     String target = lineScanner.nextLine();
+
+                    target = target.toLowerCase();
                     System.out.println(DictionaryManagement.delete(target));
                     break;
                 }
@@ -50,6 +54,8 @@ public class DictionaryCommandLine {
                     Scanner lineScanner = new Scanner(System.in);
                     String target = lineScanner.nextLine();
                     String explain = lineScanner.nextLine();
+
+                    target = target.toLowerCase();
                     System.out.println(DictionaryManagement.update(target, explain));
                     break;
                 }
@@ -61,6 +67,8 @@ public class DictionaryCommandLine {
                     System.out.print("Type your word: ");
                     Scanner lineScanner = new Scanner(System.in);
                     String target = lineScanner.nextLine();
+
+                    target = target.toLowerCase();
                     DictionaryManagement.LookUp(target);
                     break;
                 }
@@ -68,6 +76,8 @@ public class DictionaryCommandLine {
                     System.out.print("Type your word: ");
                     Scanner lineScanner = new Scanner(System.in);
                     String target = lineScanner.nextLine();
+
+                    target = target.toLowerCase();
                     System.out.println(DictionaryManagement.Search(target));
                     break;
                 }
