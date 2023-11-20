@@ -2,6 +2,7 @@ package com.example.englishapplication.controller.pane;
 
 import com.example.englishapplication.Presentable;
 import com.example.englishapplication.core.Utils;
+import com.example.englishapplication.helper.AudioManager;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -20,6 +21,7 @@ public abstract class BaseController extends Utils implements Initializable, Pre
         navButton.getStyleClass().add("active");
     }
     public void stop() {
+        AudioManager.stopPlaying();
         root.setVisible(false);
         navButton.getStyleClass().removeAll("active");
     }

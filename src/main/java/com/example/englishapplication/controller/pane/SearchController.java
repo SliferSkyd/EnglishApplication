@@ -3,8 +3,8 @@ package com.example.englishapplication.controller.pane;
 import com.example.englishapplication.core.DictionaryManagement;
 import com.example.englishapplication.core.Word;
 import com.example.englishapplication.core.Database;
+import com.example.englishapplication.helper.AudioManager;
 import com.example.englishapplication.helper.RecommenderSystem;
-import com.example.englishapplication.helper.VoiceAPI;
 import com.example.englishapplication.stage.PopUpStage;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.application.Platform;
@@ -92,7 +92,7 @@ public class SearchController extends BaseController implements Initializable {
             speaker.setPickOnBounds(true);
             speaker.getStyleClass().add("button");
             speaker.setOnMouseClicked(mouseEvent -> {
-                VoiceAPI.getTextToSpeech(prefix, "en");
+                AudioManager.getTextToSpeech(prefix, "en");
             });
             speaker.getStyleClass().add("word-speaker-image");
             header.getChildren().add(speaker);

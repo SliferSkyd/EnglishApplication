@@ -1,5 +1,6 @@
 package com.example.englishapplication.controller.pane;
 
+import com.example.englishapplication.helper.AudioManager;
 import com.example.englishapplication.helper.TranslateAPI;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import javafx.application.Platform;
@@ -12,8 +13,6 @@ import javafx.scene.web.WebView;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
-
-import static com.example.englishapplication.helper.VoiceAPI.getTextToSpeech;
 
 public class TranslateController extends BaseController implements Initializable {
     public TextArea input;
@@ -48,11 +47,11 @@ public class TranslateController extends BaseController implements Initializable
     }
 
     public void pronounceInputAction() {
-        getTextToSpeech(input.getText(), Objects.equals(fromLang.getSelectionModel().getSelectedItem(), "Vietnamese") ? "vi" : "en");
+        AudioManager.getTextToSpeech(input.getText(), Objects.equals(fromLang.getSelectionModel().getSelectedItem(), "Vietnamese") ? "vi" : "en");
     }
 
     public void pronounceOutputAction() {
-        getTextToSpeech(output.getEngine().getDocument().getDocumentElement().getTextContent(), Objects.equals(toLang.getSelectionModel().getSelectedItem(), "Vietnamese") ? "vi" : "en");
+        AudioManager.getTextToSpeech(output.getEngine().getDocument().getDocumentElement().getTextContent(), Objects.equals(toLang.getSelectionModel().getSelectedItem(), "Vietnamese") ? "vi" : "en");
     }
 
     @Override
