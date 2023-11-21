@@ -1,6 +1,5 @@
 package com.example.englishapplication.core;
 
-import javafx.scene.layout.VBox;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -30,13 +29,13 @@ public class DictionaryManagement extends Utils {
     }
 
     public static void saveData() {
-        parallelProcessing(() -> {
+        //parallelProcessing(() -> {
             try {
                 Files.writeString(Path.of(RESOURCES), dictionary.toString());
             } catch (IOException e) {
                 System.out.println("Can't save file");
             }
-        });
+        //});
     }
     private static void buildTree(JSONArray array, PrintWriter writer, int depth) {
         for (int i = 0; i < array.length(); ++i) {
