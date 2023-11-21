@@ -67,8 +67,8 @@ public class DictionaryManagement {
     }
 
 
-    static final String IN_PATH = "src/main/resources/WordDictionary/CommandLineData.txt";
-    static final String OUT_PATH = "src/main/resources/WordDictionary/data.txt";
+    static final String IN_PATH = "src/main/resources/com/example/englishapplication/data/CommandLineData.txt";
+    static final String OUT_PATH = "src/main/resources/com/example/englishapplication/data/data.txt";
     public static String add(String target, String explain) {
         //Dictionary.wordList.add(new Word(target, explain));
         return Dictionary.trie.addWord(target, explain);
