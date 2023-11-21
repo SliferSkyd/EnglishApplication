@@ -103,7 +103,6 @@ public class PopUpController extends Utils {
             typeArray.put(typeObject);
         }
         meaning.put("type", typeArray);
-        System.out.println(meaning.toString());
         if (confirm("Are you sure you want to save this word?", word)) {
             if (originalWord != null) {
                 DictionaryManagement.delete(originalWord);

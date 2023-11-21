@@ -37,7 +37,7 @@ public class SearchController extends BaseController implements Initializable {
     private void reloadSearchWord() throws ClassNotFoundException {
         String prefix = searchField.getText();
 
-        parallelProcessing(() -> {
+        concurrentProcess(() -> {
             try {
                 currentSearchWord.clear();
                 currentSearchWord = DictionaryManagement.LookUp(prefix);

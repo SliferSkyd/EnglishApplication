@@ -1,7 +1,6 @@
 package com.example.englishapplication.core;
 
 import animatefx.animation.AnimationFX;
-import javafx.animation.Animation;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.Clipboard;
@@ -21,10 +20,10 @@ public abstract class Utils {
         clipboard.setContent(content);
     }
 
-    protected static void parallelProcessing(DoSomeThing parallelProcessing) {
+    protected static void concurrentProcess(DoSomeThing concurrentProcessing) {
         Thread thread = new Thread(() -> {
             try {
-                parallelProcessing.process();
+                concurrentProcessing.process();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (FileNotFoundException e) {

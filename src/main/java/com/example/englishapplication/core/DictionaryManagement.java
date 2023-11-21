@@ -1,6 +1,5 @@
 package com.example.englishapplication.core;
 
-import javafx.scene.layout.VBox;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -18,7 +17,7 @@ public class DictionaryManagement extends Utils {
     public static JSONObject dictionary;
 
     public static void insertFromFile() {
-        parallelProcessing(() -> {
+        concurrentProcess(() -> {
             try {
                 String content = new String(Files.readAllBytes(Path.of(RESOURCES)));
                 dictionary = new JSONObject(content);
@@ -30,14 +29,13 @@ public class DictionaryManagement extends Utils {
     }
 
     public static void saveData() {
-        parallelProcessing(() -> {
-            try {
-                Files.writeString(Path.of(RESOURCES), dictionary.toString());
-            } catch (IOException e) {
-                System.out.println("Can't save file");
-            }
-        });
+        try {
+            Files.writeString(Path.of(RESOURCES), dictionary.toString());
+        } catch (IOException e) {
+            System.out.println("Can't save file");
+        }
     }
+
     private static void buildTree(JSONArray array, PrintWriter writer, int depth) {
         for (int i = 0; i < array.length(); ++i) {
             JSONObject object = array.getJSONObject(i);
@@ -51,7 +49,7 @@ public class DictionaryManagement extends Utils {
         }
     }
     public static void exportToFile(File file) throws FileNotFoundException {
-        parallelProcessing(() -> {
+        concurrentProcess(() -> {
             PrintWriter writer = new PrintWriter(file);
             List<String> words = LookUp("");
             words.forEach((word) -> {

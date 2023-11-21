@@ -13,7 +13,7 @@ import java.io.ByteArrayInputStream;
 public class AudioManager extends Utils {
     private static SourceDataLine speaker;
     public static void getTextToSpeech(String text, String language) {
-        parallelProcessing(() -> {
+        concurrentProcess(() -> {
             try {
                 VoiceProvider tts = new VoiceProvider("545ad787cb434355a3c84ed93f02c88e");
                 VoiceParameters params = new VoiceParameters(text, (language.equals("en") ? Languages.English_UnitedStates : Languages.Vietnamese));
