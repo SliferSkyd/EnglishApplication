@@ -87,7 +87,7 @@ public class Trie {
     private void dfs(Node u, String prefix) {
         if (!u.getExplain().isEmpty()) {
             ++index;
-            String format = "%-6s%c %-15s%c %-15s%n";
+            String format = "%-6s%c %-50s%c %-15s%n";
             String meaningList = u.getExplain();
             String[] meaning = meaningList.split("\n");
 

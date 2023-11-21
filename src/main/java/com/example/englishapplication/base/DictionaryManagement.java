@@ -44,7 +44,7 @@ public class DictionaryManagement {
     }
 
     public static void showAllWords() {
-        System.out.printf("%-6s%c %-15s%c %-20s%n","No", '|' ,"English", '|', "Vietnamese");
+        System.out.printf("%-6s%c %-50s%c %-20s%n","No", '|' ,"English", '|', "Vietnamese");
         Dictionary.trie.lookupWord("");
         /*for (int i = 0; i < Dictionary.wordList.size(); i++) {
             System.out.printf("%-6d%c %-15s%c %-15s%n", i + 1,'|', Dictionary.wordList.get(i).getWordTarget(), '|',Dictionary.wordList.get(i).getWordExplain());
@@ -110,7 +110,7 @@ public class DictionaryManagement {
                 wordList.add(Dictionary.wordList.get(i));
             }
         }*/
-        System.out.printf("%-6s%c %-15s%c %-20s%n", "No", '|' ,"English", '|', "Vietnamese");
+        System.out.printf("%-6s%c %-30s%c %-20s%n", "No", '|' ,"English", '|', "Vietnamese");
         Dictionary.trie.lookupWord(prefix);
         /*for (int i = 0; i < wordList.size(); i++) {
             System.out.printf("%-6d%c %-15s%c %-15s%n", i + 1,'|', wordList.get(i).getWordTarget(), '|', wordList.get(i).getWordExplain());
