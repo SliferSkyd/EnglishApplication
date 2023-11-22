@@ -1,6 +1,7 @@
 package com.example.englishapplication.controller.pane;
 
 import com.example.englishapplication.core.DictionaryManagement;
+import com.example.englishapplication.core.Utils;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ContainerController implements Initializable {
+public class ContainerController extends Utils implements Initializable {
     @FXML
     private AnchorPane mainContent;
     @FXML

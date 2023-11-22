@@ -1,12 +1,13 @@
 package com.example.englishapplication.helper;
 
 import com.example.englishapplication.core.DictionaryManagement;
+import com.example.englishapplication.core.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
-public class RecommenderSystem {
+public class RecommenderSystem extends Utils {
     private static class Node {
         public String word;
         public int depth;

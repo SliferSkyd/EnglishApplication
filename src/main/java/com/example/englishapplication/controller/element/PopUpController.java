@@ -107,7 +107,9 @@ public class PopUpController extends Utils {
             if (originalWord != null) {
                 DictionaryManagement.delete(originalWord);
             }
-            DictionaryManagement.add(word, meaning);
+            if (!DictionaryManagement.add(word, meaning)) {
+                alert("This word is already exist", word);
+            }
             Stage thisStage = (Stage) content.getScene().getWindow();
             thisStage.close();
         }
@@ -117,6 +119,7 @@ public class PopUpController extends Utils {
         }
         DictionaryManagement.add(word, meaning);
     }
+
     public VBox addTypeAction() {
         VBox typeVBox = new VBox();
         HBox typeHBox = new HBox();

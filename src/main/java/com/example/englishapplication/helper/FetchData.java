@@ -8,7 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class FetchData {
+public class FetchData  {
     private JSONObject dict = new JSONObject();
     private JSONObject word = new JSONObject();
     private JSONArray type = new JSONArray();

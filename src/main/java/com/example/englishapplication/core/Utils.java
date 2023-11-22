@@ -49,6 +49,13 @@ public abstract class Utils {
         });
         return result.get();
     }
+    protected static void alert(String thisWordIsAlreadyExist, String word) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(thisWordIsAlreadyExist);
+        alert.setContentText(word);
+        alert.showAndWait();
+    }
 
     protected static String shuffle(String text) {
         char[] characters = text.toCharArray();

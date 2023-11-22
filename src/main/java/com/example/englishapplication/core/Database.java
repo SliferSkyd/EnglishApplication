@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
 
-public class Database {
+public class Database extends Utils {
     private static Connection c = null;
 
     public static void startDatabase() {

@@ -1,9 +1,10 @@
 package com.example.englishapplication.helper;
 
+import com.example.englishapplication.core.Utils;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-public class MediaManager {
+public class MediaManager extends Utils {
     private static boolean isSoundEnabled = true;
     private static MediaPlayer backgroundMusic;
     private static MediaPlayer soundEffect;

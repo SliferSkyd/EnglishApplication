@@ -3,9 +3,31 @@ package com.example.englishapplication.core;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Trie {
+public class Trie extends Utils {
+    private class TrieNode {
+        private boolean isEndOfWord;
+        public TrieNode[] next;
+
+        public TrieNode() {
+            next = new TrieNode[256];
+        }
+
+        public TrieNode(boolean isEndOfWord) {
+            this.isEndOfWord = isEndOfWord;
+        }
+
+        public boolean isEndOfWord() {
+            return isEndOfWord;
+        }
+
+        public void setEndOfWord(boolean endOfWord) {
+            isEndOfWord = endOfWord;
+        }
+    }
+
     private TrieNode root;
     public static int index;
+
     Trie() {
         root = new TrieNode();
     }
@@ -55,6 +77,7 @@ public class Trie {
 
         return p.isEndOfWord();
     }
+
     public TrieNode searchWord(String target) {
         TrieNode p = root;
         for (int i = 0; i < target.length(); ++i) {
@@ -74,7 +97,7 @@ public class Trie {
         }
 
         for (int i = 0; i < 256; ++i)
-            if (u.next[i] != null) dfs(u.next[i], prefix + (char)i, list);
+            if (u.next[i] != null) dfs(u.next[i], prefix + (char) i, list);
     }
 
     public List<String> lookupWord(String prefix) {
