@@ -82,7 +82,7 @@ public class DictionaryCommandLine {
                     break;
                 }
                 case 7: {
-
+                    break;
                 }
                 case 8: {
                     DictionaryManagement.insertFromFile(DictionaryManagement.IN_PATH);
